@@ -1,1 +1,391 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Portfolio — NOM</title>
+  <meta name="description" content="Portfolio — BTS SIO. Systèmes, réseaux, déploiement postes, cybersécurité. Expériences : SNCF, Préfecture, CPAM." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    /* =============== Thème & tokens =============== */
+    :root{
+      --bg:#0b0c10; --panel:#11131a; --muted:#aab1c3; --text:#e8ecf3;
+      --brand:#7c5cff; --brand-2:#18c1ff;
+      --accent:linear-gradient(135deg,var(--brand),var(--brand-2));
+      --ring:0 0 0 2px rgba(124,92,255,.3),0 10px 30px -10px rgba(24,193,255,.35);
+      --radius:18px;
+      --dur-fast:160ms; --dur-med:280ms; --dur-slow:420ms;
+      --ease-standard:cubic-bezier(.22,.61,.36,1);
+      --ease-emphasized:cubic-bezier(.05,.7,.1,1);
+    }
+    :root[data-theme="dark"]{ --bg:#0b0c10; --panel:#11131a; --muted:#aab1c3; --text:#e8ecf3; }
+    :root[data-theme="light"]{ --bg:#f7f8fb; --panel:#ffffff; --muted:#5a6478; --text:#0f1320; }
+    @media (prefers-color-scheme: light){
+      :root:not([data-theme]){ --bg:#f7f8fb; --panel:#ffffff; --muted:#5a6478; --text:#0f1320; }
+    }
+    @media (prefers-reduced-motion: reduce){
+      *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important}
+      .bg-orb{display:none}
+    }
 
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:-apple-system, BlinkMacSystemFont, "SF Pro Text","SF Pro Display", Inter, Segoe UI, Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(1000px 500px at 10% -10%,rgba(124,92,255,.15),transparent),
+        radial-gradient(700px 400px at 100% 0,rgba(24,193,255,.15),transparent),
+        var(--bg);
+      color:var(--text); line-height:1.6; -webkit-font-smoothing:antialiased; text-rendering:optimizeLegibility;
+      scroll-behavior:smooth;
+    }
+    body:after{
+      content:""; position:fixed; left:0; right:0; bottom:0; height:180px; pointer-events:none;
+      background:linear-gradient(180deg,transparent,rgba(0,0,0,.25));
+    }
+    a{color:inherit}
+
+    /* Orbes d’arrière-plan (parallax doux) */
+    .bg-orb{
+      position:fixed; inset:auto auto 12% -10%;
+      width:520px; height:520px; border-radius:50%;
+      background: radial-gradient(closest-side, rgba(124,92,255,.25), transparent 70%);
+      filter: blur(40px); pointer-events:none; z-index:-1; animation: float1 18s ease-in-out infinite alternate;
+    }
+    .bg-orb.orb2{
+      left:auto; right:-8%; bottom:auto; top:10%;
+      background: radial-gradient(closest-side, rgba(24,193,255,.20), transparent 70%);
+      animation: float2 20s ease-in-out infinite alternate;
+    }
+    @keyframes float1{ from{transform:translateY(0)} to{transform:translateY(-30px)} }
+    @keyframes float2{ from{transform:translateY(0)} to{transform:translateY(40px)} }
+
+    .container{max-width:1100px;margin:0 auto;padding:28px}
+
+    .card{
+      background:linear-gradient(180deg,rgba(255,255,255,.045),rgba(255,255,255,.02));
+      border:1px solid rgba(255,255,255,.09);
+      backdrop-filter: blur(8px);
+      border-radius:var(--radius);
+      box-shadow: 0 10px 30px -20px rgba(0,0,0,.5);
+      outline: 1px solid rgba(255,255,255,.03);
+    }
+header.hero{display:grid;grid-template-columns:1.2fr .8fr;gap:36px;align-items:center}
+    @media (max-width:900px){header.hero{grid-template-columns:1fr}}
+    .pill{display:inline-flex;align-items:center;gap:8px;padding:8px 12px;border-radius:999px;background:rgba(124,92,255,.12);border:1px solid rgba(124,92,255,.25);font-weight:600;color:#cfc8ff;transition:transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard)}
+    .pill:hover{transform:translateY(-1px); box-shadow:0 8px 22px -12px rgba(124,92,255,.45)}
+    h1.gradient{
+      background: linear-gradient(90deg, #fff, #cfd7ff 40%, #a8ffe9);
+      -webkit-background-clip:text; background-clip:text; color:transparent; letter-spacing:.2px;
+    }
+    .lead{color:var(--muted);font-size:16px}
+    .actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px}
+    .btn{padding:12px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.1);background:var(--panel);color:var(--text);font-weight:600;text-decoration:none;display:inline-flex;align-items:center;gap:10px;transition:transform var(--dur-fast) var(--ease-standard), box-shadow var(--dur-fast) var(--ease-standard); white-space:nowrap}
+    .btn.primary{background:var(--accent);border-color:transparent;color:white;box-shadow:var(--ring)}
+    .btn:hover{transform:translateY(-1px); box-shadow: var(--ring)}
+    .btn:active{transform:scale(.98)}
+    .grid{display:grid;gap:18px}
+    .grid.cols-2{grid-template-columns:minmax(0,1.1fr) minmax(0,0.9fr)}
+    @media (max-width:900px){.grid.cols-2{grid-template-columns:1fr}}
+    section{margin-top:32px}
+    .section-title{font-weight:800;letter-spacing:.2px;margin:0 0 14px 0}
+    h2.section-title{font-size:22px}
+.panel{padding:26px}
+
+    /* --- Hero Facts (cleaner, no duplicates) --- */
+    .facts{display:flex;flex-direction:column;gap:14px}
+    .fact{
+      border:1px solid rgba(255,255,255,.10);
+      border-radius:14px;
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      padding:16px 18px;
+    }
+    .fact h4{margin:0 0 8px 0; font-size:18px}
+    .fact p{margin:0; line-height:1.6}
+    .chips{display:flex; flex-wrap:wrap; gap:8px; margin-top:8px}
+    .tag{display:inline-flex; align-items:center; gap:6px; padding:6px 10px; border-radius:999px; font-weight:600; font-size:12px;
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12); color:var(--muted)}
+    .tag .ico{font-size:14px; line-height:1}
+    .reveal-stagger .fact{transform:translateY(8px); opacity:0; transition:all var(--dur-med) var(--ease-standard)}
+    .reveal-stagger.on .fact{transform:none; opacity:1}
+    .reveal-stagger.on .fact:nth-child(2){transition-delay:80ms}
+
+
+    /* Hero micro-tilt */
+    .tilt-wrap{display:inline-block; perspective:600px}
+    .tilt-wrap .pill{transform-style:preserve-3d}
+
+    /* Timeline expériences */
+    .xp{display:grid;gap:14px}
+    .xp-item{
+      padding:18px; border-radius:16px; border:1px solid rgba(255,255,255,.10);
+      background:linear-gradient(180deg,rgba(255,255,255,.06),rgba(255,255,255,.03));
+      box-shadow: 0 8px 24px -18px rgba(0,0,0,.6);
+    }
+    .xp-item:hover{transform:translateY(-1px);transition:transform .15s ease}
+    .xp-head{display:flex;justify-content:space-between;gap:14px;align-items:center;flex-wrap:nowrap}
+    .xp-head>div{min-width:0}
+    .badge{margin-left:auto;white-space:nowrap;align-self:flex-start;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);padding:4px 8px;border-radius:999px;font-size:12px;color:var(--muted)}
+    .xp-org{font-weight:700;font-size:16px}
+    .xp-role{opacity:.85;font-size:14px}
+    ul.clean{margin:10px 0 0 0;padding-left:18px}
+    ul.clean li{margin:6px 0;line-height:1.5;overflow-wrap:anywhere;hyphens:auto}
+    ul.clean li::marker{color: var(--brand)}
+
+    /* Colonne droite */
+    .split{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+    .card,.panel,.xp-item,.grid>*,.split>*{min-width:0}
+    .container{overflow-x:hidden}
+    @media (max-width:780px){.split{grid-template-columns:1fr}}
+
+    footer{opacity:.7;font-size:13px;margin:26px 0}
+
+    /* Impression */
+    @media print{
+      body{background:#fff;color:#111}
+      .card, .xp-item{background:#fff;border:1px solid #ddd}
+      a.btn{display:none}
+      .pill{background:#efefef;color:#333;border:1px solid #ddd}
+    }
+  </style>
+</head>
+<body>
+  <!-- orbes décoratifs -->
+  <div class="bg-orb"></div>
+  <div class="bg-orb orb2"></div>
+
+  <div class="container">
+    <header class="hero card panel">
+      <div>
+        <div class="tilt-wrap"><span class="pill">🔧 Systèmes · Réseaux · Sécurité</span></div>
+        <h1 class="gradient">NOM — BTS SIO</h1>
+        <p class="lead">Administration systèmes, déploiement postes clients, cybersécurité. Expériences : SNCF, Préfecture, CPAM.</p>
+        <div class="actions">
+          <a class="btn primary" href="#contact">Me contacter</a>
+          <a class="btn" href="#projets">Projets (placeholders)</a>
+          <a class="btn" href="#cv">Parcours & Compétences</a>
+          <button class="btn" id="themeToggle" type="button" aria-label="Basculer le thème"><span id="themeIcon">🌙</span></button>
+        </div>
+      </div>
+
+      <div class="card panel" aria-label="Résumé rapide">
+        <div class="facts reveal-stagger">
+          <div class="fact">
+            <h4>📍 Localisation</h4>
+            <p>Seine‑et‑Marne / Île‑de‑France · mobilité possible</p>
+            <div class="chips" aria-label="Transports">
+              <span class="tag"><span class="ico">🚗</span> Permis B</span>
+              <span class="tag"><span class="ico">🚆</span> Transports en commun</span>
+            </div>
+          </div>
+
+          <div class="fact">
+            <h4>🎯 Objectif</h4>
+            <p>Stage BTS 2ᵉ année / 1er poste junior : Technicien Systèmes &amp; Réseaux (Support IT).</p>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section id="cv" class="grid cols-2">
+      <div class="card panel">
+        <h2 class="section-title">💼 Expériences</h2>
+        <div class="xp">
+          <article class="xp-item">
+            <div class="xp-head">
+              <div>
+                <div class="xp-org">Cyrus Herez Groupe – Paris</div>
+                <div class="xp-role">Stage de 1ʳᵉ année BTS SIO – Réseaux & Systèmes</div>
+              </div>
+              <span class="badge">19 mai – 27 juin 2025</span>
+            </div>
+            <ul class="clean">
+              <li>Automatisation d’un rapport hebdomadaire des logs serveurs (événements de connexions/déconnexions/tentatives) : extraction, compression ZIP et envoi automatique par mail.</li>
+              <li>Étude comparative pour remplacer GLPI par un outil de gestion de parc plus robuste, plus automatisé et mieux intégré (analyse Lansweeper, ManageEngine, Spiceworks, etc.).</li>
+              <li>Utilisation quotidienne de Jira (tickets), TeamViewer (gestion multi-sites, 20+ sites), Microsoft 365 & Azure AD (stockage et gestion utilisateurs), Microsoft Teams (support utilisateurs).</li>
+              <li>Contribution à l’évolution des outils IT dans un environnement financier non-technique, nécessitant rigueur et adaptabilité.</li>
+            </ul>
+          </article>
+
+          <article class="xp-item">
+            <div class="xp-head">
+              <div>
+                <div class="xp-org">SNCF – e.SNCF Solutions, Paris Gare de Lyon</div>
+                <div class="xp-role">Stage de Terminale – Réseaux & Systèmes</div>
+              </div>
+              <span class="badge">Nov. 2023 – Janv. 2024</span>
+            </div>
+            <ul class="clean">
+              <li>Déploiement et configuration de postes via MDT et intégration dans l’Active Directory.</li>
+              <li>Préparation de postes utilisateurs prêts à l’emploi (paramétrages, GPOs, Centre Logiciel, OneDrive).</li>
+              <li>Installations hors ligne de pilotes validés par le service cybersécurité.</li>
+              <li>Maintenance matérielle et logicielle (dépannage ordinateurs Dell, drivers, imprimantes/traceurs réseau).</li>
+              <li>Gestion des tickets et du parc via ServiceNow.</li>
+            </ul>
+          </article>
+
+          <article class="xp-item">
+            <div class="xp-head">
+              <div>
+                <div class="xp-org">Préfecture de Seine-et-Marne, Melun</div>
+                <div class="xp-role">Stage de Première – Réseaux & Systèmes</div>
+              </div>
+              <span class="badge">Janv. – Mars 2023</span>
+            </div>
+            <ul class="clean">
+              <li>Déploiement de plus de 100 postes avec MDT et configuration Active Directory.</li>
+              <li>Mise en place de VPN TheGreenBow, incluant l’installation manuelle de certificats machine pour sécuriser l’accès distant aux ressources internes.</li>
+              <li>Création et suppression de comptes Active Directory, gestion des groupes et imprimantes.</li>
+              <li>Installation et configuration de stations d’accueil Dell et périphériques associés.</li>
+              <li>Mise en œuvre de mesures de sécurité avancées : cryptage de disques avec carte à puce (Cryhod) et antivirus Trellix/McAfee.</li>
+            </ul>
+          </article>
+
+          <article class="xp-item">
+            <div class="xp-head">
+              <div>
+                <div class="xp-org">CPAM de Rubelles</div>
+                <div class="xp-role">Stage de Seconde – Réseaux & Systèmes</div>
+              </div>
+              <span class="badge">Mai – Juin 2022</span>
+            </div>
+            <ul class="clean">
+              <li>Déploiement et préparation de postes.</li>
+              <li>Installation et configuration de logiciels.</li>
+              <li>Découverte des processus de support en administration publique.</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+
+      <aside class="card panel">
+        <h2 class="section-title">🔭 Compétences mises en avant</h2>
+        <ul class="clean">
+          <li>Déploiement automatisé de postes via MDT Lite-Touch</li>
+          <li>Administration Active Directory et gestion des GPO</li>
+          <li>Chiffrement de disques (BitLocker, VeraCrypt, Cryhod)</li>
+          <li>Gestion de parc et tickets avec ServiceNow et Jira</li>
+          <li>Mise en place de VPN et configuration de certificats</li>
+          <li>Préparation de postes utilisateurs prêts à l’emploi</li>
+          <li>Anglais — Section européenne (Bac) : Anglais en pratique professionnelle</li>
+        </ul>
+
+        <h2 class="section-title">🎯 Compétences</h2>
+        <ul class="clean">
+          <li>Systèmes & optimisation : configuration et amélioration des performances PC (OS, services, optimisation thermique).</li>
+          <li>Maintenance & support : dépannage Windows, prévention des pannes, assistance utilisateurs.</li>
+          <li>Administration systèmes : Active Directory (utilisateurs/groupes, GPO), déploiement automatisé avec MDT Lite-Touch.</li>
+          <li>Cybersécurité : bonnes pratiques (2FA, gestion des mots de passe, gestion des ports), chiffrement complet des disques (BitLocker, VeraCrypt, Cryhod).</li>
+          <li>Gestion de parc informatique : ServiceNow, GLPI, Lansweeper, Suite Atlassian (Jira, Confluence).</li>
+          <li>Déploiement postes clients : installation d’OS, intégration AD, configuration de certificats, préparation PC prêts à l’emploi.</li>
+          <li>Réseaux : configuration de serveurs DHCP/DNS.</li>
+          <li>Programmation & scripting : Batch, HTML/CSS/JS.</li>
+        </ul>
+
+        <h2 class="section-title">🎓 Formation</h2>
+        <ul class="clean">
+          <li>BTS SIO (Services Informatiques aux Organisations) – 2e année (en cours), Lycée Léonard de Vinci, Melun</li>
+          <li>Baccalauréat Professionnel Systèmes Numériques – Mention Très Bien & Section Européenne Anglais, Lycée Polyvalent La Fayette, Fontainebleau – 2024</li>
+        </ul>
+
+        <h2 class="section-title">🌟 Centres d’intérêt</h2>
+        <ul class="clean">
+          <li>Sport : handball (travail d’équipe, esprit de compétition), karting (réflexes, concentration).</li>
+          <li>Création : montage vidéo, design d’interface, effets visuels (créativité, sens du détail).</li>
+        </ul>
+      </aside>
+    </section>
+
+    <section id="projets" class="card panel">
+      <h2 class="section-title">🧩 Projets</h2>
+      <p>[Placeholders] — Ajoute ici tes projets personnels (scripts, sites web, documentation, etc.).</p>
+    </section>
+
+    <section id="contact" class="card panel">
+      <h2 class="section-title">📬 Contact</h2>
+      <p>Intéressé·e par mon profil ? Discutons ! Ajoute ton email/téléphone ci-dessous quand tu éditeras ce fichier.</p>
+      <div class="actions">
+        <a class="btn primary" href="mailto:prenom.nom@mail.com">M’écrire</a>
+        <a class="btn" href="#">Télécharger mon CV (PDF)</a>
+        <a class="btn" href="#">LinkedIn</a>
+      </div>
+    </section>
+
+    <footer>
+      © <span id="y"></span> NOM — Portfolio. Construit en HTML/CSS pur (responsive, mode clair/sombre, imprimable).
+    </footer>
+  </div>
+
+  <script>
+    (function(){
+      const root = document.documentElement;
+      const saved = localStorage.getItem('theme');
+      const btn = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+
+      function updateIcon(mode){ if(icon){ icon.textContent = (mode === 'light') ? '☀️' : '🌙'; } }
+
+      // Thème initial
+      if(saved === 'light' || saved === 'dark'){
+        root.setAttribute('data-theme', saved);
+        updateIcon(saved);
+      }
+
+      // Toggle thème
+      if(btn){
+        btn.addEventListener('click', ()=>{
+          const current = root.getAttribute('data-theme');
+          const next = current === 'light' ? 'dark' : (current === 'dark' ? '' : 'dark');
+          if(next){
+            root.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateIcon(next);
+          }else{
+            root.removeAttribute('data-theme');
+            localStorage.removeItem('theme');
+            updateIcon('dark');
+          }
+          btn.blur();
+        });
+      }
+
+      // Parallax & tilt (désactivés si reduce motion)
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(!prefersReduced){
+        const orb1 = document.querySelector('.bg-orb');
+        const orb2 = document.querySelector('.bg-orb.orb2');
+        const parallax = () => {
+          const y = window.scrollY || 0;
+          if(orb1) orb1.style.transform = `translateY(${y * -0.03}px)`;
+          if(orb2) orb2.style.transform = `translateY(${y * -0.06}px)`;
+        };
+        window.addEventListener('scroll', parallax, {passive:true});
+
+        const tw = document.querySelector('.tilt-wrap');
+        if(tw){
+          const el = tw.querySelector('.pill');
+          tw.addEventListener('mousemove', (e)=>{
+            const r = tw.getBoundingClientRect();
+            const rx = ((e.clientY - r.top) / r.height - .5) * -6;
+            const ry = ((e.clientX - r.left) / r.width - .5) * 10;
+            el.style.transform = `rotateX(${rx}deg) rotateY(${ry}deg) translateZ(0)`;
+          });
+          tw.addEventListener('mouseleave', ()=>{ el.style.transform = ''; });
+        }
+      }
+
+      // Année footer
+      const y = document.getElementById('y'); if(y) y.textContent = new Date().getFullYear();
+
+      // Staggered reveal for hero info blocks
+      const stagger = document.querySelector('.facts.reveal-stagger');
+      if(stagger){
+        requestAnimationFrame(()=>{ stagger.classList.add('on'); });
+      }
+    })();
+  </script>
+</body>
+</html>

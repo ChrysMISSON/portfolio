@@ -1,0 +1,401 @@
+/* --- Base & Thème (autonome, sans dépendance) --- */
+*{box-sizing:border-box}
+html,body{margin:0;padding:0}
+body{
+  --c-glass:#bbbbbc;
+  --c-light:#fff;
+  --c-dark:#000;
+
+  --c-content:#224;
+  --c-action:#0052f5;
+
+  --c-bg:#E8E8E9;
+
+  --glass-reflex-dark:1;
+  --glass-reflex-light:1;
+
+  --saturation:150%;
+
+  font: 20px/1.45 system-ui, -apple-system, Segoe UI, Roboto, "DM Sans", sans-serif;
+  background: var(--c-bg);
+  color: var(--c-content);
+  transition: background 400ms cubic-bezier(1,0,0.4,1), color 400ms cubic-bezier(1,0,0.4,1);
+}
+
+/* Higher-contrast LIGHT theme */
+body:has(input[value="light"]:checked){
+  /* palette plus lisible en lumière */
+  --c-content:#0f172a;   /* texte plus foncé */
+  --c-bg:#eef2f7;        /* fond légèrement bleuté (meilleure lisibilité) */
+  --c-glass:#c7cdd8;     /* verre plus acier → meilleurs contours */
+  --c-action:#0050ff;    /* accent net mais pas fluo */
+  --glass-reflex-dark:1.2;
+  --glass-reflex-light:1.2;
+}
+/* états dark & dim via :has() sur le switcher */
+body:has(input[value="dark"]:checked){
+  --c-glass:#bbbbbc;
+  --c-light:#fff;
+  --c-dark:#000;
+  --c-content:#e1e1e1;
+  --c-action:#03d5ff;
+  --c-bg:#1b1b1d;
+  --glass-reflex-dark:2;
+  --glass-reflex-light:.3;
+  --saturation:150%;
+}
+body:has(input[value="dim"]:checked){
+  /* Midnight Aurora — plus pro que rose, mais distinctif */
+  --c-light:#d6eef7;         /* reflets clairs froids */
+  --c-dark:#051824;           /* ombres profondes bleu-encre */
+  --c-glass:#8aa4b3;          /* verre acier-bleu */
+  --c-content:#d4e6ee;        /* texte principal doux */
+  --c-action:#14c8a8;         /* accent teal moderne */
+  --c-bg:#0f1a22;             /* fond graphite-océan */
+  --glass-reflex-dark:2;      /* relief un peu plus marqué */
+  --glass-reflex-light:.6;
+  --saturation:170%;
+}
+
+/* --- Variables locales --- */
+:root{
+  --c-brand: #6e6bff;
+  --c-brand-2:#18c1ff;
+  --radius: 18px;
+}
+
+/* --- Fond orbes --- */
+.page-bg{
+  position: fixed; inset: 0; z-index: -1;
+  background:
+    radial-gradient(1000px 500px at 8% -10%, color-mix(in srgb, var(--c-brand) 18%, transparent), transparent),
+    radial-gradient(700px 420px at 100% 0, color-mix(in srgb, var(--c-brand-2) 18%, transparent), transparent),
+    var(--c-bg);
+}
+
+/* --- Container --- */
+.container{max-width:1100px;margin:0 auto;padding:28px}
+
+/* --- Nav “liquid glass” — outer shell --- */
+.nav{
+  position: sticky; top: 18px; z-index: 10;
+  display:flex; align-items:center; gap:14px;
+}
+
+/* --- Pill group (segmented control) --- */
+.nav-tabs{
+  position: relative;
+  display:flex; align-items:center; gap:8px;
+  padding:8px; border-radius:999px;
+  background:
+    radial-gradient(120% 180% at 10% -40%, color-mix(in srgb, var(--c-light) 7%, transparent), transparent),
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 10%, transparent), color-mix(in srgb, var(--c-glass) 18%, transparent));
+  backdrop-filter: blur(14px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(14px) saturate(var(--saturation));
+  border:1px solid color-mix(in srgb, var(--c-light) 8%, transparent);
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*10%), transparent),
+    inset 2px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*90%), transparent),
+    inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*80%), transparent),
+    inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*60%), transparent),
+    inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark)*12%), transparent),
+    0 8px 22px color-mix(in srgb, var(--c-dark) 12%, transparent);
+}
+.nav-tabs .nav-indicator{
+  position:absolute; inset:auto auto 8px 8px;
+  height: calc(100% - 16px);
+  border-radius:999px;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--c-action) 86%, #6aa7ff), color-mix(in srgb, var(--c-action) 40%, #8ab6ff));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, #fff 24%, transparent),
+    inset 0 10px 20px -12px color-mix(in srgb, #fff 50%, transparent),
+    0 10px 24px -12px color-mix(in srgb, var(--c-action) 60%, transparent);
+  pointer-events:none;
+  /* Pas de transition par défaut pour éviter le "saut" au premier rendu */
+}
+/* Transition fluide activée côté JS quand le DOM est prêt */
+.nav-tabs.is-anim .nav-indicator{
+  transition: left .35s cubic-bezier(.2,.7,0,1), width .35s cubic-bezier(.2,.7,0,1);
+}
+
+/* --- Liens de nav (pills) --- */
+.nav a{
+  position:relative; isolation:isolate;
+  display:inline-flex; align-items:center; gap:10px;
+  padding:10px 14px; border-radius:999px; text-decoration:none;
+  color: var(--c-content); font-weight:700; letter-spacing:.2px;
+  transition: background .25s ease, color .25s ease, box-shadow .25s ease, transform .12s ease;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 14%, transparent), color-mix(in srgb, var(--c-glass) 4%, transparent));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) 12%, transparent),
+    inset 0 8px 12px -10px color-mix(in srgb, #fff 40%, transparent),
+    inset 0 -10px 20px -16px color-mix(in srgb, var(--c-dark) 16%, transparent);
+  z-index:1;
+}
+.nav a:hover{
+  transform: translateY(-1px);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 18%, transparent), color-mix(in srgb, var(--c-glass) 8%, transparent));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) 16%, transparent),
+    0 6px 14px -8px color-mix(in srgb, var(--c-dark) 22%, transparent);
+}
+
+/* LIGHT: renforcer les bords et la lisibilité des surfaces */
+body:has(input[value="light"]:checked) .card{
+  border:1px solid color-mix(in srgb, var(--c-dark) 12%, transparent);
+}
+body:has(input[value="light"]:checked) .nav-tabs{
+  border:1px solid color-mix(in srgb, var(--c-dark) 10%, transparent);
+}
+body:has(input[value="light"]:checked) .nav a{
+  border:1px solid color-mix(in srgb, var(--c-dark) 10%, transparent);
+}
+body:has(input[value="light"]:checked) .tag,
+body:has(input[value="light"]:checked) .badge{
+  border:1px solid color-mix(in srgb, var(--c-dark) 12%, transparent);
+}
+body:has(input[value="light"]:checked) .switcher{
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-dark) 10%, transparent),
+    inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) 70%, transparent),
+    inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) 60%, transparent),
+    inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) 40%, transparent),
+    inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) 16%, transparent),
+    0 6px 16px 0 color-mix(in srgb, var(--c-dark) 10%, transparent);
+}
+.nav a.is-active{ color:#fff }
+.nav a:focus-visible{
+  outline:none;
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, #fff 60%, transparent),
+    0 0 0 6px color-mix(in srgb, var(--c-action) 40%, transparent),
+    inset 0 0 0 1px color-mix(in srgb, #fff 30%, transparent);
+}
+.nav a::before{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:
+    radial-gradient(140% 60% at 50% -30%, color-mix(in srgb, #fff 18%, transparent), transparent 60%),
+    linear-gradient( to top, transparent, color-mix(in srgb, #fff 12%, transparent) 60%, transparent);
+  mix-blend-mode:screen; opacity:.35;
+}
+
+/* Capsule de droite pour le switcher */
+.nav-spacer{flex:1}
+
+/* --- Switcher autonome (sans filtre externe) --- */
+.switcher{
+  position: relative; z-index: 9;
+  display:flex; align-items:center; gap:8px;
+  width:244px; max-width:244px; height:70px; padding:8px 12px 10px;
+  border:none; border-radius:99em; background-color:color-mix(in srgb, var(--c-glass) 12%, transparent);
+  backdrop-filter: blur(8px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*10%), transparent),
+    inset 1.8px 3px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*90%), transparent),
+    inset -2px -2px 0 -2px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*80%), transparent),
+    inset -3px -8px 1px -6px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*60%), transparent),
+    inset -0.3px -1px 4px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark)*12%), transparent),
+    0 6px 16px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark)*8%), transparent);
+}
+.switcher__legend{position:absolute;width:1px;height:1px;margin:-1px;border:0;padding:0;clip:rect(0 0 0 0);clip-path:inset(100%);white-space:nowrap;overflow:hidden}
+.switcher__input{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);clip-path:inset(100%)}
+.switcher__option{--c:var(--c-content);display:flex;justify-content:center;align-items:center;padding:0 16px;width:68px;height:100%;border-radius:99em;transition:all 160ms}
+.switcher__icon{display:block;width:100%;transition:scale 200ms cubic-bezier(.5,0,0,1)}
+.switcher__option:hover{--c:var(--c-action);cursor:pointer}
+.switcher__option:hover .switcher__icon{scale:1.2}
+.switcher__option:has(input:checked){--c:var(--c-content);cursor:auto}
+.switcher::after{
+  content:''; position:absolute; left:4px; top:4px; width:84px; height:calc(100% - 10px); border-radius:99em;
+  background-color:color-mix(in srgb, var(--c-glass) 36%, transparent); z-index:-1;
+  box-shadow:
+    inset 0 0 0 1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*10%), transparent),
+    inset 2px 1px 0 -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*90%), transparent),
+    inset -1.5px -1px 0 -1px color-mix(in srgb, var(--c-light) calc(var(--glass-reflex-light)*80%), transparent),
+    0 3px 6px 0 color-mix(in srgb, var(--c-dark) calc(var(--glass-reflex-dark)*8%), transparent);
+  transition: translate 400ms cubic-bezier(1,0,0.4,1);
+}
+.switcher:has(input[c-option="2"]:checked)::after{ translate:76px 0 }
+.switcher:has(input[c-option="3"]:checked)::after{ translate:152px 0 }
+
+/* --- Cartes --- */
+.card{
+  margin-top:22px;
+  border-radius: var(--radius);
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 12%, transparent), color-mix(in srgb, var(--c-glass) 18%, transparent));
+  backdrop-filter: blur(16px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(16px) saturate(var(--saturation));
+  border:1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
+  box-shadow:
+    inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 8%, transparent),
+    inset 0 8px 14px -10px color-mix(in srgb, #fff 40%, transparent),
+    inset 0 -12px 24px -18px color-mix(in srgb, var(--c-dark) 16%, transparent),
+    0 18px 44px -28px color-mix(in srgb, var(--c-dark) 26%, transparent);
+  padding:26px; position:relative; overflow:hidden;
+}
+.card::before{
+  content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none;
+  background:
+    radial-gradient(800px 200px at 20% -60px, color-mix(in srgb, #fff 12%, transparent), transparent 60%),
+    linear-gradient(to bottom, color-mix(in srgb, #fff 6%, transparent), transparent 35%);
+  mix-blend-mode:screen; opacity:.25;
+}
+
+/* --- Google Drive folder embed --- */
+.drive-embed{
+  border-radius:20px; overflow:hidden; margin-top:14px;
+  background:
+    radial-gradient(100% 60% at 20% -20%, color-mix(in srgb, #fff 10%, transparent), transparent 60%),
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 14%, transparent), color-mix(in srgb, var(--c-glass) 22%, transparent));
+  border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);
+  backdrop-filter: blur(14px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(14px) saturate(var(--saturation));
+  box-shadow:
+    inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 10%, transparent),
+    0 18px 44px -28px color-mix(in srgb, var(--c-dark) 26%, transparent);
+  height: 620px;
+}
+.drive-embed iframe{ width:100%; height:100%; border:0 }
+@media (max-width:900px){ .drive-embed{ height: 420px } }
+
+/* School projects styling */
+.card.school-projects h2{ display:flex; align-items:center; gap:10px; margin-bottom:8px }
+.card.school-projects .lead{ margin-bottom:12px }
+.toolbar{ display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap; margin-top:10px }
+.toolbar .hint{ flex:1 1 auto; display:flex; gap:8px; align-items:center; }
+.btn.ghost{ background:transparent; border:1px solid color-mix(in srgb, var(--c-light) 16%, transparent); box-shadow:none }
+.btn.ghost:hover{ background:color-mix(in srgb, var(--c-glass) 10%, transparent) }
+
+/* --- Titrage --- */
+h1{font-size: clamp(28px, 4vw, 44px); margin:6px 0 8px}
+. 
+/* LIGHT: titres légèrement plus denses */
+body:has(input[value="light"]:checked) h1,
+body:has(input[value="light"]:checked) h2,
+body:has(input[value="light"]:checked) h3{ color:#0d1320 }
+.lead{opacity:.85; margin:0 0 14px}
+
+/* --- Grilles & utilitaires --- */
+.grid{display:grid; gap:18px}
+.grid-2{grid-template-columns:1.1fr .9fr}
+@media (max-width:900px){ .grid-2{grid-template-columns:1fr} }
+
+/* --- Boutons & hero --- */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:12px 18px;border-radius:14px;text-decoration:none;border:1px solid color-mix(in srgb, var(--c-light) 10%, transparent);background:color-mix(in srgb, var(--c-glass) 12%, transparent);color:var(--c-content);font-weight:700}
+.btn.primary{background:linear-gradient(135deg,var(--c-action), color-mix(in srgb, var(--c-action) 40%, var(--c-content))); color:#fff; border-color:transparent; box-shadow:0 10px 24px -12px color-mix(in srgb, var(--c-action) 50%, transparent)}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin:10px 0 6px}
+
+/* --- Listes --- */
+ul.clean{padding-left:18px; margin:10px 0 0}
+ul.clean li{margin:6px 0; line-height:1.55}
+
+/* --- Badges --- */
+.badge{
+  position:relative;
+  display:inline-flex; align-items:center; justify-content:center;
+  padding:4px 12px; /* tighter */
+  line-height:1;     /* no inherited tall line-height */
+  border-radius:9999px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 20%, transparent), color-mix(in srgb, var(--c-glass) 14%, transparent));
+  border:1px solid color-mix(in srgb, var(--c-light) 14%, transparent);
+  font-size:12px;
+  font-weight:700;
+  white-space:nowrap; /* stop wrapping that makes the pill taller */
+  color: color-mix(in srgb, var(--c-content) 92%, var(--c-bg));
+  backdrop-filter: blur(5px) saturate(calc(var(--saturation) * 0.85));
+  -webkit-backdrop-filter: blur(5px) saturate(calc(var(--saturation) * 0.85));
+  box-shadow:
+    inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 10%, transparent),
+    inset 0 6px 10px -10px color-mix(in srgb, #fff 40%, transparent),
+    inset 0 -8px 16px -14px color-mix(in srgb, var(--c-dark) 16%, transparent);
+  background-clip: padding-box;
+  z-index: 2;
+}
+.card .badge{ color: color-mix(in srgb, #fff 92%, var(--c-content)); }
+/* LIGHT: dates/Badges plus lisibles dans les cartes (évite blanc sur blanc) */
+body:has(input[value="light"]:checked) .card .badge{
+  color: var(--c-content);
+  background:
+    linear-gradient(180deg,
+      color-mix(in srgb, var(--c-glass) 26%, transparent),
+      color-mix(in srgb, var(--c-glass) 16%, transparent));
+  border-color: color-mix(in srgb, var(--c-dark) 14%, transparent);
+}
+
+/* --- Hero blocks --- */
+.hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:10px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+.card-min{padding:18px;border-radius:16px;background-color:color-mix(in srgb, var(--c-glass) 12%, transparent);border:1px solid color-mix(in srgb, var(--c-light) 8%, transparent)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.tag{
+  display:inline-flex;align-items:center;gap:6px;
+  padding:6px 10px;border-radius:999px;font-weight:600;font-size:12px;
+  color:color-mix(in srgb, var(--c-content) 92%, var(--c-bg));
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 18%, transparent), color-mix(in srgb, var(--c-glass) 8%, transparent));
+  border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);
+  box-shadow:
+    inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 14%, transparent),
+    inset 0 6px 10px -8px color-mix(in srgb, #fff 40%, transparent),
+    inset 0 -10px 16px -14px color-mix(in srgb, var(--c-dark) 18%, transparent);
+}
+.tag .ico{font-size:14px;line-height:1}
+
+/* --- Footer --- */
+footer{opacity:.6; font-size:13px; margin:28px 0 12px}
+
+/* --- Logos d'entreprise (placeholders) --- */
+.logo{
+  width:44px; height:44px; border-radius:12px; flex:0 0 44px;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 18%, transparent), color-mix(in srgb, var(--c-glass) 10%, transparent));
+  border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);
+  backdrop-filter: blur(8px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(8px) saturate(var(--saturation));
+  box-shadow:
+    inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 12%, transparent),
+    0 8px 18px -12px color-mix(in srgb, var(--c-dark) 24%, transparent);
+  position:relative; overflow:hidden;
+}
+.logo::after{
+  content:"LOGO"; position:absolute; inset:0; display:grid; place-items:center;
+  font-size:10px; letter-spacing:.8px; font-weight:800;
+  color: color-mix(in srgb, var(--c-content) 70%, var(--c-bg));
+  opacity:.8;
+}
+.exp-head{ display:flex; align-items:center; gap:12px; }
+
+/* --- Liens externes dans les entêtes d'expériences --- */
+.ext{ color: inherit; text-decoration: none; }
+.ext:hover{ text-decoration: underline; text-underline-offset: 2px; }
+.ext-ico{ display:inline-block; font-size:12px; opacity:.55; margin-left:6px; transform: translateY(-1px); transition: opacity .2s ease, transform .2s ease; }
+.ext:hover .ext-ico{ opacity:.9; transform: translateY(-2px); }
+.exp-head .logo{ cursor: pointer; }
+
+/* --- Impression basique --- */
+@media print{
+  .nav, .switcher {display:none}
+  .card{background:#fff; border:1px solid #ddd; box-shadow:none}
+  body{background:#fff; color:#000}
+}
+
+/* --- Reduce motion --- */
+@media (prefers-reduced-motion: reduce){
+  .nav a, .switcher, .card{ transition:none }
+  .nav a:hover{ transform:none }
+}
+/* --- Google Drive folder embed --- */
+.drive-embed{ border-radius:16px; overflow:hidden; margin-top:10px;
+  background:linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 12%, transparent), color-mix(in srgb, var(--c-glass) 18%, transparent));
+  border:1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
+  backdrop-filter: blur(12px) saturate(var(--saturation));
+  -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
+  box-shadow: inset 0 0 0 .5px color-mix(in srgb, var(--c-light) 8%, transparent), 0 18px 44px -28px color-mix(in srgb, var(--c-dark) 26%, transparent);
+  height: 520px;
+}
+.drive-embed iframe{ width:100%; height:100%; border:0 }
+@media (max-width:900px){ .drive-embed{ height: 420px } }

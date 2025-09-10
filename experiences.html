@@ -1,0 +1,178 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOM — Expériences</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <!-- NAV -->
+  <nav class="container nav">
+    <div class="nav-tabs">
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="experiences.html" data-page="experiences.html">Expériences</a>
+      <a href="competences.html" data-page="competences.html">Compétences</a>
+      <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
+      <a href="contact.html" data-page="contact.html">Contact</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </div>
+    <div class="nav-spacer"></div>
+    <fieldset class="switcher">
+      <legend class="switcher__legend">Choisir thème</legend>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
+      </label>
+    </fieldset>
+  </nav>
+
+  <main class="container">
+    <section class="card">
+      <h1>💼 Expériences</h1>
+      <p class="lead">Mes expériences en entreprise et quelques réalisations personnelles (placeholders à compléter).</p>
+    </section>
+
+    <!-- STAGES -->
+    <section class="card">
+      <h2>🏢 Stages</h2>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div class="exp-head">
+            <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="/img/cyrus_groupe_logo.jpeg" alt="Cyrus Herez"></a>
+            <div>
+              <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><strong>Cyrus Herez Groupe – Paris</strong><span class="ext-ico">↗</span></a><br>
+              <span>Stage de 1ʳᵉ année BTS SIO – Réseaux &amp; Systèmes</span>
+            </div>
+          </div>
+          <span class="badge">mai – juin 2025</span>
+        </header>
+        <ul class="clean">
+          <li>Automatisation d’un rapport hebdomadaire des logs serveurs (connexions/déconnexions/tentatives) : extraction, ZIP, envoi mail automatique.</li>
+          <li>Étude comparative pour remplacer GLPI (analyse : Lansweeper, ManageEngine, Spiceworks, etc.).</li>
+          <li>Outils utilisés : Jira (tickets), TeamViewer (gestion 20+ sites), Microsoft 365 &amp; Azure AD, Microsoft Teams.</li>
+          <li>Environnement financier non-technique, périmètre national — rigueur et adaptabilité.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div class="exp-head">
+            <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><img class="logo" src="/img/e.SNCF-Solutions.png" alt="SNCF - e.SNCF Solutions"></a>
+            <div>
+              <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><strong>SNCF – e.SNCF Solutions, Paris Gare de Lyon</strong><span class="ext-ico">↗</span></a><br>
+              <span>Stage de Terminale – Réseaux &amp; Systèmes</span>
+            </div>
+          </div>
+          <span class="badge">Nov. 2023 – Janv. 2024</span>
+        </header>
+        <ul class="clean">
+          <li>Déploiement et configuration de postes via MDT &amp; intégration dans l’Active Directory.</li>
+          <li>Préparation de postes prêts à l’emploi (paramétrages, GPO, Centre Logiciel, OneDrive).</li>
+          <li>Installation hors-ligne de pilotes validés par le service cybersécurité ; maintenance HW/SW (PC Dell, imprimantes/traceurs réseau).</li>
+          <li>Gestion des tickets &amp; du parc via ServiceNow.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div class="exp-head">
+            <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="/img/prefecture_de_seine_et_marne.jpg" alt="Préfecture de Seine-et-Marne"></a>
+            <div>
+              <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><strong>Préfecture de Seine-et-Marne, Melun</strong><span class="ext-ico">↗</span></a><br>
+              <span>Stage de Première – Réseaux &amp; Systèmes</span>
+            </div>
+          </div>
+          <span class="badge">Janv. – Mars 2023</span>
+        </header>
+        <ul class="clean">
+          <li>Déploiement de 100+ postes avec MDT &amp; configuration Active Directory.</li>
+          <li>Mise en place de VPN TheGreenBow, installation manuelle de certificats machine.</li>
+          <li>Création/suppression de comptes AD, gestion des groupes &amp; imprimantes ; stations d’accueil Dell.</li>
+          <li>Sécurisation : chiffrement disque par carte à puce (Cryhod) &amp; antivirus Trellix/McAfee.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div class="exp-head">
+            <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><img class="logo" src="/img/assurance_maladie_logo.jpeg" alt="Caisse Primaire d'Assurance Maladie"></a>
+            <div>
+              <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><strong>Caisse Primaire d'Assurance Maladie, Rubelles</strong><span class="ext-ico">↗</span></a><br>
+              <span>Stage de Seconde – Réseaux &amp; Systèmes</span>
+            </div>
+          </div>
+          <span class="badge">Mai – Juin 2022</span>
+        </header>
+        <ul class="clean">
+          <li>Préparation &amp; déploiement de postes.</li>
+          <li>Installation et configuration de logiciels.</li>
+          <li>Découverte des processus de support en administration publique.</li>
+        </ul>
+      </article>
+    </section>
+
+    <!-- PROJETS SCOLAIRES -->
+    <section class="card school-projects">
+      <h2>🏫 Projets scolaires</h2>
+      <p class="lead">Travaux réalisés en cours / TP (documentation, scripts, supports, captures). Le dossier ci‑dessous est synchronisé depuis un dossier Google Drive partagé.</p>
+      <div class="drive-embed">
+        <!-- Remplace FOLDER_ID ci‑dessous par l’ID du dossier partagé (Fonctionne avec "Lecteur – Accès pour toute personne avec le lien") -->
+        <iframe src="https://drive.google.com/embeddedfolderview?id=1odEBcoY9fD2pdJaJ2104674oFC1MOny1#grid"></iframe>
+      </div>
+      <div class="toolbar">
+        <div class="hint">
+        </div>
+        <a class="btn ghost" href="https://drive.google.com/drive/folders/1odEBcoY9fD2pdJaJ2104674oFC1MOny1" target="_blank" rel="noopener">Ouvrir dans Google Drive ↗</a>
+      </div>
+    </section>
+
+    <!-- PERSO (placeholders) -->
+    <section class="card">
+      <h2>🧩 Projets personnels (à compléter)</h2>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div><strong>[Titre du projet]</strong><br>
+            <span>[Stack / Outils]</span>
+          </div>
+          <span class="badge">[Année]</span>
+        </header>
+        <ul class="clean">
+          <li>[Objectif du projet / problème traité]</li>
+          <li>[Principales fonctionnalités]</li>
+          <li>[Ce que j’ai appris / résultats]</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
+          <div><strong>[Titre du projet]</strong><br>
+            <span>[Stack / Outils]</span>
+          </div>
+          <span class="badge">[Année]</span>
+        </header>
+        <ul class="clean">
+          <li>[Objectif du projet / problème traité]</li>
+          <li>[Principales fonctionnalités]</li>
+          <li>[Ce que j’ai appris / résultats]</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="container"><small>© <span id="year"></span> NOM — Portfolio.</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>

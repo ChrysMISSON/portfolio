@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>NOM — Contact</title>
+  <link rel="stylesheet" href="site.css">
+</head>
+<body>
+  <div class="page-bg"></div>
+
+  <!-- NAV -->
+  <nav class="container nav">
+    <div class="nav-tabs">
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="experiences.html" data-page="experiences.html">Expériences</a>
+      <a href="competences.html" data-page="competences.html">Compétences</a>
+      <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
+      <!-- NOTE: data-page et href = contact.hmtl pour marquer l’onglet actif -->
+      <a href="contact.html" data-page="contact.html">Contact</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </div>
+    <div class="nav-spacer"></div>
+    <fieldset class="switcher">
+      <legend class="switcher__legend">Choisir thème</legend>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
+      </label>
+    </fieldset>
+  </nav>
+
+  <main class="container">
+    <header class="card hero">
+      <h1>Contact</h1>
+      <p class="lead">Vous pouvez me joindre via le formulaire ci-dessous ou directement par e-mail.</p>
+    </header>
+
+    <section class="card">
+      <h2>📬 M’écrire</h2>
+      <form id="contactForm" class="grid" style="grid-template-columns:1fr 1fr; gap:14px;">
+        <label>
+          <span>Nom</span>
+          <input type="text" id="name" required placeholder="Votre nom" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);">
+        </label>
+        <label>
+          <span>Email</span>
+          <input type="email" id="email" required placeholder="prenom.nom@email.com" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);">
+        </label>
+        <label style="grid-column:1/-1">
+          <span>Message</span>
+          <textarea id="message" rows="6" required placeholder="Bonjour, …" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);"></textarea>
+        </label>
+        <div class="cta-row" style="grid-column:1/-1;justify-content:flex-start">
+          <button type="submit" class="btn primary">Envoyer</button>
+          <a class="btn" id="mailtoFallback" href="#">Ouvrir dans le client mail</a>
+        </div>
+        <p class="muted" style="grid-column:1/-1;margin:0">Aucune donnée n’est stockée sur le site : l’envoi se fait via votre client e-mail (mailto:).</p>
+      </form>
+    </section>
+
+    <section class="card">
+      <h2>🔗 Liens rapides</h2>
+      <div class="chips">
+        <a class="tag ext" href="mailto:contact@example.com">✉️ Email</a>
+        <a class="tag ext" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
+        <a class="tag ext" href="#" target="_blank" rel="noopener">🐙 GitHub</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><small>© <span id="year"></span> NOM — Portfolio.</small></footer>
+
+  <script src="script.js"></script>
+  <script>
+    // Submit → construit un mailto propre
+    const form = document.getElementById('contactForm');
+    const fallback = document.getElementById('mailtoFallback');
+    const MAIL_TO = 'contact@example.com'; // ➜ remplace par ton adresse
+
+    function buildMailto(){
+      const nom = document.getElementById('name').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const msg = document.getElementById('message').value.trim();
+      const subject = encodeURIComponent(`Contact portfolio — ${nom || 'Sans nom'}`);
+      const body = encodeURIComponent(`${msg}\n\n—\nExpéditeur : ${nom}\nEmail : ${email}`);
+      return `mailto:${MAIL_TO}?subject=${subject}&body=${body}`;
+    }
+
+    form.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      window.location.href = buildMailto();
+    });
+    fallback.addEventListener('click', (e)=>{
+      e.preventDefault();
+      window.location.href = buildMailto();
+    });
+  </script>
+</body>
+</html>

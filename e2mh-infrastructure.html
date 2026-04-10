@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrys MISSON — Compte rendu infrastructure E2MH</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .report-hero {
+      display: grid;
+      gap: 16px;
+    }
+
+    .report-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .report-card {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 92%, transparent), color-mix(in srgb, var(--surface) 72%, transparent));
+      box-shadow: 0 14px 30px -26px color-mix(in srgb, var(--c-dark) 55%, transparent);
+    }
+
+    .report-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .report-card p {
+      color: var(--text-2);
+    }
+
+    .report-flow {
+      display: grid;
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .report-step {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+    }
+
+    .report-step strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .report-note {
+      margin-top: 14px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+      color: var(--text-2);
+    }
+
+    @media (max-width: 760px) {
+      .report-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+
+  <nav class="container nav" aria-label="Navigation principale">
+    <div class="nav-tabs">
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="experiences.html" data-page="experiences.html" data-aliases="e2mh-infrastructure.html">Expériences</a>
+      <a href="competences.html" data-page="competences.html">Compétences</a>
+      <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
+      <a href="contact.html" data-page="contact.html">Contact</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </div>
+    <div class="nav-spacer"></div>
+    <fieldset class="switcher">
+      <legend class="switcher__legend">Choisir thème</legend>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
+      </label>
+    </fieldset>
+  </nav>
+
+  <main class="container" id="main-content" tabindex="-1">
+    <section class="card report-hero">
+      <div>
+        <p class="lead">Activité professionnelle en parallèle de la formation</p>
+        <h1>Compte rendu d'infrastructure E2MH</h1>
+        <p class="lead">E2MH est une structure spécialisée dans l'économie et le métré appliqués aux monuments historiques. L'environnement informatique doit donc protéger des données de travail particulièrement sensibles: dossiers clients, métrés, devis, documents administratifs, plans, photos de chantier, relevés, archives et pièces techniques partagées avec des architectes ou des donneurs d'ordre.</p>
+      </div>
+      <div class="chips">
+        <span class="tag">Windows</span>
+        <span class="tag">Active Directory</span>
+        <span class="tag">GPO</span>
+        <span class="tag">VPN</span>
+        <span class="tag">RAID 5</span>
+        <span class="tag">Sauvegardes</span>
+        <span class="tag">Chiffrement</span>
+        <span class="tag">Partage sécurisé</span>
+        <span class="tag">Impression</span>
+        <span class="tag">Scan</span>
+        <span class="tag">Consommables</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="experiences.html">Retour aux expériences</a>
+        <a class="btn" href="competences.html">Voir les compétences associées</a>
+      </div>
+      <p class="report-note">Les informations volontairement sensibles comme les adresses IP, noms de comptes, chemins exacts, mots de passe, chemins de dossiers et détails internes ne sont pas publiées dans ce compte rendu, car l'infrastructure manipule des documents confidentiels liés aux clients et aux chantiers.</p>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Contexte et besoins</h2>
+          <p class="lead">L'objectif principal est d'assurer un environnement de travail fiable pour une petite structure, tout en limitant les risques de perte ou d'exposition des données professionnelles.</p>
+        </div>
+        <span class="badge">Contexte</span>
+      </header>
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Confidentialité des données</h3>
+          <p>Les documents de travail peuvent contenir des informations liées aux clients, aux chantiers, aux métrés, aux coûts, aux plans et à l'organisation interne. Les accès doivent donc être limités aux personnes concernées, surtout lorsqu'il s'agit de plans ou de dossiers transmis à des partenaires externes.</p>
+        </article>
+        <article class="report-card">
+          <h3>Continuité de service</h3>
+          <p>L'activité dépend de l'accès aux fichiers, à l'impression des plans, à la numérisation et aux postes Windows. Une panne simple peut vite bloquer la production de documents, une présentation client ou le suivi administratif.</p>
+        </article>
+        <article class="report-card">
+          <h3>Télétravail et mobilité</h3>
+          <p>Les accès distants doivent être sécurisés pour permettre le travail à distance, les consultations ponctuelles en déplacement et les présentations aux clients ou aux architectes, sans exposer directement les ressources internes sur Internet.</p>
+        </article>
+        <article class="report-card">
+          <h3>Traçabilité et maintenance</h3>
+          <p>Les interventions doivent rester documentées: configuration des postes, imprimantes, scanners, sauvegardes, comptes utilisateurs et procédures de reprise.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Architecture fonctionnelle</h2>
+          <p class="lead">L'infrastructure est organisée autour de postes Windows, d'un annuaire Active Directory, de stratégies de groupe, de partages de fichiers, d'un stockage tolérant aux pannes et de périphériques réseau.</p>
+        </div>
+        <span class="badge">Architecture</span>
+      </header>
+      <div class="report-flow">
+        <article class="report-step">
+          <strong>Postes utilisateurs</strong>
+          Les postes Windows sont préparés pour accéder aux ressources internes, aux outils bureautiques, aux dossiers partagés, aux imprimantes et aux scanners. L'objectif est de garder une configuration homogène et simple à maintenir.
+        </article>
+        <article class="report-step">
+          <strong>Annuaire et stratégies</strong>
+          Active Directory permet de centraliser la gestion des comptes, groupes et droits d'accès. Les GPO servent à appliquer des paramètres communs: sécurité de session, mappage de lecteurs, déploiement d'imprimantes et règles de base sur les postes.
+        </article>
+        <article class="report-step">
+          <strong>Données partagées</strong>
+          Les dossiers professionnels sont organisés par activité ou par chantier afin de faciliter le classement et le travail à plusieurs. Les droits sont pensés par besoin métier, pas en accès libre généralisé, afin de permettre le partage entre collaborateurs sans rendre tous les dossiers visibles à tout le monde.
+        </article>
+        <article class="report-step">
+          <strong>Stockage et disponibilité</strong>
+          Les données de travail peuvent être placées sur un stockage redondé de type RAID 5 afin de limiter l'impact d'une panne disque sur la disponibilité. Ce choix améliore la continuité d'accès, mais ne remplace pas une vraie sauvegarde séparée et testée.
+        </article>
+        <article class="report-step">
+          <strong>Accès distant</strong>
+          L'accès VPN permet de se connecter aux ressources internes depuis l'extérieur, tout en évitant d'exposer directement les partages et services internes sur Internet. Il est particulièrement utile depuis un ordinateur portable ou un appareil mobile lors de rendez-vous, de réunions avec un client ou d'échanges avec un architecte.
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Sécurité des données</h2>
+          <p class="lead">Le point le plus important est la protection des documents professionnels: éviter la perte, l'accès non autorisé, la fuite de données et la diffusion accidentelle de documents de chantier confidentiels.</p>
+        </div>
+        <span class="badge">Sécurité</span>
+      </header>
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Gestion des accès</h3>
+          <p>Les comptes sont nominatifs et les droits sont attribués par groupe lorsque c'est possible. Cette logique évite de multiplier les accès manuels, facilite la révocation d'un accès et limite la consultation des dossiers sensibles aux collaborateurs réellement concernés.</p>
+        </article>
+        <article class="report-card">
+          <h3>Chiffrement</h3>
+          <p>Le chiffrement des postes, disques ou supports contenant des données sensibles permet de limiter l'impact d'un vol, d'une perte de matériel ou d'un disque extrait d'une machine. Il est particulièrement important pour les appareils utilisés en mobilité ou contenant des copies de documents de chantier.</p>
+        </article>
+        <article class="report-card">
+          <h3>Sauvegardes</h3>
+          <p>Les données importantes doivent être sauvegardées régulièrement, avec une attention particulière sur les dossiers de travail, les documents administratifs et les fichiers liés aux chantiers. Le RAID 5 protège contre une panne disque simple, mais seule une sauvegarde séparée permet de récupérer après suppression, corruption ou incident plus large.</p>
+        </article>
+        <article class="report-card">
+          <h3>Partage sécurisé</h3>
+          <p>Le partage des données entre collaborateurs doit rester maîtrisé: dossiers par chantier, droits par groupe, accès restreints aux personnes concernées et vigilance sur les fichiers envoyés ou présentés à l'extérieur.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Impression et numérisation</h2>
+          <p class="lead">L'impression et le scan sont essentiels dans ce contexte: les plans, devis, documents de chantier, pièces administratives, relevés et archives doivent pouvoir circuler rapidement. Une rupture d'impression peut bloquer une réunion, une préparation de dossier ou une présentation à un client.</p>
+        </div>
+        <span class="badge">Périphériques</span>
+      </header>
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Serveur d'impression</h3>
+          <p>Les imprimantes réseau peuvent être centralisées via un serveur d'impression ou une logique de partage afin de simplifier le déploiement des files d'impression, des pilotes et des paramètres par défaut, notamment pour les imprimantes utilisées pour les plans.</p>
+        </article>
+        <article class="report-card">
+          <h3>Déploiement par GPO</h3>
+          <p>Les imprimantes utiles peuvent être attribuées automatiquement selon les besoins des utilisateurs. Cela évite les installations manuelles répétitives et réduit les erreurs de configuration.</p>
+        </article>
+        <article class="report-card">
+          <h3>Gestion des scanners</h3>
+          <p>Les scanners multifonctions sont configurés pour numériser vers des emplacements contrôlés ou vers les utilisateurs autorisés. Les droits d'accès aux dossiers de destination doivent rester cohérents avec les données traitées.</p>
+        </article>
+        <article class="report-card">
+          <h3>Dépannage courant</h3>
+          <p>Les incidents les plus probables concernent les pilotes, la connectivité réseau, la file d'attente bloquée, les droits d'accès au dossier de scan, les paramètres de destination ou le manque de consommables.</p>
+        </article>
+        <article class="report-card">
+          <h3>Suivi des cartouches</h3>
+          <p>Une amélioration utile consiste à suivre les niveaux de toner ou d'encre afin d'anticiper les ruptures. Pour une structure qui imprime régulièrement des plans, la possibilité de commander automatiquement les cartouches manquantes peut éviter les blocages de dernière minute.</p>
+        </article>
+        <article class="report-card">
+          <h3>Prévision de consommation</h3>
+          <p>Le suivi des volumes d'impression permettrait d'estimer la consommation moyenne par période, de prévoir les besoins avant les phases de forte activité et de mieux gérer le stock de consommables.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Actions réalisées et suivi</h2>
+          <p class="lead">Ces missions montrent une approche SISR: administrer, sécuriser, maintenir et documenter une infrastructure utile au fonctionnement quotidien.</p>
+        </div>
+        <span class="badge">Missions</span>
+      </header>
+      <ul class="clean">
+        <li>Gestion des comptes utilisateurs, groupes et droits d'accès dans un environnement Windows.</li>
+        <li>Application de stratégies de groupe pour standardiser certains réglages et simplifier l'administration.</li>
+        <li>Mise en place et maintenance d'accès VPN pour l'accès distant sécurisé aux ressources internes, y compris dans un contexte de mobilité et de présentation à des clients ou architectes.</li>
+        <li>Suivi de la sécurité des données: limitation des droits, chiffrement des supports pertinents, attention portée aux sauvegardes et prise en compte de la sensibilité des plans et documents de chantier.</li>
+        <li>Prise en compte de la disponibilité du stockage, avec logique de redondance type RAID 5 pour limiter l'impact d'une panne disque, sans la confondre avec une sauvegarde.</li>
+        <li>Gestion des imprimantes et scanners réseau: installation, partage, dépannage, test d'impression et contrôle des destinations de numérisation.</li>
+        <li>Réflexion sur le suivi des consommables d'impression: anticipation des cartouches manquantes, estimation de la consommation et réduction des ruptures.</li>
+        <li>Assistance aux utilisateurs sur les incidents du quotidien: accès aux fichiers, problèmes d'impression, scan, connexion ou configuration poste.</li>
+        <li>Documentation progressive de l'infrastructure pour faciliter la reprise, la maintenance et les futures évolutions.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Améliorations possibles</h2>
+          <p class="lead">L'infrastructure peut évoluer progressivement, sans chercher à complexifier inutilement une petite structure.</p>
+        </div>
+        <span class="badge">Évolution</span>
+      </header>
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Formaliser les sauvegardes</h3>
+          <p>Mettre à jour une procédure simple: périmètre sauvegardé, fréquence, support, responsable du contrôle et test de restauration. Cette procédure doit être séparée de la logique RAID 5, qui améliore la disponibilité mais ne constitue pas une sauvegarde.</p>
+        </article>
+        <article class="report-card">
+          <h3>Renforcer les accès</h3>
+          <p>Améliorer la robustesse des mots de passe, limiter les comptes administrateurs et envisager une authentification renforcée pour les accès sensibles.</p>
+        </article>
+        <article class="report-card">
+          <h3>Documenter les périphériques</h3>
+          <p>Tenir une fiche imprimantes/scanners: adresse réseau, rôle, utilisateurs concernés, pilotes utilisés, dossier de scan et procédure de dépannage.</p>
+        </article>
+        <article class="report-card">
+          <h3>Préparer la reprise</h3>
+          <p>Conserver une procédure de reprise en cas de panne: priorités, données critiques, accès VPN, restauration de fichiers et remise en service des impressions.</p>
+        </article>
+        <article class="report-card">
+          <h3>Automatiser les consommables</h3>
+          <p>Mettre en place un suivi des niveaux de cartouches et une alerte de réapprovisionnement, voire une commande automatique encadrée, pour éviter l'arrêt des impressions de plans.</p>
+        </article>
+        <article class="report-card">
+          <h3>Prévoir les pics d'impression</h3>
+          <p>Exploiter l'historique de consommation pour anticiper les périodes de forte impression, préparer le stock nécessaire et mieux maîtriser les coûts.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Lecture BTS SIO SISR</h2>
+          <p class="lead">Cette expérience illustre une situation proche d'une vraie administration de petite infrastructure: peu de moyens, mais des besoins importants en sécurité, continuité et support utilisateur.</p>
+        </div>
+        <span class="badge">Référentiel</span>
+      </header>
+      <div class="report-grid">
+        <article class="report-card">
+          <h3>Gérer le patrimoine informatique</h3>
+          <p>Suivi des postes, comptes, accès, périphériques réseau, imprimantes, scanners et ressources partagées nécessaires au fonctionnement quotidien.</p>
+        </article>
+        <article class="report-card">
+          <h3>Répondre aux incidents</h3>
+          <p>Diagnostic des problèmes d'accès, de connexion VPN, d'impression, de scan, de droits ou de configuration poste.</p>
+        </article>
+        <article class="report-card">
+          <h3>Protéger les données</h3>
+          <p>Mise en avant des sauvegardes, du chiffrement, des droits d'accès et de la réduction de l'exposition des services internes.</p>
+        </article>
+        <article class="report-card">
+          <h3>Documenter l'exploitation</h3>
+          <p>Formalisation progressive des configurations et procédures pour rendre l'infrastructure plus compréhensible et plus simple à maintenir.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>

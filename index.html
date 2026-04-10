@@ -6,11 +6,11 @@
   <title>Chrys MISSON — Portfolio</title>
   <link rel="stylesheet" href="site.css">
 </head>
-<body>
+<body class="home-page">
   <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-  <!-- NAV “liquid glass” (utilise tes styles/JS existants) -->
-  <nav class="container nav">
+  <nav class="container nav" aria-label="Navigation principale">
     <div class="nav-tabs">
       <a href="index.html" data-page="index.html">Accueil</a>
       <a href="experiences.html" data-page="experiences.html">Expériences</a>
@@ -20,7 +20,6 @@
       <span class="nav-indicator" aria-hidden="true"></span>
     </div>
     <div class="nav-spacer"></div>
-    <!-- Switcher 3 thèmes depuis ton exemple -->
     <fieldset class="switcher">
       <legend class="switcher__legend">Choisir thème</legend>
       <label class="switcher__option">
@@ -31,67 +30,20 @@
         <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
       </label>
-      <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
-        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
-      </label>
     </fieldset>
   </nav>
 
-  <main class="container">
-    <!-- HERO : titre + résumé + CTA -->
-    <header class="card hero">
-      <h1>Chrys MISSON — BTS SIO</h1>
-      <p class="lead">Administration systèmes, déploiement postes clients, cybersécurité. Expériences : SNCF, Préfecture, CPAM.</p>
-
-      <div class="cta-row">
+  <main class="container home-main" id="main-content" tabindex="-1">
+    <header class="home-hero">
+      <p class="home-kicker">Portfolio BTS SIO - Option SISR</p>
+      <h1>Chrys MISSON</h1>
+      <p class="lead">Étudiant en BTS SIO (option SISR), orienté administration systèmes et réseaux</p>
+      <div class="home-actions">
         <a class="btn primary" href="contact.html">Me contacter</a>
-        <a class="btn" href="experiences.html">Expériences</a>
-      </div>
-
-      <!-- Deux infos simples et sans doublons -->
-      <div class="hero-grid">
-        <section class="info card-min">
-          <h2>📍 Localisation</h2>
-          <p>Seine‑et‑Marne / Île‑de‑France</p>
-          <p>Moyens de déplacement :</p>
-          <div class="chips">
-            <span class="tag"><span class="ico">🚗</span> Permis B/Véhiculé</span>
-            <span class="tag"><span class="ico">🚆</span> Transports en commun</span>
-          </div>
-        </section>
-        
-
-        <section class="info card-min">
-          <h2>🎯 Objectif</h2>
-          <p>Stage de 2ᵉ année de BTS / 1er poste junior : Technicien Systèmes &amp; Réseaux (Support IT).</p>
-        </section>
+        <a class="btn" href="experiences.html">Voir mes expériences</a>
       </div>
     </header>
-        <section class="card">
-      <h2>📊 Chiffres clés</h2>
-      <div class="chips">
-        <span class="tag"><strong>100+ </strong> postes déployés (Préfecture)</span>
-        <span class="tag"><strong>650+ </strong> postes gérés (Cyrus Herez)</span>
-        <span class="tag"><strong>20 </strong> sites à distance (Cyrus Herez)</span>
-        <span class="tag"><strong>4</strong> stages de 6 à 8 semaines chacun (Cyrus-Herez,SNCF, Préfecture, CPAM)</span>
-      </div>
-    </section>
-
-    <!-- COMPÉTENCES résumé -->
-    <section class="card">
-      <h2>🧰 Compétences mises en avant</h2>
-      <ul class="clean" style="margin-top:6px">
-        <li>Déploiement automatisé de postes via <strong>MDT Lite-Touch</strong>.</li>
-        <li>Administration <strong>Active Directory</strong> & gestion des <strong>GPO</strong>.</li>
-        <li>Chiffrement de disques (<strong>BitLocker</strong>, <strong>VeraCrypt</strong>, <strong>Cryhod</strong>), <strong>VPN</strong> & certificats.</li>
-        <li>Gestion de parc & tickets : <strong>ServiceNow</strong>, <strong>Jira</strong>.</li>
-      </ul>
-      <div class="cta-row">
-        <a class="btn" href="competences.html">Voir toutes les compétences</a>
-      </div>
-    </section>
-
+  </main>
 
   <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>
 

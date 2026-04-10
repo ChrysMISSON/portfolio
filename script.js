@@ -1,4 +1,3 @@
-/* Switcher: mémorise la position précédente pour l'animation (glissement du toggle) */
 const switcher = document.querySelector('.switcher');
 (function trackPrevious(el){
   if(!el) return;
@@ -19,16 +18,18 @@ const switcher = document.querySelector('.switcher');
   });
 })(switcher);
 
-/* Persistance du thème + nav active + indicateur mobile + année footer */
 (function(){
   const radios = document.querySelectorAll('.switcher input[type="radio"]');
   const ACTIVE_KEY = 'theme-choice';
 
-  // init thème depuis localStorage
   const saved = localStorage.getItem(ACTIVE_KEY);
   if (saved) {
     const el = document.querySelector(`.switcher input[value="${saved}"]`);
-    if (el) el.checked = true;
+    if (el) {
+      el.checked = true;
+    } else {
+      localStorage.removeItem(ACTIVE_KEY);
+    }
   }
 
   radios.forEach(r=>{
@@ -39,13 +40,21 @@ const switcher = document.querySelector('.switcher');
     });
   });
 
-  // nav active
   const path = location.pathname.replace(/\/+$/, '').split('/').pop() || 'index.html';
   document.querySelectorAll('.nav a[data-page]').forEach(a=>{
-    if(a.dataset.page === path) a.classList.add('is-active');
+    const aliases = (a.dataset.aliases || '')
+      .split(',')
+      .map(value => value.trim())
+      .filter(Boolean);
+    const isActive = a.dataset.page === path || aliases.includes(path);
+    a.classList.toggle('is-active', isActive);
+    if (isActive) {
+      a.setAttribute('aria-current', 'page');
+    } else {
+      a.removeAttribute('aria-current');
+    }
   });
 
-  // moving indicator (pill)
   const track = document.querySelector('.nav-tabs');
   const indicator = document.querySelector('.nav-indicator');
   const NAV_KEY = 'nav-indicator-prev';
@@ -60,48 +69,118 @@ const switcher = document.querySelector('.switcher');
     indicator.style.width = width + 'px';
   }
 
-  // 1) Si on a une position précédente stockée (depuis la page d’avant), on l’applique SANS transition,
-  // puis on active la transition et on glisse vers la position courante → animation fluide inter-page.
   const prev = (()=>{ try { return JSON.parse(localStorage.getItem(NAV_KEY) || 'null'); } catch(_){ return null } })();
   if (track && indicator && prev && Number.isFinite(prev.left) && Number.isFinite(prev.width)) {
-    // poser l'état initial sans transition
     indicator.style.left = prev.left + 'px';
     indicator.style.width = prev.width + 'px';
-    // activer l’animation au prochain frame et bouger vers la bonne tab
     requestAnimationFrame(()=>{
       track.classList.add('is-anim');
       positionIndicator();
-      // on consomme la valeur (évite réutilisation si reload)
       localStorage.removeItem(NAV_KEY);
     });
   } else {
-    // pas de valeur précédente → positionner directement puis activer l’anim pour les prochains clics
     positionIndicator();
     requestAnimationFrame(()=>track && track.classList.add('is-anim'));
   }
 
   document.querySelectorAll('.nav-tabs a').forEach(a=>{
     a.addEventListener('click', (e)=>{
-      // Sauvegarder la position actuelle (celle de l’onglet cliqué) pour la page suivante
       if(track && indicator){
         const left = a.offsetLeft;
         const width = a.offsetWidth;
         try { localStorage.setItem(NAV_KEY, JSON.stringify({left, width})); } catch(_){}
       }
-      // Mettre à jour visuel immédiat (optionnel) puis naviguer
-      document.querySelectorAll('.nav-tabs a').forEach(x=>x.classList.remove('is-active'));
+      const isPlainNavigation = e.button === 0 && !e.metaKey && !e.ctrlKey && !e.shiftKey && !e.altKey;
+      if (!isPlainNavigation) return;
+      document.querySelectorAll('.nav-tabs a').forEach(x=>{
+        x.classList.remove('is-active');
+        x.removeAttribute('aria-current');
+      });
       a.classList.add('is-active');
-      // petite anim locale avant de partir (facultatif)
+      a.setAttribute('aria-current', 'page');
       requestAnimationFrame(()=>requestAnimationFrame(positionIndicator));
-      // navigation réelle
-      e.preventDefault();
-      window.location.href = a.getAttribute('href');
     });
   });
 
   window.addEventListener('resize', positionIndicator);
 
-  // année footer
   const y = document.getElementById('year');
   if(y) y.textContent = new Date().getFullYear();
 })();
+
+// RSS Feeds integration
+async function fetchRSS(url) {
+  try {
+    const apiUrl = `https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`;
+    const response = await fetch(apiUrl);
+    const data = await response.json();
+    if (data.status === 'ok') {
+      return data.items.map(item => ({
+        title: item.title || '',
+        link: item.link || '',
+        description: item.description || '',
+        pubDate: item.pubDate || ''
+      }));
+    } else {
+      console.error('RSS API error:', data.message);
+      return [];
+    }
+  } catch (error) {
+    console.error('Error fetching RSS:', error);
+    return [];
+  }
+}
+
+async function loadRSSFeeds() {
+  const feeds = [
+    { name: 'Formula 1 Latest', url: 'https://www.formula1.com/en/latest/all.xml' },
+    { name: 'Formula E + AI', url: 'https://news.google.com/rss/search?q=Formula+E+AI&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'Formula 1 + AWS + AI', url: 'https://news.google.com/rss/search?q=Formula+1+AWS+AI&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'Autonomous Racing AI', url: 'https://news.google.com/rss/search?q=autonomous+racing+AI&hl=en-US&gl=US&ceid=US:en' },
+    { name: 'IA + Sport Automobile (FR)', url: 'https://news.google.com/rss/search?q=intelligence+artificielle+sport+automobile&hl=fr&gl=FR&ceid=FR:fr' }
+  ];
+
+  const container = document.getElementById('rss-feeds');
+  if (!container) return;
+
+  // Clear loading
+  container.innerHTML = '';
+
+  for (const feed of feeds) {
+    const items = await fetchRSS(feed.url);
+    if (items.length > 0) {
+      const article = document.createElement('article');
+      article.className = 'source-card';
+      article.innerHTML = `
+        <h3>${feed.name}</h3>
+        <ul class="clean rss-items">
+          ${items.slice(0, 3).map(item => {
+            const date = new Date(item.pubDate);
+            const dateStr = isNaN(date.getTime()) ? 'Date inconnue' : date.toLocaleDateString();
+            return `
+            <li>
+              <a href="${item.link}" target="_blank" rel="noopener">${item.title}</a>
+              <small>${dateStr}</small>
+            </li>
+          `;
+          }).join('')}
+        </ul>
+      `;
+      container.appendChild(article);
+    } else {
+      // If no items, show a message
+      const article = document.createElement('article');
+      article.className = 'source-card';
+      article.innerHTML = `
+        <h3>${feed.name}</h3>
+        <p>Impossible de charger le flux RSS.</p>
+      `;
+      container.appendChild(article);
+    }
+  }
+}
+
+// Load RSS feeds if on veille page
+if (document.getElementById('rss-feeds')) {
+  loadRSSFeeds();
+}

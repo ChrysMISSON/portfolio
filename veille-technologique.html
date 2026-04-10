@@ -6,53 +6,215 @@
   <title>Chrys MISSON — Veille technologique</title>
   <link rel="stylesheet" href="site.css">
   <style>
-    /* Spécifiques à la page Veille (légers, réutilisent le look glass) */
-    .feed-controls{ display:flex; flex-wrap:wrap; gap:10px; align-items:center; margin-top:8px }
-    .feed-controls input[type="url"]{ flex:1 1 360px; min-width:220px; padding:10px 12px; border-radius:12px; border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent); background:color-mix(in srgb, var(--c-glass) 10%, transparent); color:var(--c-content) }
-    .feed-controls button, .feed-controls select{
-      padding:10px 12px; border-radius:12px; border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);
-      background:linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 16%, transparent), color-mix(in srgb, var(--c-glass) 6%, transparent));
-      color:var(--c-content); font-weight:700; cursor:pointer
+    .veille-main {
+      display: grid;
+      gap: 22px;
     }
-    .feed-controls .small{ padding:8px 10px; font-size:13px }
-    .feed-list{ display:flex; flex-wrap:wrap; gap:8px; margin-top:10px }
-    .feed-chip{
-      display:inline-flex; align-items:center; gap:8px; padding:6px 10px; border-radius:999px; cursor:default;
-      background:linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 18%, transparent), color-mix(in srgb, var(--c-glass) 8%, transparent));
-      border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent); font-size:12px; font-weight:700
-    }
-    .feed-chip button{ all:unset; cursor:pointer; padding:0 4px; line-height:1 }
-    .rss-grid{ display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:16px; margin-top:14px }
-    .rss-card{
-      padding:18px; border-radius:16px;
-      background:linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 12%, transparent), color-mix(in srgb, var(--c-glass) 18%, transparent));
-      border:1px solid color-mix(in srgb, var(--c-light) 10%, transparent);
-      backdrop-filter: blur(12px) saturate(var(--saturation));
-      -webkit-backdrop-filter: blur(12px) saturate(var(--saturation));
-      position:relative; overflow:hidden;
-      display:flex; flex-direction:column; /* ensure footer sticks to bottom */
-      min-height: 190px; /* consistent visual rhythm */
-    }
-    .rss-card h3{ font-size:16px; margin:0 0 6px }
-    .rss-card p{ margin:0 0 10px; opacity:.85; font-size:14px; line-height:1.45; max-height:6.3em; overflow:hidden; flex:0 0 auto }
-    .rss-meta{ display:flex; gap:8px; align-items:center; justify-content:space-between; font-size:12px; opacity:.8; margin-top:auto }
-    .rss-source{ font-weight:700 }
-    .ext{ color:inherit; text-decoration:none }
-    .ext:hover{ text-decoration:underline; text-underline-offset:2px }
-    .muted{ opacity:.7 }
 
-    /* macOS-like indeterminate progress bar */
-    .macbar{position:relative;height:10px;border-radius:999px;overflow:hidden;background:linear-gradient(180deg,color-mix(in srgb,var(--c-glass) 22%,transparent),color-mix(in srgb,var(--c-glass) 10%,transparent));border:1px solid color-mix(in srgb,var(--c-light) 12%, transparent);box-shadow:inset 0 2px 6px -4px color-mix(in srgb,#000 40%, transparent);}
-    .macbar .bar{position:absolute;inset:1px;height:calc(100% - 2px);width:30%;border-radius:inherit;background:linear-gradient(90deg, color-mix(in srgb,#fff 40%, var(--c-action)) 0%, var(--c-action) 60%, color-mix(in srgb,#fff 40%, var(--c-action)) 100%);box-shadow:0 6px 16px -10px color-mix(in srgb,var(--c-action) 60%, transparent), inset 0 0 0 .5px color-mix(in srgb,#fff 30%, transparent);animation:macbar-move 1.2s cubic-bezier(.4,.0,.2,1) infinite alternate;}
-    @keyframes macbar-move{from{left:1px; width:26%} to{left:calc(100% - 31%); width:31%}}
-    @media (prefers-reduced-motion: reduce){ .macbar .bar{animation:none} }
+    .veille-main > .card {
+      margin-top: 0;
+    }
+
+    .veille-hero {
+      position: relative;
+      padding: clamp(30px, 5vw, 56px);
+      border-radius: clamp(24px, 4vw, 36px);
+      border: 1px solid color-mix(in srgb, var(--border-strong) 84%, transparent);
+      background:
+        linear-gradient(145deg, color-mix(in srgb, var(--surface-strong) 95%, transparent), color-mix(in srgb, var(--surface) 76%, transparent)),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--brand-2) 18%, transparent), transparent 42%);
+      box-shadow:
+        inset 0 1px 0 color-mix(in srgb, #fff 54%, transparent),
+        0 32px 70px -44px color-mix(in srgb, var(--c-dark) 58%, transparent);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .veille-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(115deg, color-mix(in srgb, var(--brand) 16%, transparent), transparent 42%),
+        linear-gradient(180deg, color-mix(in srgb, #fff 24%, transparent), transparent 34%);
+      opacity: 0.42;
+    }
+
+    .veille-kicker {
+      margin: 0 0 14px;
+      font-size: 0.74rem;
+      font-weight: 800;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: color-mix(in srgb, var(--text-2) 82%, var(--brand));
+    }
+
+    .veille-hero h1 {
+      max-width: 16ch;
+      margin-bottom: 14px;
+      font-size: clamp(2.3rem, 6vw, 4.1rem);
+      line-height: 1.02;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .veille-hero .lead {
+      max-width: 62ch;
+      margin-bottom: 18px;
+      font-size: clamp(1.04rem, 2vw, 1.2rem);
+    }
+
+    .metric-grid,
+    .source-grid,
+    .analysis-grid,
+    .summary-grid {
+      display: grid;
+      gap: 14px;
+    }
+
+    .metric-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      margin-top: 18px;
+    }
+
+    .metric-card,
+    .source-card,
+    .analysis-card,
+    .summary-card,
+    .focus-card {
+      position: relative;
+      padding: 18px 20px;
+      border-radius: 18px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: linear-gradient(176deg, color-mix(in srgb, var(--surface-strong) 92%, transparent), color-mix(in srgb, var(--surface) 72%, transparent));
+      box-shadow: 0 16px 30px -28px color-mix(in srgb, var(--c-dark) 45%, transparent);
+    }
+
+    .metric-card strong,
+    .summary-card strong,
+    .focus-card strong {
+      display: block;
+      margin-bottom: 6px;
+      font-size: 0.94rem;
+    }
+
+    .metric-card p,
+    .source-card p,
+    .analysis-card p,
+    .summary-card p,
+    .focus-card p {
+      color: var(--text-2);
+      font-size: 0.92rem;
+    }
+
+    .veille-columns {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 14px;
+    }
+
+    .focus-card .clean,
+    .analysis-card .clean {
+      margin-top: 10px;
+    }
+
+    .analysis-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .analysis-card h3,
+    .source-card h3 {
+      margin-bottom: 8px;
+      font-size: 1.08rem;
+    }
+
+    .analysis-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 10px;
+    }
+
+    .analysis-card .clean li,
+    .focus-card .clean li {
+      margin: 6px 0;
+    }
+
+    .source-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .source-card .cta-row {
+      margin-top: 14px;
+    }
+
+    .summary-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      margin-top: 14px;
+    }
+
+    .section-note {
+      margin-top: 8px;
+      max-width: 70ch;
+    }
+
+    .loading {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 20px;
+      color: var(--text-2);
+      font-style: italic;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .spinner {
+      border: 4px solid color-mix(in srgb, var(--border) 50%, transparent);
+      border-top: 4px solid var(--brand);
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      animation: spin 1s linear infinite;
+      margin-right: 10px;
+    }
+
+    @keyframes spin {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
+    }
+
+    @media (max-width: 980px) {
+      .veille-columns,
+      .metric-grid,
+      .source-grid,
+      .analysis-grid,
+      .summary-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .veille-hero {
+        padding: 22px;
+        border-radius: 22px;
+      }
+
+      .veille-kicker {
+        letter-spacing: 0.13em;
+        font-size: 0.67rem;
+      }
+    }
   </style>
 </head>
 <body>
   <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-  <!-- NAV -->
-  <nav class="container nav">
+  <nav class="container nav" aria-label="Navigation principale">
     <div class="nav-tabs">
       <a href="index.html" data-page="index.html">Accueil</a>
       <a href="experiences.html" data-page="experiences.html">Expériences</a>
@@ -65,220 +227,400 @@
     <fieldset class="switcher">
       <legend class="switcher__legend">Choisir thème</legend>
       <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" />
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
       </label>
       <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" checked />
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
-      </label>
-      <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
-        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
       </label>
     </fieldset>
   </nav>
 
-  <main class="container">
-    <section class="card">
-      <h1>🛰️ Veille technologique</h1>
-      <p class="lead">Derniers articles de sources officielles (Windows, Windows Server, CNIL, CERT‑FR). Activez/désactivez les flux que vous souhaitez voir.</p>
+  <main class="container veille-main" id="main-content" tabindex="-1">
+    <section class="veille-hero">
+      <p class="veille-kicker">Veille technologique</p>
+      <h1>L'intelligence artificielle dans le sport automobile</h1>
+      <p class="lead">Pour ma veille technologique, j'ai choisi d'étudier l'intelligence artificielle dans le sport automobile. Ce sujet m'intéresse car il mélange analyse temps réel, traitement massif de données, vision par ordinateur, simulation et aide à la décision dans un environnement où quelques millisecondes peuvent tout changer.</p>
 
-      <div class="feed-controls" id="controls">
-        <!-- Les contrôles seront rendus par le script (checkbox ON/OFF pour chaque flux) -->
+      <div class="chips">
+        <span class="tag">Dernière mise à jour : 6 avril 2026</span>
+        <span class="tag">Périodicité : hebdomadaire</span>
+        <span class="tag">Sources officielles</span>
+        <span class="tag">Analyse officielle</span>
       </div>
 
-      <div class="feed-list" id="feed-list"></div>
+      <div class="metric-grid">
+        <article class="metric-card">
+          <strong>Problématique</strong>
+          <p>Qu'est-ce que l'IA a déjà changé dans le sport automobile, et qu'est-ce qu'elle va encore transformer dans les prochaines années ?</p>
+        </article>
+        <article class="metric-card">
+          <strong>Ce que je surveille</strong>
+          <p>Stratégie de course, arbitrage, maintenance, diffusion TV, expérience fan et véhicules autonomes.</p>
+        </article>
+        <article class="metric-card">
+          <strong>Pourquoi ce sujet</strong>
+          <p>Le sport automobile est un laboratoire technologique réel où l'IA est déjà utilisée pour décider, prédire, assister et automatiser.</p>
+        </article>
+        <article class="metric-card">
+          <strong>But de la veille</strong>
+          <p>Comprendre l'impact concret de l'IA aujourd'hui, puis identifier les évolutions probables à court terme.</p>
+        </article>
+      </div>
     </section>
 
     <section class="card">
-      <h2>Derniers articles</h2>
-      <div id="loader" class="macbar" hidden><span class="bar"></span></div>
-      <div id="items" class="rss-grid"></div>
-      <p id="status" class="muted"></p>
+      <header class="split-header">
+        <div>
+          <h2>Objectif et méthode</h2>
+          <p class="lead">Pour répondre aux attentes d'une vraie veille BTS, je ne me contente pas de lister des actualités. Je sélectionne des publications officielles qui montrent des usages réels de l'IA dans le sport automobile, puis j'explique leur impact concret.</p>
+        </div>
+        <span class="badge">Méthodologie</span>
+      </header>
+
+      <div class="veille-columns">
+        <article class="focus-card">
+          <strong>Ma démarche</strong>
+          <ul class="clean">
+            <li>Je combine lecture manuelle de sites officiels et surveillance automatique via flux RSS.</li>
+            <li>Je retiens les exemples où l'IA est déjà déployée ou annoncée officiellement.</li>
+            <li>Je classe les impacts selon quatre axes : performance, arbitrage, exploitation, expérience spectateur.</li>
+            <li>Je termine par une synthèse personnelle sur ce que cela change déjà et ce que cela va changer.</li>
+          </ul>
+        </article>
+
+        <article class="focus-card">
+          <strong>Critères de choix</strong>
+          <ul class="clean">
+            <li>Cas d'usage réel et pas seulement théorique.</li>
+            <li>Source officielle ou directement liée au championnat, à la FIA ou à une écurie.</li>
+            <li>Impact visible sur la course, l'organisation ou les spectateurs.</li>
+            <li>Capacité à montrer une évolution actuelle et une tendance future.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Ce que l'IA a déjà changé</h2>
+          <p class="lead">Les exemples ci-dessous montrent que l'IA n'est plus une promesse dans le sport automobile : elle est déjà utilisée dans la course, dans le contrôle sportif, dans la communication et dans l'organisation.</p>
+        </div>
+        <span class="badge">Constat actuel</span>
+      </header>
+
+      <div class="analysis-grid">
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">Donnée structurante</span>
+            <span class="tag">Formula 1</span>
+            <span class="tag">AWS</span>
+          </div>
+          <h3>La stratégie et la lecture de course sont devenues ultra pilotées par la donnée</h3>
+          <p>Formula 1 et AWS expliquent que chaque voiture possède plus de 300 capteurs et génère plus de 1,1 million de points de données par seconde. L'IA et le machine learning servent déjà à transformer cette masse de données en insights compréhensibles.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> la stratégie de course n'est plus seulement l'affaire de l'intuition humaine, elle est renforcée par des modèles capables de faire ressortir des tendances invisibles à l'œil nu.</li>
+            <li><strong>Exemples :</strong> undercut threat, car performance, driver ranking, close to the wall, analyse de trajectoire et de comportement.</li>
+            <li><strong>Ce que j'en retiens :</strong> l'IA aide déjà à transformer la télémétrie brute en aide à la décision et en explication visuelle.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://aws.amazon.com/sports/f1/" target="_blank" rel="noopener">AWS x Formula 1 ↗</a>
+          </div>
+        </article>
+
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">30 avril 2025</span>
+            <span class="tag">FIA</span>
+            <span class="tag">Race Control</span>
+          </div>
+          <h3>L'arbitrage a déjà été transformé par la vision par ordinateur</h3>
+          <p>La FIA indique que le système Track Limits Computer Vision, intégré dans RaceWatch, signale des infractions en 1 seconde, réduit la surveillance manuelle de 95 % et permet aux officiels de ne revoir manuellement qu'environ 5 % des cas.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> les décisions de track limits sont plus rapides, plus homogènes et moins dépendantes d'une observation purement humaine.</li>
+            <li><strong>Ce que ça montre :</strong> l'IA est déjà un outil d'assistance à l'arbitrage, mais l'humain garde la décision finale.</li>
+            <li><strong>Ce que j'en retiens :</strong> l'IA ne remplace pas les commissaires, elle leur permet d'être plus efficaces.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.fia.com/news/15-years-fia-and-catapult-how-racewatch-powering-future-motor-sport" target="_blank" rel="noopener">Article FIA ↗</a>
+          </div>
+        </article>
+
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">20 mars 2026</span>
+            <span class="tag">Formula E</span>
+            <span class="tag">Infosys</span>
+          </div>
+          <h3>L'expérience spectateur est déjà enrichie en temps réel</h3>
+          <p>Le 20 mars 2026, Formula E et Infosys ont lancé un AI-powered Race Centre capable d'afficher commentaires IA, météo, race control updates, suivi du PITBOOST, de l'ATTACK MODE et storytelling synchronisé à la course.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> l'IA ne sert plus seulement aux équipes, elle sert aussi à expliquer la course au public en direct.</li>
+            <li><strong>Résultat :</strong> le spectateur comprend mieux la stratégie, les événements de course et les choix techniques.</li>
+            <li><strong>Ce que j'en retiens :</strong> l'IA change aussi la manière de consommer le sport automobile.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.fiaformulae.com/en/news/1009388/infosys-and-formula-e-launch-ai-powered-race-centre" target="_blank" rel="noopener">Race Centre IA ↗</a>
+          </div>
+        </article>
+
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">26 janvier 2026</span>
+            <span class="tag">Formula E</span>
+            <span class="tag">Google Cloud</span>
+          </div>
+          <h3>L'IA intervient déjà dans la stratégie, le développement et l'exploitation</h3>
+          <p>Le 26 janvier 2026, Formula E a annoncé Google Cloud comme Principal Artificial Intelligence Partner. L'organisation explique déjà utiliser Gemini pour ses opérations, ses diffusions et le projet Mountain Recharge.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> l'IA sort du simple tableau de bord et devient un outil transversal de performance, d'analyse et d'organisation.</li>
+            <li><strong>Exemple concret :</strong> l'IA a servi à cartographier une descente et à identifier les zones de freinage optimales pour récupérer assez d'énergie régénérative.</li>
+            <li><strong>Ce que j'en retiens :</strong> l'IA touche déjà le sport auto sur et hors piste.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://fiaformulae.com/en/news/826226/google-cloud-becomes-principal-partner-and-principal-artificial-intelligence-partner-of-formula-e" target="_blank" rel="noopener">Partenariat Google Cloud ↗</a>
+          </div>
+        </article>
+
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">28 février 2025</span>
+            <span class="tag">INDYCAR</span>
+            <span class="tag">OpenAI</span>
+          </div>
+          <h3>Les équipes commencent à intégrer l'IA dans leur fonctionnement interne</h3>
+          <p>Chip Ganassi Racing et OpenAI ont annoncé le 28 février 2025 une collaboration stratégique visant à maximiser la performance sur la piste et dans le front office.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> l'IA entre dans l'organisation même des équipes pour automatiser des tâches de connaissance, accélérer certaines analyses et aider la prise de décision.</li>
+            <li><strong>Ce que cela signifie :</strong> les écuries ne cherchent plus seulement des gains mécaniques, mais aussi des gains organisationnels et informationnels.</li>
+            <li><strong>Ce que j'en retiens :</strong> l'IA devient un levier de compétitivité global.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.chipganassiracing.com/news/chip-ganassi-racing-openai-announce-strategic-collaboration-sam-altman" target="_blank" rel="noopener">OpenAI x Chip Ganassi ↗</a>
+          </div>
+        </article>
+
+        <article class="analysis-card">
+          <div class="analysis-meta">
+            <span class="badge">Perspective</span>
+            <span class="tag">Indy Autonomous Challenge</span>
+            <span class="tag">Autonomie</span>
+          </div>
+          <h3>Le sport automobile sert aussi de laboratoire pour l'autonomie</h3>
+          <p>L'Indy Autonomous Challenge réunit des équipes universitaires qui programment de véritables pilotes IA pour des voitures de course autonomes. On y voit déjà des courses et démonstrations de véhicules sans pilote à haute vitesse.</p>
+          <ul class="clean">
+            <li><strong>Ce que ça a changé :</strong> le sport auto n'est plus seulement un lieu d'essai mécanique, c'est aussi un terrain d'expérimentation pour l'IA embarquée.</li>
+            <li><strong>Ce que ça annonce :</strong> davantage de simulation, d'assistance intelligente et de pilotage automatisé dans certains contextes techniques.</li>
+            <li><strong>Ce que j'en retiens :</strong> même si les championnats traditionnels gardent le pilote humain au centre, la frontière technologique recule vite.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.indyautonomouschallenge.com/" target="_blank" rel="noopener">Indy Autonomous Challenge ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Ce que l'IA va changer</h2>
+          <p class="lead">À partir des usages déjà observés, on peut identifier plusieurs transformations probables pour les prochaines années dans le sport automobile.</p>
+        </div>
+        <span class="badge">Perspective</span>
+      </header>
+
+      <div class="summary-grid">
+        <article class="summary-card">
+          <strong>1. Des stratégies encore plus prédictives</strong>
+          <p>L'IA va affiner les prédictions liées à l'usure des pneus, à la météo, à la consommation d'énergie, aux dépassements et aux fenêtres d'arrêt.</p>
+        </article>
+
+        <article class="summary-card">
+          <strong>2. Une maintenance plus anticipée</strong>
+          <p>Les équipes pourront détecter plus tôt certaines dérives mécaniques ou électroniques, donc réduire les abandons et mieux préparer les réglages.</p>
+        </article>
+
+        <article class="summary-card">
+          <strong>3. Un arbitrage plus rapide et plus homogène</strong>
+          <p>La vision par ordinateur et l'analyse temps réel vont continuer à améliorer la détection des incidents, des limites de piste et d'autres situations contestées.</p>
+        </article>
+
+        <article class="summary-card">
+          <strong>4. Une expérience fan plus immersive</strong>
+          <p>Les spectateurs auront de plus en plus d'explications personnalisées, de commentaires assistés, de prédictions et de visualisations adaptées à leur niveau.</p>
+        </article>
+
+        <article class="summary-card">
+          <strong>5. Des écuries plus assistées par l'IA</strong>
+          <p>Les ingénieurs, stratèges et analystes vont travailler avec des outils IA comme des copilotes capables de filtrer l'information et de proposer des scénarios.</p>
+        </article>
+
+        <article class="summary-card">
+          <strong>6. De nouveaux enjeux éthiques et sportifs</strong>
+          <p>Le sport devra aussi gérer des questions d'équité, de dépendance technologique, de transparence des décisions et de place de l'humain face à l'automatisation.</p>
+        </article>
+      </div>
+
+      <p class="muted section-note">En conclusion, l'intelligence artificielle a déjà changé le sport automobile dans la stratégie, l'arbitrage, l'analyse des données et l'expérience spectateur. À l'avenir, elle va probablement devenir encore plus centrale, non pas pour remplacer totalement l'humain, mais pour assister plus vite, prévoir plus précisément et automatiser davantage de décisions techniques et opérationnelles.</p>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Sources officielles surveillées</h2>
+          <p class="lead">Je privilégie des sources primaires afin d'éviter les approximations et de pouvoir m'appuyer sur des annonces réelles, datées et vérifiables.</p>
+        </div>
+        <span class="badge">Fiabilité</span>
+      </header>
+
+      <div class="source-grid">
+        <article class="source-card">
+          <h3>FIA</h3>
+          <p>Je l'utilise pour suivre l'arbitrage, les systèmes de race control, l'automatisation vidéo et les technologies officiellement intégrées aux compétitions.</p>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.fia.com/news/15-years-fia-and-catapult-how-racewatch-powering-future-motor-sport" target="_blank" rel="noopener">Source FIA ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Formula E</h3>
+          <p>Très intéressante pour la veille IA, car ce championnat communique clairement sur ses usages en diffusion, stratégie, durabilité et expérience fan.</p>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.fiaformulae.com/en/news/1009388/infosys-and-formula-e-launch-ai-powered-race-centre" target="_blank" rel="noopener">Source Formula E ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Formula 1 et AWS</h3>
+          <p>Ces sources montrent comment l'IA et le machine learning servent déjà à exploiter la télémétrie, créer des insights et rendre la stratégie plus lisible.</p>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://aws.amazon.com/sports/f1/" target="_blank" rel="noopener">Source AWS x F1 ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Chip Ganassi Racing et OpenAI</h3>
+          <p>Cette collaboration montre que l'IA n'est plus seulement un sujet de diffusion ou d'analyse externe : elle entre aussi dans le fonctionnement quotidien des équipes.</p>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.chipganassiracing.com/news/chip-ganassi-racing-openai-announce-strategic-collaboration-sam-altman" target="_blank" rel="noopener">Source équipe ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Indy Autonomous Challenge</h3>
+          <p>Je m'en sers pour observer la frontière entre assistance intelligente et pilotage autonome, donc pour comprendre ce que l'IA pourrait changer demain dans le sport auto.</p>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.indyautonomouschallenge.com/" target="_blank" rel="noopener">Source IAC ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Flux RSS utilisés</h2>
+          <p class="lead">Même si tout n'est pas affiché automatiquement sur la page, ma veille repose aussi sur des flux RSS. Ils me servent à repérer rapidement les nouvelles publications, puis je vérifie ensuite les informations sur les sources officielles avant de les intégrer dans ma synthèse.</p>
+        </div>
+        <span class="badge">Automatisation</span>
+      </header>
+
+      <div class="source-grid">
+        <article class="source-card">
+          <h3>FIA News RSS</h3>
+          <p>Flux officiel de la FIA pour détecter rapidement les nouvelles publications liées à la réglementation, au contrôle de course et aux innovations technologiques dans les compétitions.</p>
+          <div class="chips">
+            <span class="tag">RSS officiel</span>
+            <span class="tag">Motorsport</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.fia.com/news/rss.xml" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Formula 1 Latest RSS</h3>
+          <p>Flux officiel Formula 1 utilisé pour suivre les dernières publications du championnat, les analyses, les nouvelles tendances techniques et les sujets liés aux partenariats data et IA.</p>
+          <div class="chips">
+            <span class="tag">RSS officiel</span>
+            <span class="tag">Formula 1</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://www.formula1.com/en/latest/all.xml" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Google News RSS : Formula E + AI</h3>
+          <p>Flux thématique utilisé pour repérer rapidement les nouveaux articles autour de Formula E et de l'intelligence artificielle, avant validation sur les sites officiels du championnat ou des partenaires.</p>
+          <div class="chips">
+            <span class="tag">RSS thématique</span>
+            <span class="tag">Formula E</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://news.google.com/rss/search?q=Formula+E+AI&hl=en-US&gl=US&ceid=US:en" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Google News RSS : Formula 1 + AWS + AI</h3>
+          <p>Flux ciblé pour suivre les sujets liés à la télémétrie, au machine learning, à la stratégie et aux analyses de course autour de l'écosystème Formula 1 et AWS.</p>
+          <div class="chips">
+            <span class="tag">RSS thématique</span>
+            <span class="tag">Data &amp; IA</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://news.google.com/rss/search?q=Formula+1+AWS+AI&hl=en-US&gl=US&ceid=US:en" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Google News RSS : autonomous racing AI</h3>
+          <p>Flux dédié aux évolutions autour des courses autonomes, de l'expérimentation IA embarquée et des nouveaux projets comme l'Indy Autonomous Challenge.</p>
+          <div class="chips">
+            <span class="tag">RSS thématique</span>
+            <span class="tag">Autonomie</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://news.google.com/rss/search?q=autonomous+racing+AI&hl=en-US&gl=US&ceid=US:en" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+
+        <article class="source-card">
+          <h3>Google News RSS : IA + sport automobile</h3>
+          <p>Flux plus large utilisé pour repérer des publications en français autour de l'intelligence artificielle dans le sport automobile, utile pour compléter la veille et comparer les angles de traitement.</p>
+          <div class="chips">
+            <span class="tag">RSS thématique</span>
+            <span class="tag">FR</span>
+          </div>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://news.google.com/rss/search?q=intelligence+artificielle+sport+automobile&hl=fr&gl=FR&ceid=FR:fr" target="_blank" rel="noopener">Ouvrir le flux ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Flux RSS intégrés</h2>
+          <p class="lead">Voici les dernières actualités directement issues des flux RSS surveillés pour cette veille technologique.</p>
+        </div>
+        <span class="badge">Actualités en direct</span>
+      </header>
+
+      <div id="rss-feeds" class="source-grid">
+        <div class="loading">
+          <div class="spinner"></div>
+          Chargement des flux RSS...
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>
-
   <script src="script.js"></script>
-  <script>
-  (function(){
-    // --- Flux par défaut (tu peux renommer les libellés) ---
-    const DEFAULT_FEEDS = [
-      { id:'win',   name:'Windows (blogs.windows.com)',       url:'https://blogs.windows.com/feed/', enabled:false },
-      { id:'wsrv',  name:'Windows Server — Updates',          url:'https://www.microsoft.com/en-us/windows-server/blog/content-type/updates/feed/', enabled:true },
-      { id:'cnil',  name:'CNIL',                 url:'https://www.cnil.fr/fr/rss.xml', enabled:true },
-      { id:'cert',  name:'CERT-FR (ANSSI)',                   url:'https://www.cert.ssi.gouv.fr/feed/', enabled:true },
-    ];
-    const STORE_KEY = 'techwatch-feeds-v1';
-
-    const itemsEl = document.getElementById('items');
-    const statusEl = document.getElementById('status');
-    const controlsEl = document.getElementById('controls');
-    const listEl = document.getElementById('feed-list');
-    const loaderEl = document.getElementById('loader');
-    const showLoader = ()=>{ if(loaderEl){ loaderEl.hidden = false; } };
-    const hideLoader = ()=>{ if(loaderEl){ loaderEl.hidden = true; } };
-
-    // --- State helpers ---
-    function loadFeeds(){
-      try{
-        const v = JSON.parse(localStorage.getItem(STORE_KEY) || 'null');
-        if(Array.isArray(v) && v.length){
-          // merge avec DEFAULT_FEEDS pour garder nouveaux flux si on en ajoute plus tard
-          const map = new Map(v.map(x=>[x.id, x]));
-          return DEFAULT_FEEDS.map(def => Object.assign({}, def, map.get(def.id) || {}));
-        }
-      }catch(e){}
-      return DEFAULT_FEEDS.slice();
-    }
-    function saveFeeds(arr){
-      localStorage.setItem(STORE_KEY, JSON.stringify(arr.map(({id,name,url,enabled})=>({id,name,url,enabled}))));
-    }
-
-    // --- UI: switches + pastilles visibles ---
-    function renderControls(feeds){
-      controlsEl.innerHTML = '';
-      // Bouton refresh
-      const btn = document.createElement('button');
-      btn.textContent = 'Rafraîchir';
-      btn.className = 'small';
-      btn.addEventListener('click', refresh);
-      controlsEl.appendChild(btn);
-
-      // Switches
-      feeds.forEach((f, idx)=>{
-        const label = document.createElement('label');
-        label.className = 'switcher__option';
-        label.style.width = 'auto';
-        label.style.height = '42px';
-        label.style.padding = '0 12px';
-        label.style.borderRadius = '12px';
-        label.style.border = '1px solid color-mix(in srgb, var(--c-light) 12%, transparent)';
-        label.style.background = 'linear-gradient(180deg, color-mix(in srgb, var(--c-glass) 16%, transparent), color-mix(in srgb, var(--c-glass) 6%, transparent))';
-        label.style.display = 'inline-flex';
-        label.style.alignItems = 'center';
-        label.style.gap = '10px';
-        label.style.marginLeft = '8px';
-
-        const cb = document.createElement('input');
-        cb.type = 'checkbox';
-        cb.checked = !!f.enabled;
-        cb.id = 'cb-' + f.id;
-        cb.addEventListener('change', ()=>{
-          feeds[idx].enabled = cb.checked;
-          saveFeeds(feeds);
-          refresh();
-        });
-
-        const txt = document.createElement('span');
-        txt.textContent = f.name;
-        txt.style.fontWeight = '700';
-
-        label.appendChild(cb);
-        label.appendChild(txt);
-        controlsEl.appendChild(label);
-      });
-    }
-
-    function renderFeedChips(feeds){
-      listEl.innerHTML = '';
-      feeds.forEach(f=>{
-        const chip = document.createElement('span');
-        chip.className = 'feed-chip';
-        chip.style.opacity = f.enabled ? '1' : '.45';
-        chip.innerHTML = `<span>${new URL(f.url).hostname.replace('www.','')}</span>`;
-        listEl.appendChild(chip);
-      });
-    }
-
-    // --- Fetch & parse (RSS/Atom) ---
-    async function fetchFeed(url){
-      // Proxy CORS public ; remplace par "url" si ton hébergeur autorise les requêtes cross-origin
-      const target = 'https://api.allorigins.win/raw?url=' + encodeURIComponent(url);
-      const resp = await fetch(target);
-      if(!resp.ok) throw new Error('HTTP ' + resp.status);
-      const text = await resp.text();
-      return parseXML(text, url);
-    }
-
-    function parseXML(xmlText, src){
-      const doc = new DOMParser().parseFromString(xmlText, 'text/xml');
-
-      // RSS 2.0
-      let items = [...doc.querySelectorAll('item')].map(it=>({
-        title: it.querySelector('title')?.textContent?.trim() || '(Sans titre)',
-        link: (it.querySelector('link')?.textContent || it.querySelector('guid')?.textContent || '#').trim(),
-        date: new Date(it.querySelector('pubDate')?.textContent || it.querySelector('dc\\:date')?.textContent || Date.now()),
-        source: doc.querySelector('channel > title')?.textContent || new URL(src).hostname,
-        desc: it.querySelector('description')?.textContent || ''
-      }));
-
-      // Atom
-      if(items.length === 0){
-        const entries = [...doc.querySelectorAll('entry')];
-        items = entries.map(e=>({
-          title: e.querySelector('title')?.textContent?.trim() || '(Sans titre)',
-          link: e.querySelector('link')?.getAttribute('href') || '#',
-          date: new Date(e.querySelector('updated')?.textContent || e.querySelector('published')?.textContent || Date.now()),
-          source: e.querySelector('author > name')?.textContent || new URL(src).hostname,
-          desc: e.querySelector('summary')?.textContent || e.querySelector('content')?.textContent || ''
-        }));
-      }
-      return items;
-    }
-
-    function renderItems(items){
-      itemsEl.innerHTML = '';
-      const fmt = (d)=> isNaN(+d) ? '' : d.toLocaleString('fr-FR', { year:'numeric', month:'short', day:'2-digit' });
-      items
-        .sort((a,b)=> b.date - a.date)
-        .slice(0, 30)
-        .forEach(x=>{
-          const el = document.createElement('article');
-          el.className = 'rss-card';
-          el.innerHTML = `
-            <h3><a class="ext" href="${x.link}" target="_blank" rel="noopener noreferrer">${x.title}</a></h3>
-            <p>${(x.desc || '').replace(/<[^>]+>/g,'').slice(0,220)}${(x.desc || '').length>220?'…':''}</p>
-            <div class="rss-meta">
-              <span class="rss-source">${x.source}</span>
-              <span class="badge">${fmt(x.date)}</span>
-            </div>`;
-          itemsEl.appendChild(el);
-        });
-    }
-
-    async function refresh(){
-      const feeds = loadFeeds();
-      renderControls(feeds);
-      renderFeedChips(feeds);
-      showLoader();
-
-      const enabled = feeds.filter(f=>f.enabled);
-      if(!enabled.length){
-        itemsEl.innerHTML = '';
-        statusEl.textContent = 'Aucun flux sélectionné.';
-        hideLoader();
-        return;
-      }
-
-      statusEl.textContent = 'Chargement des articles…';
-      try{
-        const results = await Promise.allSettled(enabled.map(f => fetchFeed(f.url)));
-        const allItems = results.flatMap(r => r.status === 'fulfilled' ? r.value : []);
-        renderItems(allItems);
-        statusEl.textContent = allItems.length ? '' : 'Aucun article trouvé sur les flux sélectionnés.';
-      }catch(err){
-        statusEl.textContent = 'Erreur de chargement : ' + (err.message || err);
-      }finally{
-        hideLoader();
-      }
-    }
-
-    // First load
-    refresh();
-  })();
-  </script>
 </body>
 </html>

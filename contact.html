@@ -8,15 +8,14 @@
 </head>
 <body>
   <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-  <!-- NAV -->
-  <nav class="container nav">
+  <nav class="container nav" aria-label="Navigation principale">
     <div class="nav-tabs">
       <a href="index.html" data-page="index.html">Accueil</a>
       <a href="experiences.html" data-page="experiences.html">Expériences</a>
       <a href="competences.html" data-page="competences.html">Compétences</a>
       <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
-      <!-- NOTE: data-page et href = contact.hmtl pour marquer l’onglet actif -->
       <a href="contact.html" data-page="contact.html">Contact</a>
       <span class="nav-indicator" aria-hidden="true"></span>
     </div>
@@ -31,48 +30,44 @@
         <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
       </label>
-      <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
-        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
-      </label>
     </fieldset>
   </nav>
 
-  <main class="container">
+  <main class="container" id="main-content" tabindex="-1">
     <header class="card hero">
       <h1>Contact</h1>
-      <p class="lead">Vous pouvez me joindre via le formulaire ci-dessous ou directement par e-mail.</p>
+      <p class="lead">Pour une proposition de stage, une mission support IT ou un échange professionnel, utilisez le formulaire ci-dessous.</p>
     </header>
 
     <section class="card">
-      <h2>📬 M’écrire</h2>
-      <form id="contactForm" class="grid" style="grid-template-columns:1fr 1fr; gap:14px;">
-        <label>
+      <h2>M'écrire</h2>
+      <form id="contactForm" class="grid form-grid">
+        <label class="form-field">
           <span>Nom</span>
-          <input type="text" id="name" required placeholder="Chrys MISSON" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);">
+          <input type="text" id="name" name="name" autocomplete="name" required placeholder="Ex. Chrys MISSON…">
         </label>
-        <label>
+        <label class="form-field">
           <span>Email</span>
-          <input type="email" id="email" required placeholder="chrys.misson@gmail.com" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);">
+          <input type="email" id="email" name="email" autocomplete="email" spellcheck="false" required placeholder="ex. nom@domaine.fr…">
         </label>
-        <label style="grid-column:1/-1">
+        <label class="form-field form-field--full">
           <span>Message</span>
-          <textarea id="message" rows="6" required placeholder="Bonjour, …" style="width:100%;padding:12px;border-radius:12px;border:1px solid color-mix(in srgb, var(--c-light) 12%, transparent);background:color-mix(in srgb, var(--c-glass) 10%, transparent);"></textarea>
+          <textarea id="message" name="message" autocomplete="off" rows="6" required placeholder="Bonjour, je vous contacte concernant…"></textarea>
         </label>
-        <div class="cta-row" style="grid-column:1/-1;justify-content:flex-start">
-          <button type="submit" class="btn primary">Envoyer</button>
+        <div class="cta-row form-field--full">
+          <button type="submit" class="btn primary">Envoyer un email</button>
           <a class="btn" id="mailtoFallback" href="#">Ouvrir dans le client mail</a>
         </div>
-        <p class="muted" style="grid-column:1/-1;margin:0">Aucune donnée n’est stockée sur le site : l’envoi se fait via votre client e-mail (mailto:).</p>
+        <p class="muted form-field--full">Aucune donnée n'est stockée sur le site. L'envoi se fait via votre client email (mailto).</p>
       </form>
     </section>
 
     <section class="card">
-      <h2>🔗 Liens rapides</h2>
+      <h2>Liens utiles</h2>
       <div class="chips">
-        <a class="tag ext" href="mailto:chrys.misson@gmail.com">✉️ Email</a>
-        <a class="tag ext" href="#" target="_blank" rel="noopener">💼 LinkedIn</a>
-        <a class="tag ext" href="#" target="_blank" rel="noopener">🐙 GitHub</a>
+        <a class="tag ext" href="mailto:chrys.misson@gmail.com">Email direct</a>
+        <a class="tag ext" href="experiences.html">Expériences</a>
+        <a class="tag ext" href="competences.html">Compétences</a>
       </div>
     </section>
   </main>
@@ -81,10 +76,9 @@
 
   <script src="script.js"></script>
   <script>
-    // Submit → construit un mailto propre
     const form = document.getElementById('contactForm');
     const fallback = document.getElementById('mailtoFallback');
-    const MAIL_TO = 'contact@example.com'; // ➜ remplace par ton adresse
+    const MAIL_TO = 'chrys.misson@gmail.com';
 
     function buildMailto(){
       const nom = document.getElementById('name').value.trim();

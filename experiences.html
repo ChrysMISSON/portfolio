@@ -6,11 +6,11 @@
   <title>Chrys MISSON — Expériences</title>
   <link rel="stylesheet" href="site.css">
 </head>
-<body>
-  <div class="page-bg"></div>
+<body class="exp-page">
+  <div class="page-bg"></div> 
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-  <!-- NAV -->
-  <nav class="container nav">
+  <nav class="container nav" aria-label="Navigation principale">
     <div class="nav-tabs">
       <a href="index.html" data-page="index.html">Accueil</a>
       <a href="experiences.html" data-page="experiences.html">Expériences</a>
@@ -30,146 +30,170 @@
         <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
       </label>
-      <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
-        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
-      </label>
     </fieldset>
   </nav>
 
-  <main class="container">
-    <section class="card">
-      <h1>💼 Expériences</h1>
-      <p class="lead">Mes expériences en entreprise et quelques réalisations personnelles (placeholders à compléter).</p>
-    </section>
-
-    <!-- STAGES -->
-    <section class="card">
-      <h2>🏢 Stages</h2>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div class="exp-head">
-            <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/cyrus_groupe_logo.jpeg" alt="Cyrus Herez"></a>
-            <div>
-              <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><strong>Cyrus Herez Groupe – Paris</strong><span class="ext-ico">↗</span></a><br>
-              <span>Stage de 1ʳᵉ année BTS SIO – Réseaux &amp; Systèmes</span>
-            </div>
-          </div>
-          <span class="badge">mai – juin 2025</span>
-        </header>
-        <ul class="clean">
-          <li>Automatisation d’un rapport hebdomadaire des logs serveurs (connexions/déconnexions/tentatives) : extraction, ZIP, envoi mail automatique.</li>
-          <li>Étude comparative pour remplacer GLPI (analyse : Lansweeper, ManageEngine, Spiceworks, etc.).</li>
-          <li>Outils utilisés : Jira (tickets), TeamViewer (gestion 20+ sites), Microsoft 365 &amp; Azure AD, Microsoft Teams.</li>
-          <li>Environnement financier non-technique, périmètre national — rigueur et adaptabilité.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div class="exp-head">
-            <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/e.SNCF-Solutions.png" alt="SNCF - e.SNCF Solutions"></a>
-            <div>
-              <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><strong>SNCF – e.SNCF Solutions, Paris Gare de Lyon</strong><span class="ext-ico">↗</span></a><br>
-              <span>Stage de Terminale – Réseaux &amp; Systèmes</span>
-            </div>
-          </div>
-          <span class="badge">Nov. 2023 – Janv. 2024</span>
-        </header>
-        <ul class="clean">
-          <li>Déploiement et configuration de postes via MDT &amp; intégration dans l’Active Directory.</li>
-          <li>Préparation de postes prêts à l’emploi (paramétrages, GPO, Centre Logiciel, OneDrive).</li>
-          <li>Installation hors-ligne de pilotes validés par le service cybersécurité ; maintenance HW/SW (PC Dell, imprimantes/traceurs réseau).</li>
-          <li>Gestion des tickets &amp; du parc via ServiceNow.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div class="exp-head">
-            <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/prefecture_de_seine_et_marne.jpg" alt="Préfecture de Seine-et-Marne"></a>
-            <div>
-              <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><strong>Préfecture de Seine-et-Marne, Melun</strong><span class="ext-ico">↗</span></a><br>
-              <span>Stage de Première – Réseaux &amp; Systèmes</span>
-            </div>
-          </div>
-          <span class="badge">Janv. – Mars 2023</span>
-        </header>
-        <ul class="clean">
-          <li>Déploiement de 100+ postes avec MDT &amp; configuration Active Directory.</li>
-          <li>Mise en place de VPN TheGreenBow, installation manuelle de certificats machine.</li>
-          <li>Création/suppression de comptes AD, gestion des groupes &amp; imprimantes ; stations d’accueil Dell.</li>
-          <li>Sécurisation : chiffrement disque par carte à puce (Cryhod) &amp; antivirus Trellix/McAfee.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div class="exp-head">
-            <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/assurance_maladie_logo.jpeg" alt="Caisse Primaire d'Assurance Maladie"></a>
-            <div>
-              <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><strong>Caisse Primaire d'Assurance Maladie, Rubelles</strong><span class="ext-ico">↗</span></a><br>
-              <span>Stage de Seconde – Réseaux &amp; Systèmes</span>
-            </div>
-          </div>
-          <span class="badge">Mai – Juin 2022</span>
-        </header>
-        <ul class="clean">
-          <li>Préparation &amp; déploiement de postes.</li>
-          <li>Installation et configuration de logiciels.</li>
-          <li>Découverte des processus de support en administration publique.</li>
-        </ul>
-      </article>
-    </section>
-
-    <!-- PROJETS SCOLAIRES -->
-    <section class="card school-projects">
-      <h2>🏫 Projets scolaires</h2>
-      <p class="lead">Travaux réalisés en cours / TP (documentation, scripts, supports, captures). Le dossier ci‑dessous est synchronisé depuis un dossier Google Drive partagé.</p>
-      <div class="drive-embed">
-        <!-- Remplace FOLDER_ID ci‑dessous par l’ID du dossier partagé (Fonctionne avec "Lecteur – Accès pour toute personne avec le lien") -->
-        <iframe src="https://drive.google.com/embeddedfolderview?id=1odEBcoY9fD2pdJaJ2104674oFC1MOny1#grid"></iframe>
+  <main class="container exp-main" id="main-content" tabindex="-1">
+    <section class="exp-hero">
+      <p class="exp-kicker">Expérience terrain</p>
+      <h1>Mon expérience</h1>
+      <p class="lead">Stages réalisés dans des environnements exigeants: déploiement de postes, support utilisateurs, administration Active Directory et sécurité opérationnelle.</p>
+      <div class="chips exp-impact">
+        <span class="tag"><strong>500+</strong> postes déployés</span>
+        <span class="tag"><strong>4k+</strong> postes suivis</span>
+        <span class="tag"><strong>20</strong> sites à distance</span>
+        <span class="tag"><strong>6</strong> expériences entreprise</span>
       </div>
-      <div class="toolbar">
-        <div class="hint">
+    </section>
+
+    <section class="card exp-stage-wrap">
+      <h2>Parcours en entreprise et activité professionnelle</h2>
+      <div class="exp-timeline">
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <img class="logo" src="img/logo e²mh.png" alt="Logo E2MH"></img>
+              <div>
+                <strong>E2MH (Economie Métré Monuments Historiques)</strong><br>
+                <span>Activité professionnelle en parallèle</span>
+              </div>
+            </div>
+            <span class="badge">2019 - En cours</span>
+          </header>
+          <ul class="clean">
+            <li>Administration de l’infrastructure informatique sous environnement Windows : gestion de l’Active Directory, comptes utilisateurs et stratégies de groupe (GPO).</li>
+            <li>Mise en place et maintenance d’accès distants sécurisés (VPN) afin de permettre le télétravail et l’accès aux ressources internes.</li>
+            <li>Mise en œuvre de mesures de cybersécurité et de sauvegarde des données afin de limiter les risques de perte et d’assurer la continuité de service.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="e2mh-infrastructure.html">Compte rendu de l'infrastructure ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <img class="logo" src="img/signoret.png" alt="Lycée Signoret">
+              <div>
+                <strong>Lycée Polyvalent Simone Signoret, Vaux-le-Pénil</strong><br>
+                <span>Stage BTS SIO 2ème année - Administration systèmes et support</span>
+              </div>
+            </div>
+            <span class="badge">Janvier - Février 2026</span>
+          </header>
+          <ul class="clean">
+            <li>Déploiement de postes via PXE et contrôles post-installation dans un contexte de gestion de parc important.</li>
+            <li>Installation de logiciels via scripts réseau, notamment Microsoft Office, avec vérification de la standardisation des postes.</li>
+            <li>Gestion des comptes utilisateurs et des accès avec Koxo Admin, affectation aux groupes et génération des fiches d'identification.</li>
+            <li>Résolution d'incidents Active Directory, notamment les erreurs de relation d'approbation entre postes et domaine.</li>
+            <li>Mise en conformité de salles informatiques pour les épreuves PIX avec installation, tests et validation des postes en délai contraint.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="rapports/Simone Signoret Rapport de stage.pdf" target="_blank" rel="noopener">Rapport de stage ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/cyrus_groupe_logo.jpeg" alt="Cyrus Herez"></a>
+              <div>
+                <a class="ext" href="https://www.cyrus-herez.fr/" target="_blank" rel="noopener noreferrer"><strong>Cyrus Herez Groupe - Paris</strong><span class="ext-ico">↗</span></a><br>
+                <span>Stage BTS SIO 1re année - Réseaux et systèmes</span>
+              </div>
+            </div>
+            <span class="badge">Mai - Juin 2025</span>
+          </header>
+          <ul class="clean">
+            <li>Gestion de tickets via Jira avec interventions de support de proximité sur périphériques, logiciels, copieurs et équipements de visioconférence.</li>
+            <li>Analyse de la criticité des incidents et traçabilité des interventions dans un environnement exigeant en matière de fiabilité.</li>
+            <li>Mise en place d'un script PowerShell de récupération et de filtrage des logs de connexion sur plusieurs serveurs.</li>
+            <li>Prise en compte des contraintes de sécurité: pas de compte générique, pas de mot de passe stocké en clair, authentification Windows manuelle sécurisée.</li>
+            <li>Tests de collecte, génération de fichiers de sortie et proposition d'une exécution hebdomadaire contrôlée comme compromis réaliste.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="rapports/Cyrus Herez Rapport de stage.pdf" target="_blank" rel="noopener">Rapport de stage ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/e.SNCF-Solutions.png" alt="SNCF - e.SNCF Solutions"></a>
+              <div>
+                <a class="ext" href="https://fr.linkedin.com/company/esncf-solutions" target="_blank" rel="noopener noreferrer"><strong>SNCF - e.SNCF Solutions, Paris Gare de Lyon</strong><span class="ext-ico">↗</span></a><br>
+                <span>Stage terminale - Réseaux et systèmes</span>
+              </div>
+            </div>
+            <span class="badge">Nov. 2023 - Janv. 2024</span>
+          </header>
+          <ul class="clean">
+            <li>Déploiement de postes via MDT et intégration Active Directory.</li>
+            <li>Préparation de postes prêts à l'emploi avec politiques, logiciels et synchronisation OneDrive.</li>
+            <li>Maintenance matériel et logiciel en contexte de cybersécurité renforcé.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="rapports/Rapport de stage - 2024 eSNCF Solutions.pdf" target="_blank" rel="noopener">Rapport de stage ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/prefecture_de_seine_et_marne.jpg" alt="Préfecture de Seine-et-Marne"></a>
+              <div>
+                <a class="ext" href="https://www.seine-et-marne.gouv.fr/" target="_blank" rel="noopener noreferrer"><strong>Préfecture de Seine-et-Marne, Melun</strong><span class="ext-ico">↗</span></a><br>
+                <span>Stage première - Réseaux et systèmes</span>
+              </div>
+            </div>
+            <span class="badge">Janv. - Mars 2023</span>
+          </header>
+          <ul class="clean">
+            <li>Déploiement de plus de 200 postes et configuration Active Directory.</li>
+            <li>Mise en place de VPN TheGreenBow et installation de certificats machine.</li>
+            <li>Gestion comptes/groupes AD, imprimantes réseau et sécurisation des postes chiffrés.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="rapports/Rapport de stage - Préfecture de Seine-et-Marne, Melun.pdf" target="_blank" rel="noopener">Rapport de stage ↗</a>
+          </div>
+        </article>
+
+        <article class="exp-item">
+          <header class="split-header">
+            <div class="exp-head">
+              <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><img class="logo" src="img/assurance_maladie_logo.jpeg" alt="Caisse Primaire d'Assurance Maladie"></a>
+              <div>
+                <a class="ext" href="https://lannuaire.service-public.fr/ile-de-france/seine-et-marne/36e4cdd3-3eb3-4bca-9258-9ae7d2fa0018" target="_blank" rel="noopener noreferrer"><strong>CPAM, Rubelles</strong><span class="ext-ico">↗</span></a><br>
+                <span>Stage seconde - Support informatique</span>
+              </div>
+            </div>
+            <span class="badge">Mai - Juin 2022</span>
+          </header>
+          <ul class="clean">
+            <li>Préparation et déploiement de postes utilisateurs.</li>
+            <li>Installation et configuration logicielle dans un contexte administratif.</li>
+            <li>Découverte des standards de support IT en environnement public.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://drive.google.com/drive/folders/1odEBcoY9fD2pdJaJ2104674oFC1MOny1" target="_blank" rel="noopener">Rapport de stage ↗</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="card school-projects exp-school">
+      <header class="split-header">
+        <div>
+          <h2>Projets scolaires</h2>
+          <p class="lead">Travaux réalisés en cours et TP (documentation, scripts, captures, supports) centralisés dans un dossier Google Drive.</p>
         </div>
-        <a class="btn ghost" href="https://drive.google.com/drive/folders/1odEBcoY9fD2pdJaJ2104674oFC1MOny1" target="_blank" rel="noopener">Ouvrir dans Google Drive ↗</a>
+        <a class="btn ghost" href="https://drive.google.com/drive/folders/1odEBcoY9fD2pdJaJ2104674oFC1MOny1" target="_blank" rel="noopener">Ouvrir dans Google Drive ↗</a>
+      </header>
+      <div class="drive-embed">
+        <iframe title="Dossier Google Drive des projets scolaires" src="https://drive.google.com/embeddedfolderview?id=1odEBcoY9fD2pdJaJ2104674oFC1MOny1#grid"></iframe>
       </div>
     </section>
 
-    <!-- PERSO (placeholders) -->
-    <section class="card">
-      <h2>🧩 Projets personnels (à compléter)</h2>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div><strong>[Titre du projet]</strong><br>
-            <span>[Stack / Outils]</span>
-          </div>
-          <span class="badge">[Année]</span>
-        </header>
-        <ul class="clean">
-          <li>[Objectif du projet / problème traité]</li>
-          <li>[Principales fonctionnalités]</li>
-          <li>[Ce que j’ai appris / résultats]</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <header style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;">
-          <div><strong>[Titre du projet]</strong><br>
-            <span>[Stack / Outils]</span>
-          </div>
-          <span class="badge">[Année]</span>
-        </header>
-        <ul class="clean">
-          <li>[Objectif du projet / problème traité]</li>
-          <li>[Principales fonctionnalités]</li>
-          <li>[Ce que j’ai appris / résultats]</li>
-        </ul>
-      </article>
-    </section>
   </main>
 
   <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>

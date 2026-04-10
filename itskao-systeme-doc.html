@@ -1,0 +1,2168 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrys MISSON — Documentation It’sKao</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .doc-shell {
+      display: grid;
+      gap: 22px;
+    }
+
+    .doc-shell > .card {
+      margin-top: 0;
+    }
+
+    .doc-frame {
+      padding: 28px;
+      border-radius: 24px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 94%, transparent);
+      box-shadow: 0 16px 36px -28px color-mix(in srgb, var(--c-dark) 45%, transparent);
+      overflow: hidden;
+    }
+
+    .doc-content > :first-child {
+      margin-top: 0;
+    }
+
+    .doc-content h1,
+    .doc-content h2,
+    .doc-content h3 {
+      color: var(--text-1);
+    }
+
+    .doc-content h1 {
+      font-size: clamp(1.95rem, 4vw, 2.8rem);
+    }
+
+    .doc-content h2 {
+      margin-top: 2rem;
+      padding-top: 0.6rem;
+      border-top: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
+    }
+
+    .doc-content p,
+    .doc-content li {
+      color: var(--text-2);
+      line-height: 1.72;
+    }
+
+    .doc-content ul,
+    .doc-content ol {
+      padding-left: 1.2rem;
+    }
+
+    .doc-content table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1rem 0;
+      font-size: 0.95rem;
+      overflow: hidden;
+      border-radius: 16px;
+    }
+
+    .doc-content th,
+    .doc-content td {
+      padding: 10px 12px;
+      border: 1px solid color-mix(in srgb, var(--border) 92%, transparent);
+      text-align: left;
+      vertical-align: top;
+    }
+
+    .doc-content th {
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      color: var(--text-1);
+    }
+
+    .doc-content pre {
+      margin: 1rem 0;
+      padding: 16px;
+      border-radius: 18px;
+      background: #0f2235;
+      color: #ecf4fb;
+      overflow-x: auto;
+    }
+
+    .doc-content code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.94em;
+    }
+
+    .doc-content :not(pre) > code {
+      padding: 0.12rem 0.38rem;
+      border-radius: 8px;
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      color: var(--text-1);
+    }
+
+    .doc-content blockquote {
+      margin: 1rem 0;
+      padding: 0.9rem 1rem;
+      border-left: 4px solid color-mix(in srgb, var(--brand) 60%, transparent);
+      background: color-mix(in srgb, var(--surface) 72%, transparent);
+      color: var(--text-2);
+    }
+
+    .doc-content hr {
+      border: 0;
+      height: 1px;
+      background: color-mix(in srgb, var(--border) 92%, transparent);
+      margin: 1.4rem 0;
+    }
+
+    .doc-content a {
+      color: var(--brand);
+      text-underline-offset: 0.16em;
+    }
+
+    .mermaid-shell {
+      margin: 1.4rem 0;
+      padding: 18px;
+      border-radius: 20px;
+      border: 1px solid color-mix(in srgb, var(--border) 88%, transparent);
+      background: color-mix(in srgb, var(--surface) 82%, transparent);
+      overflow-x: auto;
+    }
+
+    .mermaid {
+      display: block;
+      min-width: 1600px;
+      width: 100%;
+    }
+
+    .mermaid svg {
+      display: block;
+      width: max(100%, 1600px) !important;
+      min-width: 1600px !important;
+      height: auto;
+      max-width: none !important;
+      background: transparent !important;
+    }
+
+    .mermaid-shell--flowchart .mermaid,
+    .mermaid-shell--flowchart .mermaid svg {
+      min-width: 1900px !important;
+    }
+
+    .mermaid-shell--sequence .mermaid,
+    .mermaid-shell--sequence .mermaid svg {
+      min-width: 1700px !important;
+    }
+
+    @media (max-width: 720px) {
+      .doc-frame {
+        padding: 20px;
+      }
+
+      .mermaid,
+      .mermaid svg,
+      .mermaid-shell--flowchart .mermaid,
+      .mermaid-shell--flowchart .mermaid svg,
+      .mermaid-shell--sequence .mermaid,
+      .mermaid-shell--sequence .mermaid svg {
+        min-width: 1100px !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+
+  <nav class="container nav" aria-label="Navigation principale">
+    <div class="nav-tabs">
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="experiences.html" data-page="experiences.html">Expériences</a>
+      <a href="competences.html" data-page="competences.html">Compétences</a>
+      <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
+      <a href="contact.html" data-page="contact.html">Contact</a>
+      <a href="itskao-systeme.html" data-page="itskao-systeme.html" data-aliases="itskao-systeme-doc.html">It’sKao</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </div>
+    <div class="nav-spacer"></div>
+    <fieldset class="switcher">
+      <legend class="switcher__legend">Choisir thème</legend>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
+      </label>
+    </fieldset>
+  </nav>
+
+  <main class="container doc-shell" id="main-content" tabindex="-1">
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h1>Documentation It’sKao</h1>
+          <p class="lead">Documentation technique complète de l’infrastructure It’sKao.</p>
+        </div>
+        <div class="cta-row">
+          <a class="btn ghost" href="itskao-systeme.html">Retour à la synthèse</a>
+          <a class="btn" href="docs/itskao-systeme.md" target="_blank" rel="noopener">Document d’origine ↗</a>
+        </div>
+      </header>
+    </section>
+
+    <section class="card doc-frame">
+      <div class="doc-content">
+<h1>ItsKao / SERVEUR - Reference systeme complete</h1>
+<p>Ce document decrit l'etat reel de l'infrastructure ItsKao telle qu'elle est organisee sous <code>C:\SERVEUR</code>. Il est centre sur les flux entre composants, les fichiers partages, le chargement des scripts Lua, l'exploitation quotidienne et les points de panne.</p>
+<p>Le document utilise <code>C:\SERVEUR</code> comme chemin canonique et comme cible normale d'exploitation. Quand un script ou une note parle de <code>Z:\</code>, il faut le lire comme une vue reseau de ce meme dossier, utile surtout pour du dev ou de l'acces distant.</p>
+<h2>1. Mise a jour 2026-04-10</h2>
+<p>L'etat reel de la stack a change sur les points suivants :</p>
+<ul>
+<li>la source de verite metier est maintenant <code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> ;</li>
+<li><code>player_uuid</code> est l'identite interne commune au gametime, aux sanctions, aux bans, aux sessions et aux reports ;</li>
+<li><code>SharedScripts\security\init.lua</code> resolve l'identite joueur et alimente la DB centrale ;</li>
+<li><code>SharedScripts\gametime\init.lua</code> ecrit les sessions de jeu directement dans <code>itskao_core.db</code> ;</li>
+<li><code>SharedScripts\report\init.lua</code> cree les reports et les replies joueur directement en DB ;</li>
+<li><code>T11.py</code> lit les reports / sanctions / bans depuis la DB centrale et cree un thread Discord automatique par report ;</li>
+<li>le backend admin expose maintenant la meme source de verite pour <code>/api/reports</code> et les nouvelles routes <code>/api/players</code>, <code>/api/players/{player_uuid}</code>, <code>/api/players/merge</code> et <code>/api/players/{player_uuid}/split</code> ;</li>
+<li><code>aggregate_servers.py</code> est maintenant l'unique writer nominal de <code>C:\SERVEUR\Sites\It'sKao\js\all_servers_info.json</code> ; <code>T11.py</code> le lit en lecture seule ;</li>
+<li><code>SharedScripts\report\init.lua</code> initialise explicitement son propre contexte serveur depuis <code>ServerConfig.toml</code>, ce qui fiabilise <code>server_key</code> et <code>server_name</code> dans les reports ;</li>
+<li>les bridges Lua -&gt; Python critiques (<code>player_identity.lua</code>, <code>ip_privacy.lua</code>, <code>gametime\init.lua</code>) forcent maintenant <code>py -3 -X utf8</code> pour preserver les accents ;</li>
+<li><code>SharedScripts\report\init.lua</code> dispose d'un fallback optionnel <code>ITSKAO_GAME_CHAT_ASCII_FALLBACK</code> pour translitterer uniquement les messages envoyes au jeu si BeamMP casse encore certains caracteres ;</li>
+<li><code>runtime_identifier_events</code> est desactive en nominal et ne s'alimente que si <code>ITSKAO_RUNTIME_CAPTURE</code> est active ;</li>
+<li><code>itskao_core_db.py</code> expose une commande <code>repair-report-server-context</code> pour reparer les anciens reports crees avec <code>serverunknown</code> ;</li>
+<li><code>Demarrer-Tout.ps1</code> et <code>Arreter-Tout.ps1</code> orchestrent maintenant le demarrage et l'arret complets de la stack ;</li>
+<li><code>C:\SERVEUR\Report</code>, <code>banned_players.json</code>, <code>sanctions\*.json</code> et <code>gametime.db</code> ne sont plus la source de verite nominale, seulement des artefacts legacy / migration / archive.</li>
+</ul>
+<h2>2. Resume executif</h2>
+<p>L'infrastructure s'appuie maintenant sur cinq briques principales :</p>
+<ol>
+<li>Les instances BeamMP sous <code>C:\SERVEUR\BEAM MP\NN ...</code>.</li>
+<li>Les scripts mutualises sous <code>C:\SERVEUR\SharedScripts</code>.</li>
+<li>La DB metier centrale <code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code>.</li>
+<li>Les services applicatifs :
+   - bot Discord <code>T11.py</code>
+   - agregateurs Python
+   - backend FastAPI admin</li>
+<li>L'exposition web via <code>nginx</code>.</li>
+</ol>
+<p>Le systeme n'est plus purement fichier-centrique :</p>
+<ul>
+<li>le live serveur reste couple a des fichiers partages (<code>player_info.json</code>, <code>all_servers_info.json</code>, <code>remote_commands_*.json</code>, <code>stats.json</code>) ;</li>
+<li>mais l'identite joueur, les sessions, le gametime, les sanctions, les bans et les reports ont maintenant une source de verite centrale en SQLite.</li>
+</ul>
+<p>Le coeur du modele metier est <code>player_uuid</code> :</p>
+<ul>
+<li><code>security/init.lua</code> resout ou cree cette identite a partir du runtime BeamMP ;</li>
+<li><code>gametime/init.lua</code> ecrit les sessions et les agregats sur cette identite ;</li>
+<li><code>report/init.lua</code> ouvre les reports sur cette identite ;</li>
+<li><code>T11.py</code> et l'admin manipulent ensuite le meme <code>player_uuid</code> au lieu de raisonner uniquement par pseudo.</li>
+</ul>
+<h2>2. Convention de chemins : <code>C:\SERVEUR</code> vs <code>Z:\</code></h2>
+<h3>2.1 Regle a retenir</h3>
+<ul>
+<li><code>C:\SERVEUR</code> est la realite locale sur le Windows Server.</li>
+<li><code>C:\SERVEUR</code> est aussi le seul chemin nominal a retenir pour les scripts et services locaux.</li>
+<li><code>Z:\</code> est un lecteur reseau monte depuis une autre machine et pointant vers ce meme contenu.</li>
+<li><code>Z:\</code> ne doit pas etre traite comme une cible d'exploitation normale, seulement comme un alias de dev / acces distant.</li>
+</ul>
+<h3>2.2 Consequences pratiques</h3>
+<ul>
+<li>La doc, les runbooks et les chemins d'exploitation doivent etre lus en <code>C:\SERVEUR</code>.</li>
+<li>Si un script historique utilise <code>Z:\...</code>, il faut le comprendre comme une vue distante de <code>C:\SERVEUR\...</code>.</li>
+<li><code>start-support.ps1</code> a ete realigne sur <code>C:\SERVEUR\...</code> ; les anciennes references <code>Z:\...</code> ne doivent plus etre considerees comme nominales.</li>
+<li>Les scripts Python et Lua actifs en local utilisent majoritairement <code>C:\SERVEUR\...</code>.</li>
+<li><code>Z:</code> n'est donc pertinent que pour un contexte de dev a distance ou de partage reseau.</li>
+</ul>
+<h2>3. Architecture globale</h2>
+<div class="mermaid-shell"><div class="mermaid">flowchart TD
+    Internet[Internet / Joueurs / Staff] --&gt; Nginx[C:\nginx]
+    Nginx --&gt; Public[Site public&lt;br/&gt;C:\SERVEUR\Sites\It'sKao]
+    Nginx --&gt; AdminFront[Frontend admin&lt;br/&gt;C:\SERVEUR\Sites\Admin\frontend]
+    Nginx --&gt; AdminAPI[FastAPI admin&lt;br/&gt;127.0.0.1:5000]
+    Nginx --&gt; VPN[stream 4433 -&gt; 192.168.1.83:443]
+
+    subgraph BeamMP[Instances BeamMP]
+        S1[Serveur 01]
+        S2[Serveur 02]
+        SN[...]
+    end
+
+    subgraph SharedState[Etat partage sur disque]
+        ScriptState[C:\SERVEUR\BEAM MP\Script]
+        CoreDB[C:\SERVEUR\BEAM MP\Script\itskao_core.db]
+        SiteData[C:\SERVEUR\Sites\It'sKao\js]
+        MetricsDB[C:\SERVEUR\AdminMetrics\metrics.db]
+    end
+
+    SharedLua[C:\SERVEUR\SharedScripts] --&gt; S1
+    SharedLua --&gt; S2
+    SharedLua --&gt; SN
+
+    S1 --&gt; ScriptState
+    S2 --&gt; ScriptState
+    SN --&gt; ScriptState
+    S1 --&gt; CoreDB
+    S2 --&gt; CoreDB
+    SN --&gt; CoreDB
+
+    T11[T11.py] --&gt; ScriptState
+    T11 --&gt; CoreDB
+    T11 --&gt; SiteData
+
+    SecurityLua[SharedScripts\security\init.lua] --&gt; CoreDB
+    GameLua[SharedScripts\gametime\init.lua] --&gt; CoreDB
+    ReportLua[SharedScripts\report\init.lua] --&gt; CoreDB
+    Agg2[scriptstats.py] --&gt; SiteData
+    Agg1[aggregate_servers.py] --&gt; SiteData
+    Collector[metrics_collector.py] --&gt; MetricsDB
+
+    SiteData --&gt; Public
+    SiteData --&gt; AdminAPI
+    CoreDB --&gt; AdminAPI
+    MetricsDB --&gt; AdminAPI
+    Discord[Discord] &lt;--&gt; T11</div></div>
+<p>L'idee cle est maintenant double :</p>
+<ul>
+<li>le live BeamMP reste pilote par fichiers pour l'etat serveur et les commandes distantes ;</li>
+<li>le metier joueur, moderation et reports est centralise dans <code>itskao_core.db</code>.</li>
+</ul>
+<h2>4. Arborescence fonctionnelle</h2>
+<table>
+<thead>
+<tr>
+<th>Emplacement</th>
+<th>Role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>C:\SERVEUR\BEAM MP</code></td>
+<td>Instances BeamMP, une par dossier, plus <code>Script</code> pour les donnees mutualisees</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\BEAM MP\Script</code></td>
+<td>Etat partage runtime, DB metier centrale, logs, remote commands, config Lua</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\SharedScripts</code></td>
+<td>Vraie logique Lua mutualisee + scripts Python de support</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\Report</code></td>
+<td>Archive historique des anciens reports fichiers, plus source nominale</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\Sites\It'sKao</code></td>
+<td>Site public et donnees live</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\Sites\Admin</code></td>
+<td>Front admin, backend FastAPI, collecteur et logs <code>run</code></td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\AdminMetrics</code></td>
+<td>Base SQLite des snapshots admin</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\Certificats</code></td>
+<td>Certificats utilises par <code>nginx</code></td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\archives</code></td>
+<td>Archives et scripts legacy retires des zones actives</td>
+</tr>
+<tr>
+<td><code>C:\SERVEUR\base</code></td>
+<td>Modeles de duplication de serveurs</td>
+</tr>
+<tr>
+<td><code>C:\nginx</code></td>
+<td>Reverse proxy / serveur statique / stream VPN</td>
+</tr>
+</tbody>
+</table>
+<p>Elements historiques presents mais non centraux :</p>
+<ul>
+<li><code>Sites\OLD</code></li>
+<li><code>Sites\Admin.old</code></li>
+<li><code>SharedScripts\report\init - old.lua</code></li>
+</ul>
+<h2>5. Mode d'execution BeamMP et chargement des scripts Lua</h2>
+<h3>5.1 Anatomie d'une instance BeamMP</h3>
+<pre><code class="language-text">C:\SERVEUR\BEAM MP\01 SERVEUR WEST COAST
+|-- BeamMP-Server.exe
+|-- ServerConfig.toml
+|-- Server.log
+|-- Server.old.log
+|-- player_info.json
+`-- Resources\Server\
+    |-- gametime\init.lua
+    |-- security\init.lua
+    |-- report\init.lua
+    |-- vehicles\init.lua
+    |-- mp\init.lua
+    |-- pub\init.lua
+    |-- race\init.lua
+    `-- player_info\init.lua
+</code></pre>
+<h3>5.2 Wrappers locaux, logique centralisee</h3>
+<p>Les fichiers <code>Resources\Server\...\init.lua</code> sont des wrappers tres courts. Exemple observe :</p>
+<pre><code class="language-lua">package.path = package.path .. ';C:/SERVEUR/SharedScripts/?.lua;C:/SERVEUR/SharedScripts/?/init.lua'
+return require('security.init')
+</code></pre>
+<p>Cela signifie :</p>
+<ul>
+<li>chaque instance charge la meme logique Lua centralisee ;</li>
+<li>la maintenance se fait dans <code>C:\SERVEUR\SharedScripts</code>, pas dans 50 copies de code ;</li>
+<li>une modification de <code>SharedScripts\security\init.lua</code> affecte toutes les instances qui utilisent ce wrapper.</li>
+</ul>
+<h3>5.3 Ce qui est local a chaque instance</h3>
+<ul>
+<li><code>ServerConfig.toml</code></li>
+<li><code>BeamMP-Server.exe</code></li>
+<li><code>Server.log</code> / <code>Server.old.log</code></li>
+<li><code>player_info.json</code></li>
+</ul>
+<h3>5.4 Ce qui est partage entre toutes les instances</h3>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\remote_commands*.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\logs\</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\config\ip_privacy_secret.txt</code></li>
+</ul>
+<p>Artefacts historiques encore presents mais non nominaux :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\banned_players.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\sanctions\</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\gametime.db</code></li>
+<li><code>C:\SERVEUR\Report\</code></li>
+</ul>
+<h2>6. Producteurs, consommateurs et cadences</h2>
+<h3>6.1 Fichiers et producteurs</h3>
+<table>
+<thead>
+<tr>
+<th>Fichier / dossier</th>
+<th>Producteur(s)</th>
+<th>Consommateur(s)</th>
+<th>Cadence nominale</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>player_info.json</code> par serveur</td>
+<td><code>SharedScripts\player_info\init.lua</code></td>
+<td><code>aggregate_servers.py</code>, <code>T11.py</code>, <code>security\init.lua</code>, site/admin via agregats</td>
+<td>10 s</td>
+</tr>
+<tr>
+<td><code>Sites\It'sKao\js\all_servers_info.json</code></td>
+<td><code>aggregate_servers.py</code> (nominal), ancien <code>archives\beammp-script\aggregate_player_info.py</code> (legacy)</td>
+<td>site public, admin backend, <code>T11.py</code>, collecteur metrics</td>
+<td>10 s</td>
+</tr>
+<tr>
+<td><code>Sites\It'sKao\js\stats.json</code></td>
+<td><code>scriptstats.py</code></td>
+<td>site public</td>
+<td>60 s par defaut</td>
+</tr>
+<tr>
+<td><code>BEAM MP\Script\itskao_core.db</code></td>
+<td><code>security\init.lua</code>, <code>gametime\init.lua</code>, <code>report\init.lua</code>, <code>T11.py</code>, backend admin, scripts de migration</td>
+<td><code>T11.py</code>, backend admin, <code>scriptstats.py</code>, commandes in-game et slash commands staff</td>
+<td>continu</td>
+</tr>
+<tr>
+<td><code>BEAM MP\Script\remote_commands_*.json</code></td>
+<td><code>T11.py</code>, backend admin <code>/api/servers/broadcast</code></td>
+<td><code>security\init.lua</code></td>
+<td>ecriture ponctuelle, lecture toutes les 5 s</td>
+</tr>
+<tr>
+<td><code>BEAM MP\Script\banned_players.json</code></td>
+<td>reliquat legacy / migration</td>
+<td>lecture de compatibilite ou archive</td>
+<td>non nominal</td>
+</tr>
+<tr>
+<td><code>BEAM MP\Script\sanctions\&lt;joueur&gt;.json</code></td>
+<td>reliquat legacy / migration</td>
+<td>lecture de compatibilite ou archive</td>
+<td>non nominal</td>
+</tr>
+<tr>
+<td><code>Report\reportN.txt</code></td>
+<td>archive historique</td>
+<td>consultation humaine ponctuelle</td>
+<td>non nominal</td>
+</tr>
+<tr>
+<td><code>Report\reportN.json</code></td>
+<td>archive historique / migration</td>
+<td>consultation humaine ponctuelle</td>
+<td>non nominal</td>
+</tr>
+<tr>
+<td><code>AdminMetrics\metrics.db</code></td>
+<td><code>metrics_collector.py</code></td>
+<td>backend admin</td>
+<td>60 s par defaut</td>
+</tr>
+<tr>
+<td><code>donnees-live\discord\record_players.json</code></td>
+<td><code>T11.py</code></td>
+<td><code>T11.py</code>, backend admin</td>
+<td>toutes les 20 s si record depasse</td>
+</tr>
+<tr>
+<td><code>donnees-live\discord\bot_max_servers.json</code></td>
+<td><code>T11.py</code>, editions manuelles</td>
+<td><code>T11.py</code>, backend admin</td>
+<td>ponctuel</td>
+</tr>
+</tbody>
+</table>
+<h3>6.2 Timers et boucles importantes</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Timer / loop</th>
+<th>Intervalle</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>player_info\init.lua</code></td>
+<td><code>updatePlayerInfo</code></td>
+<td>10 s</td>
+</tr>
+<tr>
+<td><code>gametime\init.lua</code></td>
+<td><code>autosaveGametime</code></td>
+<td>60 s</td>
+</tr>
+<tr>
+<td><code>security\init.lua</code></td>
+<td><code>processRemoteCommands</code></td>
+<td>5 s</td>
+</tr>
+<tr>
+<td><code>security\init.lua</code></td>
+<td><code>purgeRecent</code></td>
+<td>60 s</td>
+</tr>
+<tr>
+<td><code>security\init.lua</code></td>
+<td><code>enforceExternalBans</code></td>
+<td>60 s si active</td>
+</tr>
+<tr>
+<td><code>report\init.lua</code></td>
+<td><code>checkReportUpdates</code></td>
+<td>5 s</td>
+</tr>
+<tr>
+<td><code>pub\init.lua</code></td>
+<td><code>sendConseilsEtPubs</code></td>
+<td>5 min</td>
+</tr>
+<tr>
+<td><code>pub\init.lua</code></td>
+<td><code>checkWelcomeQueue</code></td>
+<td>10 s</td>
+</tr>
+<tr>
+<td><code>T11.py</code></td>
+<td><code>live_updates()</code></td>
+<td>20 s</td>
+</tr>
+<tr>
+<td><code>T11.py</code></td>
+<td><code>watch_servers_down()</code></td>
+<td>45 s</td>
+</tr>
+<tr>
+<td><code>T11.py</code></td>
+<td><code>scrub_beammp_logs()</code></td>
+<td>5 min</td>
+</tr>
+<tr>
+<td><code>T11.py</code></td>
+<td><code>monitor_reports()</code></td>
+<td>5 s</td>
+</tr>
+<tr>
+<td><code>aggregate_servers.py</code></td>
+<td>boucle principale</td>
+<td>10 s</td>
+</tr>
+<tr>
+<td><code>scriptstats.py</code></td>
+<td>boucle principale</td>
+<td>60 s par defaut</td>
+</tr>
+<tr>
+<td><code>metrics_collector.py</code></td>
+<td>boucle principale</td>
+<td>60 s par defaut</td>
+</tr>
+</tbody>
+</table>
+<h3>6.3 Seuils de fraicheur a connaitre</h3>
+<table>
+<thead>
+<tr>
+<th>Composant</th>
+<th>Seuil</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>aggregate_servers.py</code></td>
+<td><code>MAX_STALE_SECONDS = 30</code> pour <code>serverOnline = OUI/NON</code></td>
+</tr>
+<tr>
+<td><code>T11.py</code></td>
+<td><code>INFO_FRESH_SEC = 30</code>, <code>INFO_STALE_SEC = 120</code></td>
+</tr>
+<tr>
+<td><code>T11.py</code> fallback log</td>
+<td><code>HEALTH_FRESH_SEC = 330</code>, <code>HEALTH_STALE_SEC = 420</code></td>
+</tr>
+<tr>
+<td>backend admin <code>merge_servers()</code></td>
+<td>stale si <code>seconds_since_last_sample &gt; 180</code></td>
+</tr>
+<tr>
+<td><code>metrics_collector.py</code></td>
+<td>force offline si age payload &gt; <code>METRICS_STALE_SECONDS</code>, defaut <code>300</code></td>
+</tr>
+</tbody>
+</table>
+<h2>7. Flux de donnees exhaustifs</h2>
+<h3>7.1 Etat live des serveurs</h3>
+<div class="mermaid-shell"><div class="mermaid">sequenceDiagram
+    participant Beam as BeamMP + player_info.lua
+    participant PI as player_info.json
+    participant Agg as aggregate_servers.py
+    participant Live as all_servers_info.json
+    participant Site as Site public
+    participant Admin as Admin API
+    Beam-&gt;&gt;PI: ecrit players, playerCount, timestamp, serverName
+    Agg-&gt;&gt;PI: lit tous les player_info.json
+    Agg-&gt;&gt;Live: regenere le snapshot global
+    Site-&gt;&gt;Live: lit et affiche l'etat
+    Admin-&gt;&gt;Live: lit et enrichit pour le dashboard</div></div>
+<ul>
+<li><code>player_info\init.lua</code> ecrit <code>player_info.json</code> dans la racine de chaque serveur.</li>
+<li><code>aggregate_servers.py</code> parcourt tous les dossiers de <code>C:\SERVEUR\BEAM MP</code> et agrege les <code>player_info.json</code>.</li>
+<li><code>aggregate_servers.py</code> est le seul writer nominal du fichier global ; <code>T11.py</code>, le site public et l'admin le lisent ensuite comme snapshot partage.</li>
+<li><code>T11.py</code> conserve bien une fonction <code>update_servers_info_file()</code>, mais elle est aujourd'hui stubbee a <code>return None</code> et ne constitue plus un writer actif.</li>
+</ul>
+<p>Point critique : la source de verite nominale du snapshot global est <code>aggregate_servers.py</code>, mais le champ <code>serverName</code> peut encore varier selon la qualite de chaque <code>player_info.json</code> local ou le fallback au nom de dossier.</p>
+<h3>7.2 Commandes distantes moderation / broadcast</h3>
+<div class="mermaid-shell"><div class="mermaid">sequenceDiagram
+    participant Staff as Staff Discord / Admin
+    participant Bot as T11.py ou Admin API
+    participant RC as remote_commands_serverN.json
+    participant Sec as security/init.lua
+    participant Beam as Joueur / serveur BeamMP
+    Staff-&gt;&gt;Bot: kick / ban / broadcast
+    Bot-&gt;&gt;RC: ajoute une commande JSON
+    Sec-&gt;&gt;RC: lit toutes les 5 s
+    Sec-&gt;&gt;Beam: applique kick/ban/broadcast
+    Sec-&gt;&gt;RC: marque processed, result, processed_at
+    Bot-&gt;&gt;RC: lit le resultat pour confirmer au staff</div></div>
+<ul>
+<li>Le bot T11 route les commandes en fonction de <code>player_info.json</code> frais.</li>
+<li>Le backend admin peut aussi injecter des broadcasts via <code>/api/servers/broadcast</code>.</li>
+<li><code>security\init.lua</code> traite actuellement trois types effectifs : <code>kick</code>, <code>ban</code>, <code>broadcast</code>.</li>
+<li>Un <code>ban</code> avec <code>duration &gt; 0</code> est interprete comme tempban.</li>
+</ul>
+<h3>7.3 Reports joueurs</h3>
+<div class="mermaid-shell"><div class="mermaid">sequenceDiagram
+    participant Player as Joueur en jeu
+    participant Lua as report/init.lua
+    participant Core as itskao_core.db
+    participant Bot as T11.py
+    participant Admin as Admin API
+    participant Discord as Discord
+    Player-&gt;&gt;Lua: /report texte libre
+    Lua-&gt;&gt;Core: create-report(player_uuid, description, serveur)
+    Bot-&gt;&gt;Core: surveille les reports ouverts
+    Bot-&gt;&gt;Discord: poste le message staff
+    Bot-&gt;&gt;Discord: cree un thread par report
+    Bot-&gt;&gt;Core: sync discord_message_id / discord_thread_id
+    Admin-&gt;&gt;Core: list / claim / close / message
+    Discord-&gt;&gt;Bot: boutons ou messages thread
+    Bot-&gt;&gt;Core: ajoute report_events / report_messages / report_outbox
+    Lua-&gt;&gt;Core: poll report_outbox toutes les 5 s
+    Lua-&gt;&gt;Player: livre les messages moderation
+    Lua-&gt;&gt;Core: ack-report-outbox</div></div>
+<ul>
+<li><code>report\init.lua</code> applique un cooldown par <code>pseudo@ip_hash</code>.</li>
+<li>le report nominal est maintenant une ligne <code>reports</code> en DB, pas un couple <code>reportN.txt</code> / <code>reportN.json</code>.</li>
+<li><code>T11.py</code> surveille la DB, poste sur Discord, cree un thread et synchronise les identifiants Discord.</li>
+<li>le backend admin lit et modifie la meme DB via <code>/api/reports</code>.</li>
+<li>les retours staff vers le joueur passent par <code>report_outbox</code>, puis sont acquittes apres livraison.</li>
+<li>les IP ne sont plus conservees en clair : seules <code>reporter_ip_hash</code>, <code>reporter_ip_masked</code> et <code>reporter_ip_ref</code> sont stockees.</li>
+</ul>
+<p>Points critiques :</p>
+<ul>
+<li>si <code>T11.py</code> est down, le report reste bien en DB mais la publication Discord et la creation du thread prennent du retard ;</li>
+<li><code>C:\SERVEUR\Report\</code> peut encore exister pour l'historique, mais n'est plus la source de verite.</li>
+</ul>
+<h3>7.4 Gametime et stats</h3>
+<ul>
+<li><code>SharedScripts\security\init.lua</code> resout d'abord <code>player_uuid</code> et ouvre une <code>player_session</code>.</li>
+<li><code>SharedScripts\gametime\init.lua</code> mesure ensuite les chunks de session et les ecrit dans <code>gametime_sessions</code> / <code>gametime_totals</code>.</li>
+<li><code>scriptstats.py</code> lit <code>itskao_core.db</code> et produit <code>C:\SERVEUR\Sites\It'sKao\js\stats.json</code>.</li>
+<li><code>T11.py</code> lit cette meme DB pour <code>/gametime</code>, <code>/history</code>, <code>/baninfo</code> et les commandes staff associees.</li>
+<li>le dossier <code>C:\SERVEUR\BEAM MP\Script\gametime\</code> n'est plus dans le pipeline nominal.</li>
+<li><code>gametime.db</code> n'est plus la source de verite : il peut subsister comme reliquat historique.</li>
+</ul>
+<h3>7.5 Metriques admin</h3>
+<ul>
+<li><code>metrics_collector.py</code> lit <code>all_servers_info.json</code>.</li>
+<li>Il normalise <code>serverOnline</code>.</li>
+<li>Il force offline si la donnee est trop vieille.</li>
+<li>Il stocke des snapshots dans <code>C:\SERVEUR\AdminMetrics\metrics.db</code>.</li>
+</ul>
+<h2>8. Formats de donnees et exemples sanitizes</h2>
+<h3>8.1 <code>ServerConfig.toml</code></h3>
+<p>Emplacement :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\NN ...\ServerConfig.toml</code></li>
+</ul>
+<p>Exemple sanitise :</p>
+<pre><code class="language-toml">[General]
+Port = 46501
+AuthKey = &quot;&lt;beammp_auth_key&gt;&quot;
+AllowGuests = true
+LogChat = true
+Debug = false
+IP = &quot;::&quot;
+Private = false
+InformationPacket = true
+Name = &quot;^lIt'sKao =&gt; ^r^oServeur 1 France^r =&gt; ^lWest Coast USA (Vanilla)&quot;
+Tags = &quot;Freeroam,West-Coast&quot;
+MaxCars = 3
+MaxPlayers = 50
+Map = &quot;/levels/west_coast_usa/info.json&quot;
+Description = &quot;FR / EN ...&quot;
+ResourceFolder = &quot;Resources&quot;
+</code></pre>
+<h3>8.2 <code>player_info.json</code></h3>
+<p>Producteur :</p>
+<ul>
+<li><code>SharedScripts\player_info\init.lua</code></li>
+</ul>
+<p>Exemple observe :</p>
+<pre><code class="language-json">{
+  &quot;playerCount&quot;: 0,
+  &quot;players&quot;: [],
+  &quot;timestamp&quot;: 1774340446,
+  &quot;serverName&quot;: &quot;server1&quot;
+}
+</code></pre>
+<p>Note : <code>serverName</code> est derive de <code>ServerConfig.toml</code>, pas du nom du dossier.</p>
+<h3>8.3 <code>all_servers_info.json</code></h3>
+<p>Producteur nominal :</p>
+<ul>
+<li><code>aggregate_servers.py</code></li>
+</ul>
+<p>Producteurs historiques / legacy :</p>
+<ul>
+<li>ancien <code>aggregate_player_info.py</code></li>
+</ul>
+<p>Exemple observe simplifie :</p>
+<pre><code class="language-json">[
+  {
+    &quot;serverName&quot;: &quot;01 SERVEUR WEST COAST&quot;,
+    &quot;timestamp&quot;: 1774340276,
+    &quot;players&quot;: [],
+    &quot;playerCount&quot;: 0,
+    &quot;serverOnline&quot;: &quot;OUI&quot;
+  },
+  {
+    &quot;serverName&quot;: &quot;03 SERVER ITALY&quot;,
+    &quot;timestamp&quot;: 1774340285,
+    &quot;players&quot;: [&quot;PseudoA&quot;, &quot;PseudoB&quot;],
+    &quot;playerCount&quot;: 2,
+    &quot;serverOnline&quot;: &quot;OUI&quot;
+  }
+]
+</code></pre>
+<p>Notes critiques :</p>
+<ul>
+<li><code>aggregate_servers.py</code> est le seul writer nominal ;</li>
+<li>le champ <code>serverName</code> n'a pas une source metier parfaitement stable, car <code>aggregate_servers.py</code> reutilise d'abord le <code>serverName</code> du <code>player_info.json</code> local et ne tombe sur le nom du dossier qu'en fallback ;</li>
+<li><code>T11.py</code> lit ce snapshot et ne l'ecrit plus en nominal.</li>
+</ul>
+<h3>8.4 <code>remote_commands_serverN.json</code></h3>
+<p>Exemple sanitise :</p>
+<pre><code class="language-json">{
+  &quot;commands&quot;: [
+    {
+      &quot;id&quot;: &quot;1774300000-1234&quot;,
+      &quot;type&quot;: &quot;kick&quot;,
+      &quot;target&quot;: &quot;PseudoCible&quot;,
+      &quot;reason&quot;: &quot;Ramming&quot;,
+      &quot;staff&quot;: &quot;StaffPseudo&quot;,
+      &quot;created_at&quot;: 1774300000.123,
+      &quot;attempts&quot;: 0,
+      &quot;processed&quot;: false
+    },
+    {
+      &quot;id&quot;: &quot;1774300005-5678&quot;,
+      &quot;type&quot;: &quot;broadcast&quot;,
+      &quot;message&quot;: &quot;Maintenance dans 5 minutes&quot;,
+      &quot;staff&quot;: &quot;StaffPseudo&quot;,
+      &quot;staff_display&quot;: &quot;StaffPseudo&quot;,
+      &quot;anonymous&quot;: false,
+      &quot;created_at&quot;: 1774300005.456,
+      &quot;processed&quot;: false
+    }
+  ]
+}
+</code></pre>
+<p>Champs observes ou utilises :</p>
+<ul>
+<li><code>id</code></li>
+<li><code>type</code></li>
+<li><code>target</code></li>
+<li><code>reason</code></li>
+<li><code>message</code></li>
+<li><code>staff</code></li>
+<li><code>staff_display</code></li>
+<li><code>anonymous</code></li>
+<li><code>duration</code></li>
+<li><code>attempts</code></li>
+<li><code>last_attempt</code></li>
+<li><code>processed</code></li>
+<li><code>processed_at</code></li>
+<li><code>result</code></li>
+<li><code>created_at</code></li>
+</ul>
+<h3>8.5 <code>itskao_core.db</code> - tables d'identite joueur</h3>
+<p>Tables concernees :</p>
+<ul>
+<li><code>players</code></li>
+<li><code>player_aliases</code></li>
+<li><code>external_identifiers</code></li>
+<li><code>player_sessions</code></li>
+<li><code>player_links_review</code></li>
+<li><code>runtime_identifier_events</code></li>
+</ul>
+<p>Role :</p>
+<ul>
+<li><code>players</code> est la table maitre de l'identite, une ligne par <code>player_uuid</code> ;</li>
+<li><code>player_aliases</code> garde l'historique des pseudos observes ;</li>
+<li><code>external_identifiers</code> garde les signaux runtime utiles : <code>beammp_raw</code>, <code>role_raw</code>, <code>is_guest_flag</code>, <code>ip_hash</code>, <code>ip_masked</code>, <code>ip_ref</code> ;</li>
+<li><code>player_sessions</code> garde les connexions BeamMP reelles ;</li>
+<li><code>player_links_review</code> sert a auditer les merge/split ou rapprochements douteux ;</li>
+<li><code>runtime_identifier_events</code> est une boite noire de diagnostic pour capturer ce que BeamMP renvoie vraiment dans <code>onPlayerAuth</code> et <code>onPlayerJoining</code> ; en nominal, elle ne s'alimente que si <code>ITSKAO_RUNTIME_CAPTURE</code> est active.</li>
+</ul>
+<p>Exemple simplifie :</p>
+<pre><code class="language-json">{
+  &quot;players&quot;: {
+    &quot;player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;current_name&quot;: &quot;PseudoJoueur&quot;,
+    &quot;needs_review&quot;: 0,
+    &quot;last_server_key&quot;: &quot;server24&quot;
+  },
+  &quot;external_identifiers&quot;: {
+    &quot;beammp_raw&quot;: &quot;guest123456&quot;,
+    &quot;role_raw&quot;: &quot;user&quot;,
+    &quot;is_guest_flag&quot;: 1,
+    &quot;ip_hash&quot;: &quot;v1:0123456789abcdef...&quot;,
+    &quot;ip_masked&quot;: &quot;203.0.x.x&quot;,
+    &quot;ip_ref&quot;: &quot;ip#0123456789&quot;
+  },
+  &quot;player_sessions&quot;: {
+    &quot;session_uuid&quot;: &quot;0cfce4bb-4836-4747-894e-8fdb4c2eb6d6&quot;,
+    &quot;player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;server_key&quot;: &quot;server24&quot;,
+    &quot;pid&quot;: 3,
+    &quot;status&quot;: &quot;open&quot;
+  }
+}
+</code></pre>
+<h3>8.6 <code>itskao_core.db</code> - gametime, sanctions et bans</h3>
+<p>Tables concernees :</p>
+<ul>
+<li><code>gametime_sessions</code></li>
+<li><code>gametime_totals</code></li>
+<li><code>sanctions</code></li>
+<li><code>ban_states</code></li>
+</ul>
+<p>Role :</p>
+<ul>
+<li><code>gametime_sessions</code> garde les chunks reelement ecrits par <code>gametime/init.lua</code> ;</li>
+<li><code>gametime_totals</code> sert d'agregat rapide pour le site, le bot et les commandes <code>/gametime</code> ;</li>
+<li><code>sanctions</code> garde l'historique moderation complet ;</li>
+<li><code>ban_states</code> garde l'etat actif des bans et tempbans pour les checks rapides a la connexion.</li>
+</ul>
+<p>Exemple simplifie :</p>
+<pre><code class="language-json">{
+  &quot;gametime_totals&quot;: {
+    &quot;player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;total_seconds&quot;: 5748419,
+    &quot;current_month&quot;: &quot;2026-03&quot;,
+    &quot;current_month_seconds&quot;: 84231
+  },
+  &quot;sanctions&quot;: {
+    &quot;sanction_uuid&quot;: &quot;7b9d1c1e-a5f8-44d0-b822-cbe09489b6c8&quot;,
+    &quot;player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;sanction_type&quot;: &quot;tempban&quot;,
+    &quot;reason&quot;: &quot;Conduite toxique&quot;,
+    &quot;staff_name&quot;: &quot;StaffPseudo&quot;,
+    &quot;duration_minutes&quot;: 1440
+  },
+  &quot;ban_states&quot;: {
+    &quot;player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;reason&quot;: &quot;Conduite toxique&quot;,
+    &quot;ip_hash&quot;: &quot;v1:0123456789abcdef...&quot;,
+    &quot;ip_masked&quot;: &quot;203.0.x.x&quot;,
+    &quot;ip_ref&quot;: &quot;ip#0123456789&quot;
+  }
+}
+</code></pre>
+<h3>8.7 <code>itskao_core.db</code> - reports et messagerie staff</h3>
+<p>Tables concernees :</p>
+<ul>
+<li><code>reports</code></li>
+<li><code>report_events</code></li>
+<li><code>report_messages</code></li>
+<li><code>report_outbox</code></li>
+</ul>
+<p>Role :</p>
+<ul>
+<li><code>reports</code> garde la fiche principale du report ;</li>
+<li><code>report_events</code> journalise creation, claim, close et evenements systeme ;</li>
+<li><code>report_messages</code> stocke les messages structures joueur &lt;-&gt; staff ;</li>
+<li><code>report_outbox</code> est la file des messages a relivrer en jeu au joueur.</li>
+</ul>
+<p>Exemple simplifie :</p>
+<pre><code class="language-json">{
+  &quot;reports&quot;: {
+    &quot;report_uuid&quot;: &quot;0e3018be-1e56-4db1-81d6-7d0623cc49e1&quot;,
+    &quot;report_number&quot;: 285,
+    &quot;reporter_player_uuid&quot;: &quot;2ac7a1b8-5c9d-4db4-bb62-5f4c2e0ef8c5&quot;,
+    &quot;reporter_name_snapshot&quot;: &quot;PseudoJoueur&quot;,
+    &quot;status&quot;: &quot;claimed&quot;,
+    &quot;server_key&quot;: &quot;server24&quot;,
+    &quot;description&quot;: &quot;Collision repetitive&quot;,
+    &quot;discord_message_id&quot;: &quot;1486000000000000000&quot;,
+    &quot;discord_thread_id&quot;: &quot;1486000000000000001&quot;
+  },
+  &quot;report_events&quot;: [
+    {
+      &quot;event_type&quot;: &quot;created&quot;,
+      &quot;author_role&quot;: &quot;player&quot;,
+      &quot;author_name&quot;: &quot;PseudoJoueur&quot;
+    },
+    {
+      &quot;event_type&quot;: &quot;claimed&quot;,
+      &quot;author_role&quot;: &quot;staff&quot;,
+      &quot;author_name&quot;: &quot;StaffPseudo&quot;
+    }
+  ],
+  &quot;report_outbox&quot;: [
+    {
+      &quot;kind&quot;: &quot;staff&quot;,
+      &quot;message&quot;: &quot;On s'occupe de ton report.&quot;,
+      &quot;delivered&quot;: 0
+    }
+  ]
+}
+</code></pre>
+<p>Artefacts historiques encore possibles :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\banned_players.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\sanctions\*.json</code></li>
+<li><code>C:\SERVEUR\Report\reportN.txt</code></li>
+<li><code>C:\SERVEUR\Report\reportN.json</code></li>
+</ul>
+<p>Ces fichiers doivent maintenant etre lus comme archives ou sources de migration, pas comme la verite nominale.</p>
+<h3>8.8 <code>stats.json</code></h3>
+<p>Exemple simplifie :</p>
+<pre><code class="language-json">{
+  &quot;unique_players&quot;: 138248,
+  &quot;total_time_minutes&quot;: 19781216.17,
+  &quot;avg_time_minutes&quot;: 143.09,
+  &quot;max_time_minutes&quot;: 95806.98,
+  &quot;top_all_time&quot;: [
+    { &quot;username&quot;: &quot;Pseudo1&quot;, &quot;time_minutes&quot;: 95806.98 }
+  ],
+  &quot;current_month&quot;: &quot;2026-03&quot;,
+  &quot;current_month_top&quot;: [
+    { &quot;username&quot;: &quot;Pseudo2&quot;, &quot;time_minutes&quot;: 5431.32 }
+  ],
+  &quot;previous_month&quot;: &quot;2026-02&quot;,
+  &quot;previous_month_top&quot;: [
+    { &quot;username&quot;: &quot;Pseudo3&quot;, &quot;time_minutes&quot;: 6173.82 }
+  ],
+  &quot;generated_at&quot;: &quot;2026-03-24T09:00:00&quot;,
+  &quot;storage_backend&quot;: &quot;sqlite&quot;,
+  &quot;db_path&quot;: &quot;C:/SERVEUR/BEAM MP/Script/itskao_core.db&quot;
+}
+</code></pre>
+<h3>8.9 <code>.env</code> backend admin</h3>
+<p>Ne jamais recopier les vraies valeurs en documentation. Utiliser des placeholders.</p>
+<pre><code class="language-dotenv">DISCORD_CLIENT_ID=&lt;discord_client_id&gt;
+DISCORD_CLIENT_SECRET=&lt;discord_client_secret&gt;
+DISCORD_REDIRECT_URI=https://admin.its-kao.com/oauth/callback
+ADMIN_USER_IDS=&lt;discord_user_id_1&gt;,&lt;discord_user_id_2&gt;
+SESSION_SECRET=&lt;long_random_secret&gt;
+COOKIE_DOMAIN=admin.its-kao.com
+COOKIE_SECURE=true
+COOKIE_SAMESITE=none
+COOKIE_NAME=itskao_admin_session
+FRONTEND_BASE_URL=https://admin.its-kao.com
+</code></pre>
+<h3>8.10 Schema SQLite des metriques</h3>
+<pre><code class="language-sql">CREATE TABLE IF NOT EXISTS server_snapshots (
+    ts INTEGER NOT NULL,
+    server_name TEXT NOT NULL,
+    player_count INTEGER NOT NULL,
+    status INTEGER NOT NULL,
+    avg_ping REAL,
+    PRIMARY KEY (ts, server_name)
+);
+</code></pre>
+<h2>9. Composants Python, PowerShell et batch</h2>
+<h3>9.1 <code>SharedScripts\scripts\T11.py</code></h3>
+<p>Role :</p>
+<ul>
+<li>composant pivot de supervision et moderation Discord.</li>
+</ul>
+<p>Responsabilites majeures :</p>
+<ul>
+<li>decouverte des serveurs BeamMP numerotes ;</li>
+<li>calcul de leur etat via <code>player_info.json</code>, puis fallback <code>Server.log</code> ;</li>
+<li>maintenance des compteurs Discord ;</li>
+<li>lecture du snapshot <code>all_servers_info.json</code> produit par <code>aggregate_servers.py</code> ;</li>
+<li>routage des commandes moderation vers <code>remote_commands_*.json</code> ;</li>
+<li>surveillance DB-first des reports ;</li>
+<li>auto-cloture des reports ouverts sans prise en charge apres 1 heure ;</li>
+<li>suivi incremental des logs staff ;</li>
+<li>demarrage / arret de serveurs via slash commands.</li>
+</ul>
+<p>Commandes slash reperees :</p>
+<ul>
+<li><code>/broadcast</code></li>
+<li><code>/players</code></li>
+<li><code>/status</code></li>
+<li><code>/listservers</code></li>
+<li><code>/startserver</code></li>
+<li><code>/stopserver</code></li>
+<li><code>/startservers</code></li>
+<li><code>/createserver</code></li>
+<li><code>/gametime</code></li>
+<li>et d'autres commandes staff autour des bans, historiques, embeds et configuration.</li>
+</ul>
+<p>Fichiers lus / ecrits :</p>
+<ul>
+<li><code>donnees-live\discord\record_players.json</code></li>
+<li><code>donnees-live\discord\bot_max_servers.json</code></li>
+<li><code>Sites\It'sKao\js\all_servers_info.json</code></li>
+<li><code>BEAM MP\Script\itskao_core.db</code></li>
+<li><code>BEAM MP\Script\remote_commands*.json</code></li>
+<li><code>BEAM MP\Script\logs\command_usage_*.txt</code></li>
+<li><code>BEAM MP\Script\config\permissions_data.lua</code></li>
+</ul>
+<p>Details importants :</p>
+<ul>
+<li>les seuils <code>RUNNING / STALE / STOPPED</code> sont bases d'abord sur <code>player_info.json</code>, puis sur l'age de <code>Server.log</code> ;</li>
+<li>la decouverte des serveurs est cachee avec un TTL court (<code>SERVER_DISCOVERY_TTL = 60</code>) ;</li>
+<li>seuls les dossiers avec prefixe numerique sont decouverts par <code>discover_beammp_servers()</code> ;</li>
+<li>les dossiers sans numero, comme <code>Private</code>, ne sont donc pas forcement visibles cote bot ;</li>
+<li><code>all_servers_info.json</code> est maintenant une entree en lecture seule pour le bot ; <code>update_servers_info_file()</code> est conservee comme stub inert ;</li>
+<li>les commandes staff <code>/history</code>, <code>/ban</code>, <code>/tempban</code>, <code>/baninfo</code>, <code>/unban</code> et <code>/chistory</code> sont rebranchees sur la DB centrale ;</li>
+<li>le flux nominal des reports passe par <code>reports</code>, <code>report_events</code>, <code>report_messages</code> et <code>report_outbox</code>, meme si le source conserve encore quelques helpers legacy fichier non nominaux.</li>
+</ul>
+<h3>9.2 <code>SharedScripts\scripts\aggregate_servers.py</code></h3>
+<p>Role :</p>
+<ul>
+<li>agreger les <code>player_info.json</code> des serveurs en un <code>all_servers_info.json</code>.</li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>parcourt tous les sous-dossiers de <code>C:\SERVEUR\BEAM MP</code> ;</li>
+<li>est l'unique writer nominal de <code>all_servers_info.json</code> ;</li>
+<li>ecrit un tableau JSON compact uniquement si le contenu a change ;</li>
+<li>marque <code>serverOnline = "OUI"</code> si la donnee est recente ;</li>
+<li>cadence de 10 secondes ;</li>
+<li>maintient un cache d'inventaire des dossiers et un cache par <code>player_info.json</code> base sur <code>mtime/size</code>.</li>
+</ul>
+<h3>9.3 <code>SharedScripts\scripts\scriptstats.py</code></h3>
+<p>Role :</p>
+<ul>
+<li>lire <code>BEAM MP\Script\itskao_core.db</code> ;</li>
+<li>calculer <code>stats.json</code>.</li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>boucle par defaut toutes les 60 secondes ;</li>
+<li>supporte des variables d'environnement d'override ;</li>
+<li>lit <code>gametime_totals</code> dans <code>itskao_core.db</code> en mode nominal ;</li>
+<li>convertit les secondes en minutes dans la sortie publique.</li>
+</ul>
+<h3>9.4 <code>Sites\Admin\backend\metrics_collector.py</code></h3>
+<p>Role :</p>
+<ul>
+<li>prendre des snapshots de <code>all_servers_info.json</code> vers <code>metrics.db</code>.</li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>insertion par bucket temporel ;</li>
+<li>purge des donnees de plus de 90 jours ;</li>
+<li>statut force a offline si la donnee est trop vieille.</li>
+</ul>
+<h3>9.5 <code>Sites\Admin\backend\main.py</code></h3>
+<p>Role :</p>
+<ul>
+<li>backend FastAPI du centre d'administration.</li>
+</ul>
+<p>Routes principales :</p>
+<ul>
+<li><code>/oauth/login</code></li>
+<li><code>/oauth/callback</code></li>
+<li><code>/api/auth/logout</code></li>
+<li><code>/api/auth/me</code></li>
+<li><code>/api/health</code></li>
+<li><code>/api/servers</code></li>
+<li><code>/api/servers/detail</code></li>
+<li><code>/api/servers/broadcast</code></li>
+<li><code>/api/reports</code></li>
+<li><code>/api/reports/{report_id}/claim</code></li>
+<li><code>/api/reports/{report_id}/close</code></li>
+<li><code>/api/reports/{report_id}/message</code></li>
+<li><code>/api/players</code></li>
+<li><code>/api/players/{player_uuid}</code></li>
+<li><code>/api/players/merge</code></li>
+<li><code>/api/players/{player_uuid}/split</code></li>
+<li><code>/api/stats/moderation</code></li>
+<li><code>/api/logs/tail</code></li>
+</ul>
+<p>Sources de donnees :</p>
+<ul>
+<li><code>all_servers_info.json</code></li>
+<li><code>metrics.db</code></li>
+<li><code>itskao_core.db</code></li>
+<li><code>donnees-live\discord\record_players.json</code></li>
+<li><code>donnees-live\discord\bot_max_servers.json</code></li>
+<li><code>ServerConfig.toml</code></li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>construit un catalogue de serveurs a partir des dossiers contenant <code>ServerConfig.toml</code> ;</li>
+<li>exclut par defaut les noms contenant <code>base</code> et <code>script</code> ;</li>
+<li>contrairement au bot T11, il n'exige pas un prefixe numerique ;</li>
+<li>peut donc avoir un univers de serveurs different si les sources de donnees divergent ;</li>
+<li>remappe <code>/api/reports*</code> sur les handlers DB-first et expose maintenant des outils de profil joueur, merge et split.</li>
+</ul>
+<h3>9.6 <code>Sites\Admin\admin-center.ps1</code></h3>
+<p>Role :</p>
+<ul>
+<li>orchestrateur local du backend admin.</li>
+</ul>
+<p>Fonctions :</p>
+<ul>
+<li>cree / met a jour <code>.venv</code> ;</li>
+<li>installe les dependances ;</li>
+<li>lance <code>uvicorn main:app --host 0.0.0.0 --port 5000</code> ;</li>
+<li>lance <code>metrics_collector.py</code> ;</li>
+<li>stocke les PID dans <code>Sites\Admin\run</code> ;</li>
+<li>redirige stdout/stderr vers les logs du meme dossier ;</li>
+<li>exporte <code>ITSKAO_ADMIN_ENV_FILE</code> vers le <code>.env</code> du backend.</li>
+</ul>
+<h3>9.7 <code>start-support.ps1</code></h3>
+<p>Role :</p>
+<ul>
+<li>lancer les services support sans demarrer les serveurs BeamMP.</li>
+</ul>
+<p>Jobs lances :</p>
+<ul>
+<li><code>T11.py</code></li>
+<li><code>aggregate_servers.py</code></li>
+<li><code>scriptstats.py</code></li>
+<li>optionnellement <code>metrics_collector.py</code></li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>utilise <code>py -3</code> ;</li>
+<li>tente d'eviter les doublons via inspection des processus Python ;</li>
+<li>utilise maintenant des <code>WorkDir</code> en <code>C:\SERVEUR\...</code>, alignes sur le mode nominal local.</li>
+</ul>
+<h3>9.8 <code>Server.bat</code></h3>
+<p>Role :</p>
+<ul>
+<li>lancer toutes les instances ayant <code>BeamMP-Server.exe</code>.</li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>demarrage dans une nouvelle fenetre <code>cmd.exe</code> ;</li>
+<li>temporisation de 5 secondes entre chaque instance.</li>
+</ul>
+<h3>9.9 <code>ServerRange.bat</code></h3>
+<p>Role :</p>
+<ul>
+<li>lancer une plage de serveurs numerotes.</li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>detection basee sur le prefixe numerique du nom de dossier ;</li>
+<li>demande interactive du premier et du dernier numero.</li>
+</ul>
+<h3>9.10 <code>Site Start.bat</code></h3>
+<p>Role :</p>
+<ul>
+<li>outil de gestion <code>nginx</code>.</li>
+</ul>
+<p>Fonctions :</p>
+<ul>
+<li>start ;</li>
+<li>stop ;</li>
+<li>reload ;</li>
+<li><code>nginx -t</code> ;</li>
+<li>ouverture de <code>nginx.conf</code> ;</li>
+<li>ouverture du dossier logs ;</li>
+<li>suivi de <code>error.log</code>.</li>
+</ul>
+<h3>9.11 <code>ports-beammp.ps1</code> et <code>ports.ps1</code></h3>
+<p>Roles :</p>
+<ul>
+<li><code>ports-beammp.ps1</code> ouvre une plage de ports TCP/UDP, par defaut <code>46501-46550</code>.</li>
+<li><code>ports.ps1</code> ouvre des ports saisis interactivement.</li>
+</ul>
+<h3>9.12 Scripts historiques / annexes</h3>
+<ul>
+<li><code>archives\beammp-script\aggregate_player_info.py</code>
+  Ancien agregateur ecrivant lui aussi <code>all_servers_info.json</code>.</li>
+<li><code>archives\beammp-script\notifications.ps1</code>
+  Ancien watcher de reports via webhook Discord ; a traiter comme legacy et sensible.</li>
+</ul>
+<h2>10. Scripts Lua detailles</h2>
+<h3>10.1 Vue d'ensemble</h3>
+<p>Les scripts Lua actifs sont sous <code>C:\SERVEUR\SharedScripts</code>. Ils sont charges dans chaque instance via des wrappers sous <code>Resources\Server\...\init.lua</code>.</p>
+<p>Supports transverses importants :</p>
+<ul>
+<li><code>C:\SERVEUR\SharedScripts\dkjson.lua</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\permissions.lua</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\config\permissions_data.lua</code></li>
+</ul>
+<h3>10.2 <code>SharedScripts\security\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>moderation en jeu ;</li>
+<li>bans a la connexion ;</li>
+<li>commandes staff ;</li>
+<li>resolution d'identite joueur vers <code>player_uuid</code> ;</li>
+<li>ouverture / fermeture des <code>player_sessions</code> ;</li>
+<li>persistence DB des sanctions et bans ;</li>
+<li>delegation du temps de jeu au module dedie ;</li>
+<li>traitement des commandes distantes ecrites par le bot ou l'admin ;</li>
+<li>broadcast staff ;</li>
+<li>memoire des deconnexions recentes.</li>
+</ul>
+<p>Ou il est execute :</p>
+<ul>
+<li>dans chaque processus BeamMP qui charge le wrapper <code>Resources\Server\security\init.lua</code>.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li>le wrapper ajoute <code>C:/SERVEUR/SharedScripts/?.lua</code> et <code>C:/SERVEUR/SharedScripts/?/init.lua</code> au <code>package.path</code> ;</li>
+<li><code>security\init.lua</code> ajoute <code>C:/SERVEUR/BEAM MP/Script/?.lua</code> ;</li>
+<li><code>require("dkjson")</code> ;</li>
+<li><code>require("permissions")</code> ;</li>
+<li><code>require("gametime.init")</code> ;</li>
+<li><code>require("ip_privacy")</code> ;</li>
+<li><code>require("player_identity")</code>.</li>
+</ul>
+<p>Evenements BeamMP enregistres :</p>
+<ul>
+<li><code>onPlayerAuth</code></li>
+<li><code>onPlayerJoining</code></li>
+<li><code>onChatMessage</code></li>
+<li><code>onPlayerDisconnect</code></li>
+<li><code>processRemoteCommands</code></li>
+<li>optionnellement <code>enforceExternalBans</code></li>
+</ul>
+<p>Timers crees :</p>
+<ul>
+<li><code>purgeRecent</code> toutes les 60 s</li>
+<li><code>processRemoteCommands</code> toutes les 5 s</li>
+<li><code>enforceExternalBans</code> toutes les 60 s si <code>PASSIVE_BAN_CHECK = true</code></li>
+</ul>
+<p>Commandes chat exposees :</p>
+<ul>
+<li><code>/ban pseudo raison</code></li>
+<li><code>/kick pseudo raison</code></li>
+<li><code>/unban pseudo</code></li>
+<li><code>/tempban pseudo duree raison</code></li>
+<li><code>/warn pseudo raison</code></li>
+<li><code>/msgserv message</code></li>
+<li><code>/session pseudo</code></li>
+<li><code>/gametime pseudo</code></li>
+<li><code>/cgametime pseudo</code></li>
+<li><code>/chistory pseudo</code></li>
+<li><code>/history pseudo</code></li>
+<li><code>/dc</code></li>
+</ul>
+<p>Fichiers lus :</p>
+<ul>
+<li><code>player_info.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\remote_commands*.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\config\permissions_data.lua</code> via <code>permissions.lua</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> via <code>player_identity.lua</code></li>
+</ul>
+<p>Fichiers ecrits :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\logs\command_usage_YYYY-MM-DD.txt</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\remote_commands*.json</code> pour marquer <code>processed/result</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> pour les resolutions d'identite, sessions, sanctions et bans</li>
+</ul>
+<p>Structures memoire importantes :</p>
+<ul>
+<li><code>bannedPlayers</code></li>
+<li><code>activePlayers</code></li>
+<li><code>lastBanCheck</code></li>
+<li><code>processedOnce</code></li>
+<li><code>recentDisconnects</code></li>
+</ul>
+<p>Note :</p>
+<ul>
+<li><code>bannedPlayers</code>, <code>bannedPlayersFile</code> et <code>sanctionFolder</code> existent encore dans le source pour compatibilite et heritage, mais le flux nominal bans/sanctions passe maintenant par <code>player_identity.lua</code> et <code>itskao_core.db</code>.</li>
+</ul>
+<p>Effets visibles cote joueur :</p>
+<ul>
+<li>drop a la connexion si banni ;</li>
+<li>drop immediat sur kick/ban/tempban ;</li>
+<li>messages HTML staff ;</li>
+<li>affichage du temps de session et du gametime ;</li>
+<li>broadcast staff in-game.</li>
+</ul>
+<p>Effets visibles cote site / bot / admin :</p>
+<ul>
+<li>delegue le gametime a <code>SharedScripts\gametime\init.lua</code> ;</li>
+<li>lit et consomme les <code>remote_commands_*.json</code> ecrits par le bot et l'admin ;</li>
+<li>journalise les verifications de ban en <code>IP_HASH / IP_MASKED / IP_REF</code> pour les usages offline du bot ;</li>
+<li>alimente <code>players</code>, <code>external_identifiers</code>, <code>player_sessions</code>, <code>sanctions</code> et <code>ban_states</code> dans la DB centrale ;</li>
+<li>capture le runtime brut dans <code>runtime_identifier_events</code> pour eviter de rededuire les identifiants a la main depuis les logs texte, mais seulement si <code>ITSKAO_RUNTIME_CAPTURE</code> est active.</li>
+</ul>
+<p>Parametres importants :</p>
+<ul>
+<li><code>DEBUG = false</code></li>
+<li><code>PASSIVE_BAN_CHECK = false</code></li>
+<li><code>BROADCAST_MAX_AGE = 120</code></li>
+<li><code>INFO_STALE_SEC = 20</code></li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>si <code>player_info.json</code> est stale, certaines commandes distantes peuvent etre ignorees ;</li>
+<li>si <code>permissions.lua</code> ou <code>permissions_data.lua</code> est manquant, la moderation locale casse ;</li>
+<li>si <code>config\ip_privacy_secret.txt</code> est supprime puis regenere, les anciens <code>ip_hash</code> ne matcheront plus les nouvelles connexions ;</li>
+<li>si le launcher Python force en UTF-8 (<code>py -3 -X utf8</code>) ou <code>itskao_core_db.py</code> ne sont pas disponibles, la resolution d'identite et la moderation DB tombent ;</li>
+<li><code>processedOnce</code> dedup sur 1 heure peut masquer une reemission identique ;</li>
+<li>tout repose sur le dossier partage <code>C:\SERVEUR\BEAM MP\Script</code>.</li>
+</ul>
+<h3>10.3 <code>SharedScripts\report\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>creation des reports in-game ;</li>
+<li>anti-spam par joueur/IP pseudonymisee (<code>pseudo@ip_hash</code>) ;</li>
+<li>creation DB-first des reports ;</li>
+<li>ajout des reponses joueur sur le report ouvert ;</li>
+<li>livraison des messages moderation vers le joueur ;</li>
+<li>accusés de prise en charge et de cloture.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li>wrapper depuis <code>Resources\Server\report\init.lua</code> ;</li>
+<li>ajoute <code>C:/SERVEUR/SharedScripts/?.lua</code> si necessaire ;</li>
+<li><code>require("ip_privacy")</code> ;</li>
+<li><code>require("player_identity")</code>.</li>
+</ul>
+<p>Evenements / timers :</p>
+<ul>
+<li><code>onInit</code></li>
+<li><code>onChatMessage</code></li>
+<li><code>checkReportUpdates</code></li>
+<li>timer <code>checkReportUpdates</code> toutes les 5 s</li>
+</ul>
+<p>Commandes chat :</p>
+<ul>
+<li><code>/report texte libre</code></li>
+<li><code>/reply message</code></li>
+<li><code>/reponse message</code></li>
+</ul>
+<p>Fichiers lus :</p>
+<ul>
+<li><code>ServerConfig.toml</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> via <code>player_identity.lua</code></li>
+</ul>
+<p>Fichiers ecrits :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> via <code>create-report</code>, <code>player-report-reply</code>, <code>report-outbox-batch</code>, <code>ack-report-outbox-batch</code></li>
+</ul>
+<p>Structures memoire :</p>
+<ul>
+<li><code>lastReportTime</code> cle <code>pseudo@ip_hash</code></li>
+<li><code>watchedPlayers</code> pour limiter le polling outbox aux joueurs suivis</li>
+<li><code>GAME_CHAT_ASCII_FALLBACK</code> pour le fallback optionnel d'affichage jeu</li>
+</ul>
+<p>Effets visibles cote joueur :</p>
+<ul>
+<li>confirmation de report ;</li>
+<li>refus si pas de raison ;</li>
+<li>cooldown anti-spam ;</li>
+<li>messages moderation en jeu ;</li>
+<li>accusés "report pris" et "report cloture" ;</li>
+<li>preservation des accents via le bridge UTF-8, avec translitteration optionnelle seulement si <code>ITSKAO_GAME_CHAT_ASCII_FALLBACK</code> est active.</li>
+</ul>
+<p>Effets visibles cote bot / admin :</p>
+<ul>
+<li>creation d'une ligne <code>reports</code> surveillee par <code>T11.py</code> et par le backend admin ;</li>
+<li>le bot cree ensuite le message Discord et le thread associe ;</li>
+<li>les messages staff sont reinjectes cote jeu via <code>report_outbox</code> avec lecture et acquittement batch ;</li>
+<li>le plugin initialise lui-meme <code>server_key</code> et <code>server_name</code> depuis <code>ServerConfig.toml</code>, sans dependre d'un autre script Lua deja charge.</li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>si le joueur n'a pas de <code>player_uuid</code> resolvable, le report ne peut pas etre cree ;</li>
+<li>si <code>T11.py</code> est down, la publication Discord et le thread prennent du retard mais le report reste en DB ;</li>
+<li>si le joueur n'est pas resolvable au moment de la livraison, le message reste en attente ;</li>
+<li>si BeamMP re-casse certains caracteres malgre le bridge UTF-8, il faut activer explicitement <code>ITSKAO_GAME_CHAT_ASCII_FALLBACK</code> au lieu de modifier la DB ou Discord.</li>
+</ul>
+<h3>10.4 <code>SharedScripts\vehicles\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>outils staff/joueur pour lister et supprimer des vehicules.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li>ajoute <code>C:/SERVEUR/SharedScripts/?.lua</code> ;</li>
+<li>ajoute <code>C:/SERVEUR/BEAM MP/Script/?.lua</code> ;</li>
+<li><code>require("dkjson")</code> ;</li>
+<li><code>require("permissions")</code>.</li>
+</ul>
+<p>Evenements :</p>
+<ul>
+<li><code>onChatMessage</code></li>
+</ul>
+<p>Commandes chat :</p>
+<ul>
+<li><code>/lv USERNAME</code></li>
+<li><code>/del USERNAME ID</code></li>
+<li><code>/del USERNAME all</code></li>
+</ul>
+<p>Fichiers lus :</p>
+<ul>
+<li><code>permissions_data.lua</code> via <code>permissions.lua</code></li>
+</ul>
+<p>Fichiers ecrits :</p>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\logs\command_usage_YYYY-MM-DD.txt</code></li>
+</ul>
+<p>Particularites techniques :</p>
+<ul>
+<li>supporte plusieurs formats retournes par <code>MP.GetPlayerVehicles()</code> ;</li>
+<li>parse aussi les chaines <code>USER:Nom:PID-VID:{...}</code>.</li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>dependance au format BeamMP des vehicules ;</li>
+<li>absence de persistence metier hors logs ;</li>
+<li>tout le controle d'acces depend du meme fichier de permissions que <code>security</code>.</li>
+</ul>
+<h3>10.5 <code>SharedScripts\mp\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>messagerie privee entre joueurs.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li>aucune dependance disque externe ;</li>
+<li>HTML optionnel via configuration locale du script.</li>
+</ul>
+<p>Evenements / enregistrement :</p>
+<ul>
+<li>utilise <code>RegisterChatCommand</code> si disponible ;</li>
+<li>sinon fallback sur <code>onChatMessage</code>.</li>
+</ul>
+<p>Commandes chat :</p>
+<ul>
+<li><code>/mp &lt;ID|Pseudo&gt; &lt;message&gt;</code></li>
+<li><code>/r &lt;message&gt;</code></li>
+<li><code>/mphelp</code></li>
+</ul>
+<p>Fichiers lus / ecrits :</p>
+<ul>
+<li>aucun.</li>
+</ul>
+<p>Structures memoire :</p>
+<ul>
+<li><code>lastSender[playerID]</code></li>
+</ul>
+<p>Effets visibles cote joueur :</p>
+<ul>
+<li>DM stylises ;</li>
+<li>reponse rapide via <code>/r</code> ;</li>
+<li>hint de reponse.</li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>aucun historique persistant ;</li>
+<li><code>lastSender</code> perdu au restart ;</li>
+<li>matching partiel pouvant viser le premier pseudo correspondant.</li>
+</ul>
+<h3>10.6 <code>SharedScripts\pub\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>messages de conseil / pub globaux ;</li>
+<li>message de bienvenue sur join.</li>
+</ul>
+<p>Evenements / timers :</p>
+<ul>
+<li>timer <code>sendConseilsEtPubs</code> toutes les 5 minutes</li>
+<li>timer <code>checkWelcomeQueue</code> toutes les 10 secondes</li>
+<li>evenement <code>onPlayerJoin</code></li>
+</ul>
+<p>Fichiers lus / ecrits :</p>
+<ul>
+<li>aucun.</li>
+</ul>
+<p>Structures memoire :</p>
+<ul>
+<li><code>welcomeQueue[playerID] = timeJoined</code></li>
+</ul>
+<p>Effets visibles cote joueur :</p>
+<ul>
+<li>alternance de conseils et messages promotionnels ;</li>
+<li>message de bienvenue apres l'arrivee.</li>
+</ul>
+<p>Point de fragilite :</p>
+<ul>
+<li>le commentaire indique "1 seconde" mais le timer est en realite a 10 secondes, donc la livraison du message de bienvenue peut se faire entre 5 et 10 secondes apres le join.</li>
+</ul>
+<h3>10.7 <code>SharedScripts\race\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>mini-evenements fun de chat :</li>
+<li>course ;</li>
+<li>bloom bloom ;</li>
+<li>steve.</li>
+</ul>
+<p>Evenements :</p>
+<ul>
+<li><code>onInit</code></li>
+<li><code>onChatMessage</code></li>
+</ul>
+<p>Commandes chat :</p>
+<ul>
+<li><code>/race</code></li>
+<li><code>/bloombloom</code></li>
+<li><code>/steve</code></li>
+</ul>
+<p>Fichiers lus / ecrits :</p>
+<ul>
+<li>aucun.</li>
+</ul>
+<p>Structures memoire :</p>
+<ul>
+<li><code>nextAvailableTime</code></li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>cooldown global pour tous ;</li>
+<li>usage de <code>MP.Sleep()</code> dans le flux de commande ;</li>
+<li>aucun etat persistant.</li>
+</ul>
+<h3>10.8 <code>SharedScripts\player_info\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>publier l'etat live minimal d'un serveur BeamMP.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li><code>require("dkjson")</code></li>
+<li>lecture de <code>ServerConfig.toml</code></li>
+</ul>
+<p>Evenements / timers :</p>
+<ul>
+<li>timer <code>updatePlayerInfo</code> toutes les 10 secondes</li>
+</ul>
+<p>Fichiers lus :</p>
+<ul>
+<li><code>ServerConfig.toml</code></li>
+</ul>
+<p>Fichiers ecrits :</p>
+<ul>
+<li><code>player_info.json</code></li>
+</ul>
+<p>Particularites :</p>
+<ul>
+<li>nettoie les codes couleur BeamMP ;</li>
+<li>tente d'extraire le numero de serveur depuis le segment <code>Serveur N</code> ;</li>
+<li>produit un <code>serverName</code> de forme <code>serverN</code>.</li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>convention de nommage du <code>ServerConfig.toml</code> obligatoire ;</li>
+<li>si le nom change de structure, <code>serverName</code> devient <code>serverUnknown</code>, ce qui perturbe le routage des commandes distantes.</li>
+</ul>
+<h3>10.9 <code>SharedScripts\dkjson.lua</code></h3>
+<p>Role :</p>
+<ul>
+<li>bibliotheque JSON commune.</li>
+</ul>
+<p>Utilisation actuelle :</p>
+<ul>
+<li><code>security\init.lua</code></li>
+<li><code>vehicles\init.lua</code></li>
+<li><code>player_info\init.lua</code></li>
+<li><code>gametime\init.lua</code></li>
+</ul>
+<p>Importance :</p>
+<ul>
+<li>sans <code>dkjson</code>, presque tous les flux de persistence Lua cessent de fonctionner.</li>
+</ul>
+<h3>10.10 <code>BEAM MP\Script\config\permissions_data.lua</code></h3>
+<p>Role :</p>
+<ul>
+<li>liste blanche des pseudos autorises a utiliser les commandes staff cote Lua.</li>
+</ul>
+<p>Format :</p>
+<pre><code class="language-lua">return {
+    authorizedUsers = {
+        &quot;StaffPseudo1&quot;,
+        &quot;StaffPseudo2&quot;
+    }
+}
+</code></pre>
+<p>Consommateurs :</p>
+<ul>
+<li><code>BEAM MP\Script\permissions.lua</code></li>
+<li><code>SharedScripts\security\init.lua</code></li>
+<li><code>SharedScripts\vehicles\init.lua</code></li>
+<li><code>T11.py</code> pour lecture / ecriture des permissions</li>
+</ul>
+<p>Point de fragilite :</p>
+<ul>
+<li>ce fichier sert de pivot commun a plusieurs composants. Une corruption impacte a la fois la moderation Lua et certains outils Discord.</li>
+</ul>
+<h3>10.11 <code>BEAM MP\Script\config\ranks.lua</code></h3>
+<p>Role :</p>
+<ul>
+<li>fichier Lua statique contenant des classements et roles speciaux (<code>topPlayers</code>, <code>specialRoles</code>).</li>
+</ul>
+<p>Etat d'usage observe :</p>
+<ul>
+<li>aucune reference active n'a ete reperee dans les scripts de production actuels, hors le fichier lui-meme et des copies d'archives sous <code>Sites\OLD</code>.</li>
+</ul>
+<p>Interpretation :</p>
+<ul>
+<li>a traiter comme fichier de reserve / heritage, pas comme piece centrale du pipeline actuel.</li>
+</ul>
+<h3>10.12 <code>SharedScripts\report\init - old.lua</code></h3>
+<p>Role :</p>
+<ul>
+<li>ancienne version du script de reports.</li>
+</ul>
+<p>Etat :</p>
+<ul>
+<li>non chargee par les wrappers actifs ;</li>
+<li>a conserver comme reference historique seulement.</li>
+</ul>
+<h3>10.13 Support Lua supplementaire : <code>BEAM MP\Script\permissions.lua</code></h3>
+<p>Role :</p>
+<ul>
+<li>adaptateur simple charge par <code>security</code> et <code>vehicles</code>.</li>
+</ul>
+<p>Fonctionnement :</p>
+<ul>
+<li>execute <code>dofile("C:/SERVEUR/BEAM MP/Script/config/permissions_data.lua")</code> ;</li>
+<li>compare le pseudo en minuscules ;</li>
+<li>retourne <code>true/false</code>.</li>
+</ul>
+<p>Effet de bord :</p>
+<ul>
+<li>imprime les admins charges dans la console, ce qui ajoute du bruit de log mais aide au debug.</li>
+</ul>
+<h3>10.14 <code>SharedScripts\gametime\init.lua</code></h3>
+<p>Role metier :</p>
+<ul>
+<li>suivre les sessions de jeu en memoire ;</li>
+<li>autosauvegarder le temps de jeu toutes les 60 s ;</li>
+<li>flush le temps de jeu au disconnect ;</li>
+<li>gerer <code>/gametime</code> et <code>/cgametime</code> en jeu ;</li>
+<li>ecrire directement dans <code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code>.</li>
+</ul>
+<p>Ou il est execute :</p>
+<ul>
+<li>charge indirectement par <code>SharedScripts\security\init.lua</code> dans chaque serveur BeamMP.</li>
+</ul>
+<p>Chargement et dependances :</p>
+<ul>
+<li><code>require("dkjson")</code> ;</li>
+<li>appels externes vers <code>C:\SERVEUR\SharedScripts\scripts\gametime_db.py</code> ;</li>
+<li>depend des callbacks fournis par <code>security\init.lua</code> (<code>sendMessage</code>, <code>writeLog</code>, <code>getPlayerIDFromName</code>, <code>hasPermission</code>).</li>
+</ul>
+<p>Evenements / timers :</p>
+<ul>
+<li>expose <code>autosaveGametime</code> ;</li>
+<li>cree un timer <code>autosaveGametime</code> toutes les 60 s au <code>setup()</code> ;</li>
+<li>s'appuie sur <code>onPlayerJoining</code> et <code>onPlayerDisconnect</code> appeles depuis <code>security\init.lua</code>.</li>
+</ul>
+<p>Commandes chat exposees :</p>
+<ul>
+<li><code>/gametime pseudo</code></li>
+<li><code>/cgametime pseudo</code></li>
+</ul>
+<p>Fichiers lus / ecrits :</p>
+<ul>
+<li>lit et ecrit <code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code> via <code>gametime_db.py</code> ;</li>
+<li>n'utilise plus aucun fichier <code>gametime\*.json</code>.</li>
+</ul>
+<p>Structures memoire importantes :</p>
+<ul>
+<li><code>playerSessions</code></li>
+</ul>
+<p>Effets visibles cote joueur :</p>
+<ul>
+<li>le temps de jeu en jeu provient de la base SQLite ;</li>
+<li>une session non encore autosauvegardee est ajoutee a l'affichage de <code>/gametime</code> ;</li>
+<li><code>/cgametime</code> reinitialise aussi la session en cours si le joueur est en ligne.</li>
+</ul>
+<p>Effets visibles cote site / bot / admin :</p>
+<ul>
+<li>alimente directement <code>gametime_sessions</code> et <code>gametime_totals</code> dans <code>itskao_core.db</code> ;</li>
+<li>simplifie <code>scriptstats.py</code> qui ne fait plus de transfert JSON -&gt; DB ;</li>
+<li>aligne le bot T11 et le site sur la meme source de verite.</li>
+</ul>
+<p>Points de fragilite :</p>
+<ul>
+<li>depend de la disponibilite du launcher Python force en UTF-8 (<code>py -3 -X utf8</code>) sur le serveur ;</li>
+<li>l'autosave est mutualise en batch par serveur via <code>record-sessions-batch</code>, mais les snapshots ponctuels et certains resets restent des appels Python externes ;</li>
+<li>aucun parseur Lua local n'etait disponible pendant cette cartographie pour une validation syntaxique automatique du module.</li>
+</ul>
+<h2>11. nginx</h2>
+<h3>11.1 Role</h3>
+<ul>
+<li>exposition publique du site et de l'admin ;</li>
+<li>terminaison TLS ;</li>
+<li>redirections HTTP -&gt; HTTPS ;</li>
+<li>proxy vers l'admin API ;</li>
+<li>stream TCP <code>4433</code> vers OpenVPN.</li>
+</ul>
+<h3>11.2 Configuration observee</h3>
+<p>Fichier principal :</p>
+<ul>
+<li><code>C:\nginx\conf\nginx.conf</code></li>
+</ul>
+<p>Comportements observes :</p>
+<ul>
+<li><code>80</code> pour redirections web ;</li>
+<li><code>443</code> pour le site public et l'admin ;</li>
+<li><code>4433</code> en <code>stream</code> vers <code>192.168.1.83:443</code>.</li>
+</ul>
+<p>Hosts observes dans <code>nginx.conf</code> :</p>
+<ul>
+<li><code>its-kao.com</code> -&gt; redirection vers <code>https://www.its-kao.com</code></li>
+<li><code>www.its-kao.com</code> -&gt; site public statique</li>
+<li><code>admin.its-kao.com</code> -&gt; frontend statique + proxy <code>/api/</code> et <code>/oauth/</code> vers <code>127.0.0.1:5000</code></li>
+<li><code>discord.its-kao.com</code> -&gt; redirection vers l'invitation Discord</li>
+<li>default server -&gt; redirection vers <code>https://www.its-kao.com</code></li>
+</ul>
+<h3>11.3 Dependance critique</h3>
+<p>Si rien n'ecoute sur <code>127.0.0.1:5000</code>, alors :</p>
+<ul>
+<li>le frontend admin peut etre servi ;</li>
+<li>mais <code>/api/*</code> et <code>/oauth/*</code> echoueront.</li>
+</ul>
+<h3>11.4 Certificats</h3>
+<p>Chemin utilise :</p>
+<ul>
+<li><code>C:\SERVEUR\Certificats\cert.pem</code></li>
+<li><code>C:\SERVEUR\Certificats\key.pem</code></li>
+<li><code>C:\SERVEUR\Certificats\origin_ca_rsa_root.pem</code></li>
+</ul>
+<h2>12. Exploitation quotidienne</h2>
+<h3>12.1 Sequence de demarrage conseillee</h3>
+<ol>
+<li>Verifier les chemins de lancement.
+   Le fonctionnement nominal est local sur <code>C:\SERVEUR</code>.</li>
+<li>Verifier <code>nginx</code>.
+   Utiliser <code>Site Start.bat</code>, puis <code>nginx -t</code>.</li>
+<li>Lancer l'admin center.
+   Utiliser <code>Sites\Admin\admin-center.ps1</code>.</li>
+<li>Lancer les services support.
+   Utiliser <code>start-support.ps1</code>.</li>
+<li>Lancer les serveurs BeamMP.
+   Utiliser <code>ServerRange.bat</code> ou <code>Server.bat</code>.</li>
+<li>Verifier les fichiers de vie :
+   - <code>player_info.json</code>
+   - <code>all_servers_info.json</code>
+   - <code>BEAM MP\Script\itskao_core.db</code>
+   - <code>stats.json</code>
+   - <code>run\backend.out.log</code>
+   - <code>run\collector.out.log</code></li>
+</ol>
+<p>Option pratique :</p>
+<ul>
+<li><code>Demarrer-Tout.ps1</code> orchestre <code>nginx</code>, backend admin, workers, BeamMP puis <code>T11.py</code> dans le bon ordre ;</li>
+<li><code>Arreter-Tout.ps1</code> arrete la stack en ordre inverse : Discord -&gt; BeamMP -&gt; workers -&gt; admin -&gt; <code>nginx</code>.</li>
+</ul>
+<h3>12.2 Ajouter / dupliquer un serveur</h3>
+<p>Procedure cible actuelle :</p>
+<ol>
+<li>Choisir le modele sous <code>C:\SERVEUR\base\BASE</code> ou <code>C:\SERVEUR\base\HEYRONES Boost</code>.</li>
+<li>Copier vers <code>C:\SERVEUR\BEAM MP\NN NOM</code>.</li>
+<li>Regler <code>ServerConfig.toml</code> :
+   - <code>Port</code>
+   - <code>AuthKey</code>
+   - <code>Name</code>
+   - <code>Map</code>
+   - <code>Tags</code></li>
+<li>Verifier les wrappers <code>Resources\Server\...\init.lua</code>.</li>
+<li>Ouvrir le port avec <code>ports-beammp.ps1</code> ou <code>ports.ps1</code>.</li>
+<li>Ajouter les metadonnees du site public si necessaire.</li>
+<li>Demarrer l'instance et verifier <code>player_info.json</code>.</li>
+</ol>
+<h3>12.3 Verification post-demarrage</h3>
+<ul>
+<li><code>player_info.json</code> bouge toutes les 10 s.</li>
+<li><code>Server.log</code> se rafraichit.</li>
+<li><code>all_servers_info.json</code> contient le serveur et un statut coherent.</li>
+<li><code>T11.py</code> voit le serveur comme <code>RUNNING</code> ou <code>STALE</code>.</li>
+<li>l'admin affiche le serveur avec un <code>status_label</code> coherent.</li>
+</ul>
+<h2>13. Troubleshooting detaille</h2>
+<h3>13.1 <code>nginx</code> est up mais l'admin API ne repond pas</h3>
+<p>Verifier :</p>
+<ul>
+<li>port <code>5000</code> ;</li>
+<li><code>Sites\Admin\run\backend.err.log</code> ;</li>
+<li><code>Sites\Admin\run\backend.out.log</code> ;</li>
+<li>presence du <code>.env</code> et de <code>ITSKAO_ADMIN_ENV_FILE</code>.</li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li>backend non lance ou crash ;</li>
+<li>token / secret / OAuth incorrect ;</li>
+<li>dependances Python manquantes.</li>
+</ul>
+<h3>13.2 Un serveur BeamMP ne publie plus <code>player_info.json</code></h3>
+<p>Verifier :</p>
+<ul>
+<li>wrapper <code>Resources\Server\player_info\init.lua</code> ;</li>
+<li><code>SharedScripts\player_info\init.lua</code> ;</li>
+<li><code>ServerConfig.toml</code> ;</li>
+<li><code>Server.log</code>.</li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li>script non charge ;</li>
+<li>parse du nom impossible ;</li>
+<li>probleme d'ecriture disque.</li>
+</ul>
+<h3>13.3 <code>all_servers_info.json</code> n'est plus regenere</h3>
+<p>Verifier :</p>
+<ul>
+<li><code>aggregate_servers.py</code> ;</li>
+<li>que <code>all_servers_info.json</code> est bien re-ecrit par l'agregateur ;</li>
+<li>que <code>T11.py</code> arrive encore a le lire comme snapshot partage ;</li>
+<li>permissions ecriture sur <code>Sites\It'sKao\js</code>.</li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li>aucun producteur actif ;</li>
+<li>exception silencieuse ;</li>
+<li><code>player_info.json</code> corrompu ou stale sur un trop grand nombre de serveurs.</li>
+</ul>
+<h3>13.4 <code>stats.json</code> est vide ou obsolete</h3>
+<p>Verifier :</p>
+<ul>
+<li><code>SharedScripts\gametime\init.lua</code></li>
+<li><code>BEAM MP\Script\itskao_core.db</code></li>
+<li><code>scriptstats.py</code></li>
+<li>permissions d'ecriture sur <code>Sites\It'sKao\js</code></li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li>service non lance ;</li>
+<li>DB centrale non mise a jour ;</li>
+<li>chemin d'input/output override par environnement.</li>
+</ul>
+<h3>13.5 Un report est cree mais ne remonte pas correctement</h3>
+<p>Verifier :</p>
+<ul>
+<li><code>BEAM MP\Script\itskao_core.db</code></li>
+<li>table <code>reports</code></li>
+<li>table <code>report_events</code></li>
+<li>table <code>report_outbox</code></li>
+<li><code>T11.py</code> et <code>monitor_reports()</code></li>
+<li>publication Discord et creation de thread</li>
+<li>droits d'ecriture sur <code>BEAM MP\Script\</code></li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li><code>T11.py</code> down ou en erreur ;</li>
+<li>echec de synchronisation Discord ;</li>
+<li>report cree sans <code>player_uuid</code> resolvable ;</li>
+<li>probleme sur le salon Discord ;</li>
+<li>anciens reports avec <code>serverunknown</code> non encore repares via <code>itskao_core_db.py repair-report-server-context</code>.</li>
+</ul>
+<h3>13.6 Une commande distante est ecrite mais jamais traitee</h3>
+<p>Verifier :</p>
+<ul>
+<li><code>remote_commands_serverN.json</code></li>
+<li><code>player_info.json</code> du serveur cible</li>
+<li><code>serverName</code> -&gt; <code>serverN</code></li>
+<li>timer <code>processRemoteCommands</code></li>
+<li><code>result</code>, <code>attempts</code>, <code>last_attempt</code>, <code>processed</code></li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li><code>player_info.json</code> stale ou absent ;</li>
+<li>commande ciblee vers le mauvais fichier ;</li>
+<li>joueur deja parti ;</li>
+<li>commande trop ancienne pour un broadcast.</li>
+</ul>
+<h3>13.7 Un fichier partage ou la DB centrale est corrompu</h3>
+<p>Zones critiques :</p>
+<ul>
+<li><code>itskao_core.db</code></li>
+<li><code>remote_commands_*.json</code></li>
+<li><code>all_servers_info.json</code></li>
+</ul>
+<p>Effets typiques :</p>
+<ul>
+<li>bans ou reports introuvables ;</li>
+<li>admin vide ;</li>
+<li>reports non livrables ;</li>
+<li>stats impossibles a recalculer.</li>
+</ul>
+<h3>13.8 Un ancien script ou un poste de dev mentionne <code>Z:\</code></h3>
+<p>Verifier :</p>
+<ul>
+<li>que <code>Z:</code> est bien un simple alias vers <code>C:\SERVEUR</code> ;</li>
+<li>que le poste distant voit le meme contenu et les memes permissions ;</li>
+<li>que l'on ne suit pas par erreur une ancienne consigne <code>Z:\</code> dans un contexte de prod locale.</li>
+</ul>
+<p>Cause probable :</p>
+<ul>
+<li>partage non monte ;</li>
+<li>execution depuis la mauvaise machine ;</li>
+<li>documentation ou script historique encore formule en <code>Z:\</code>.</li>
+</ul>
+<h3>13.9 Un wrapper existe mais la cible dans <code>SharedScripts</code> manque</h3>
+<p>Verifier :</p>
+<ul>
+<li><code>Resources\Server\...\init.lua</code></li>
+<li>le <code>require('xxx.init')</code></li>
+<li>la presence du dossier <code>SharedScripts\xxx\init.lua</code></li>
+</ul>
+<p>Symptome :</p>
+<ul>
+<li>le serveur BeamMP charge le wrapper mais la fonctionnalite n'apparait pas.</li>
+</ul>
+<h3>13.10 Echec d'ecriture dans <code>itskao_core.db</code>, <code>logs</code> ou les artefacts legacy</h3>
+<p>Verifier :</p>
+<ul>
+<li>droits NTFS ;</li>
+<li>acces au disque ;</li>
+<li>occupation disque ;</li>
+<li>creation des dossiers par <code>ensureFolder()</code> ;</li>
+<li>verrou SQLite ou processus plante.</li>
+</ul>
+<p>Effets :</p>
+<ul>
+<li>moderation non persistante ;</li>
+<li>reports bloques ou non livres ;</li>
+<li>stats incompletes ;</li>
+<li>audit staff lacunaire.</li>
+</ul>
+<h2>14. Securite et sauvegarde</h2>
+<h3>14.1 Fichiers sensibles</h3>
+<ul>
+<li><code>ServerConfig.toml</code> : <code>AuthKey</code></li>
+<li><code>Sites\Admin\backend\.env</code></li>
+<li><code>Sites\Admin\backend\.env.example</code> si des vraies valeurs y ont ete laissees</li>
+<li><code>SharedScripts\scripts\T11.py</code> si le token Discord y est encore en dur</li>
+<li><code>C:\SERVEUR\BEAM MP\Script\config\ip_privacy_secret.txt</code></li>
+<li><code>archives\beammp-script\notifications.ps1</code> si un webhook y est encore present</li>
+<li><code>C:\SERVEUR\Certificats\*</code></li>
+</ul>
+<h3>14.2 Sauvegardes minimales</h3>
+<ul>
+<li><code>C:\SERVEUR\BEAM MP\Script\itskao_core.db</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\config\ip_privacy_secret.txt</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\remote_commands_*.json</code></li>
+<li><code>C:\SERVEUR\AdminMetrics\metrics.db</code></li>
+<li><code>C:\SERVEUR\Sites\Admin\backend\.env</code></li>
+<li><code>C:\SERVEUR\Certificats\</code></li>
+</ul>
+<p>Sauvegardes secondaires utiles :</p>
+<ul>
+<li><code>C:\SERVEUR\Report\</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\banned_players.json</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\sanctions\</code></li>
+<li><code>C:\SERVEUR\BEAM MP\Script\gametime.db</code></li>
+</ul>
+<h3>14.3 Bonnes pratiques</h3>
+<ul>
+<li>ne jamais diffuser le repo brut sans audit des secrets ;</li>
+<li>ne pas supposer que <code>.env.example</code> est safe ;</li>
+<li>regenerer / sortir tout token ou webhook present en clair ;</li>
+<li>conserver <code>config\ip_privacy_secret.txt</code> de facon stable, sinon la correlation des IP pseudonymisees est perdue ;</li>
+<li>considerer <code>C:\SERVEUR\BEAM MP\Script</code> comme zone critique principale ;</li>
+<li>ne traiter <code>C:\SERVEUR\Report</code> que comme archive sensible, pas comme source nominale.</li>
+</ul>
+<h2>15. Dette technique et incoherences observees</h2>
+<p>Observations relevees pendant cette cartographie :</p>
+<ul>
+<li><code>T11.py</code> conserve une fonction <code>update_servers_info_file()</code> stubbee a <code>return None</code>, ce qui peut preter a confusion alors que <code>aggregate_servers.py</code> est le seul writer nominal.</li>
+<li><code>T11.py</code> et <code>aggregate_servers.py</code> n'utilisent pas exactement la meme convention de nommage pour <code>serverName</code>.</li>
+<li>le bot T11 ne decouvre que les dossiers numerotes, alors que l'admin backend lit plus largement tout dossier avec <code>ServerConfig.toml</code> hors mots-clés exclus.</li>
+<li><code>nginx.conf</code> est monolithique et n'inclut pas <code>conf\site-enabled\00-beta.conf</code>.</li>
+<li><code>conf\site-enabled\00-beta.conf</code> existe mais son dossier cible <code>C:\SERVEUR\Sites\Beta\ItsKao</code> n'est pas present.</li>
+<li>au moment de cette cartographie, rien n'ecoutait sur le port <code>5000</code>, ce qui suffit a casser l'API admin meme si <code>nginx</code> tourne.</li>
+<li><code>T11.py</code> reference <code>BASE_SERVER_PATH = C:\SERVEUR\BEAM MP\BASE</code>, alors que les modeles observes sont sous <code>C:\SERVEUR\base\BASE</code> et <code>C:\SERVEUR\base\HEYRONES Boost</code>.</li>
+<li><code>archives\beammp-script\notifications.ps1</code> et certains fichiers d'exemple semblent contenir des secrets ou endpoints reels : a traiter comme incident de securite tant que non nettoyes.</li>
+<li><code>pub\init.lua</code> annonce un timer de 1 seconde dans un commentaire, mais utilise en realite 10 secondes.</li>
+<li>le source garde encore quelques reliquats legacy (<code>bannedPlayersFile</code>, <code>sanctionFolder</code>, helpers reports fichier dans <code>T11.py</code>) meme si le flux nominal est DB-first.</li>
+<li><code>runtime_identifier_events</code> ne grossit plus en nominal, mais restera a purger si <code>ITSKAO_RUNTIME_CAPTURE</code> est active pour du debug prolonge.</li>
+</ul>
+<h2>16. Conclusion pratique</h2>
+<p>Pour comprendre cette infra, il faut maintenant la lire comme un systeme hybride :</p>
+<ul>
+<li>BeamMP produit encore des fichiers locaux et partages pour le live serveur ;</li>
+<li>les scripts Lua consomment ces fichiers, mais poussent le metier joueur dans <code>itskao_core.db</code> ;</li>
+<li><code>T11.py</code>, les agregateurs Python et le backend admin lisent ensuite soit les fichiers live, soit la DB centrale selon le flux ;</li>
+<li><code>nginx</code> expose ensuite les couches web.</li>
+</ul>
+<p>Le bon reflexe de debug est donc :</p>
+<ol>
+<li>identifier si le flux depend d'un fichier live ou de <code>itskao_core.db</code> ;</li>
+<li>identifier qui est suppose l'ecrire ;</li>
+<li>identifier qui est suppose le lire ;</li>
+<li>verifier la cadence de mise a jour ;</li>
+<li>raisonner d'abord en <code>C:\SERVEUR</code>, et ne relire <code>Z:\</code> que comme un alias distant si le contexte de dev l'impose.</li>
+</ol>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>
+
+  <script src="vendor/mermaid.min.js"></script>
+  <script src="script.js"></script>
+  <script>
+    let diagrams = Array.from(document.querySelectorAll('.mermaid'));
+
+    function getMermaidThemeVariables() {
+      const darkMode = document.querySelector('.switcher input[value="dark"]')?.checked;
+      return darkMode ? {
+        primaryColor: '#172033',
+        primaryBorderColor: '#6e87a8',
+        primaryTextColor: '#eef4fb',
+        lineColor: '#b1905f',
+        secondaryColor: '#0d121a',
+        tertiaryColor: '#131a24',
+        clusterBkg: '#111927',
+        clusterBorder: '#6e87a8',
+        edgeLabelBackground: '#111927',
+        fontSize: '18px',
+        fontFamily: 'Manrope, Segoe UI, Arial, sans-serif'
+      } : {
+        primaryColor: '#f8fbff',
+        primaryBorderColor: '#243b5a',
+        primaryTextColor: '#111827',
+        lineColor: '#8b6b42',
+        secondaryColor: '#f4f5f7',
+        tertiaryColor: '#e9ebef',
+        clusterBkg: '#ffffff',
+        clusterBorder: '#243b5a',
+        edgeLabelBackground: '#ffffff',
+        fontSize: '18px',
+        fontFamily: 'Manrope, Segoe UI, Arial, sans-serif'
+      };
+    }
+
+    function classifyDiagram(node) {
+      const source = (node.dataset.source || node.textContent).trim();
+      const shell = node.closest('.mermaid-shell');
+      if (!shell) return;
+      shell.classList.toggle('mermaid-shell--flowchart', source.startsWith('flowchart'));
+      shell.classList.toggle('mermaid-shell--sequence', source.startsWith('sequenceDiagram'));
+    }
+
+    function normalizeRenderedDiagrams() {
+      diagrams.forEach((node) => {
+        const source = node.dataset.source || '';
+        const svg = node.querySelector('svg');
+        const minWidth = source.startsWith('flowchart') ? '1900px' : '1700px';
+        if (!svg) return;
+        node.style.setProperty('min-width', minWidth, 'important');
+        svg.removeAttribute('width');
+        svg.removeAttribute('height');
+        svg.style.setProperty('width', `max(100%, ${minWidth})`, 'important');
+        svg.style.setProperty('min-width', minWidth, 'important');
+        svg.style.setProperty('max-width', 'none', 'important');
+        svg.style.setProperty('height', 'auto', 'important');
+      });
+    }
+
+    async function renderDiagrams() {
+      if (!window.mermaid || !diagrams.length) return;
+      diagrams.forEach((node, index) => {
+        if (!node.dataset.source) node.dataset.source = node.textContent.trim();
+        node.removeAttribute('data-processed');
+        node.id = `mermaid-diagram-${index + 1}`;
+        node.textContent = node.dataset.source;
+        classifyDiagram(node);
+      });
+      mermaid.initialize({
+        startOnLoad: false,
+        securityLevel: 'loose',
+        theme: 'base',
+        themeVariables: getMermaidThemeVariables(),
+        flowchart: {
+          useMaxWidth: false,
+          curve: 'basis',
+          htmlLabels: true,
+          padding: 18
+        },
+        sequence: {
+          useMaxWidth: false,
+          actorFontSize: 18,
+          messageFontSize: 18,
+          noteFontSize: 18,
+          actorMargin: 80,
+          messageMargin: 48,
+          width: 180,
+          height: 70,
+          boxMargin: 12,
+          boxTextMargin: 8
+        }
+      });
+      await mermaid.run({ querySelector: '.mermaid' });
+      normalizeRenderedDiagrams();
+    }
+
+    document.querySelectorAll('.switcher input[type="radio"]').forEach((input) => {
+      input.addEventListener('change', () => {
+        window.setTimeout(() => renderDiagrams().catch(console.error), 40);
+      });
+    });
+
+    renderDiagrams().catch(console.error);
+  </script>
+</body>
+</html>

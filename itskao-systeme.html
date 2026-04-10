@@ -1,0 +1,232 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chrys MISSON — Infrastructure It’sKao</title>
+  <link rel="stylesheet" href="site.css">
+  <style>
+    .infra-hero {
+      display: grid;
+      gap: 16px;
+    }
+
+    .infra-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 14px;
+    }
+
+    .infra-card {
+      padding: 20px;
+      border-radius: 20px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: linear-gradient(180deg, color-mix(in srgb, var(--surface-strong) 92%, transparent), color-mix(in srgb, var(--surface) 72%, transparent));
+      box-shadow: 0 14px 30px -26px color-mix(in srgb, var(--c-dark) 55%, transparent);
+    }
+
+    .infra-card h3 {
+      margin: 0 0 8px;
+    }
+
+    .infra-card p {
+      margin: 0;
+      color: var(--text-2);
+    }
+
+    .infra-flow {
+      margin-top: 14px;
+      display: grid;
+      gap: 12px;
+    }
+
+    .infra-step {
+      padding: 16px 18px;
+      border-radius: 18px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 86%, transparent);
+    }
+
+    .infra-step strong {
+      display: block;
+      margin-bottom: 6px;
+    }
+
+    .mono-note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      border: 1px solid color-mix(in srgb, var(--border) 90%, transparent);
+      background: color-mix(in srgb, var(--surface-strong) 82%, transparent);
+      color: var(--text-2);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 0.95rem;
+      line-height: 1.55;
+      overflow-x: auto;
+    }
+
+    @media (max-width: 760px) {
+      .infra-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
+
+  <nav class="container nav" aria-label="Navigation principale">
+    <div class="nav-tabs">
+      <a href="index.html" data-page="index.html">Accueil</a>
+      <a href="experiences.html" data-page="experiences.html">Expériences</a>
+      <a href="competences.html" data-page="competences.html">Compétences</a>
+      <a href="veille-technologique.html" data-page="veille-technologique.html">Veille</a>
+      <a href="contact.html" data-page="contact.html">Contact</a>
+      <a href="itskao-systeme.html" data-page="itskao-systeme.html" data-aliases="itskao-systeme-doc.html">It’sKao</a>
+      <span class="nav-indicator" aria-hidden="true"></span>
+    </div>
+    <div class="nav-spacer"></div>
+    <fieldset class="switcher">
+      <legend class="switcher__legend">Choisir thème</legend>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
+      </label>
+      <label class="switcher__option">
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
+        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
+      </label>
+    </fieldset>
+  </nav>
+
+  <main class="container" id="main-content" tabindex="-1">
+    <section class="card infra-hero">
+      <div>
+        <p class="lead">Synthèse lisible de l'infrastructure It’sKao à partir de la documentation d'exploitation interne.</p>
+        <h1>Infrastructure It’sKao</h1>
+        <p class="lead">Le projet repose sur une stack Windows Server pilotée depuis <strong>C:\SERVEUR</strong>, avec des instances BeamMP, des scripts Lua mutualisés, une base centrale SQLite, un bot Discord, un backend FastAPI et une exposition web via nginx.</p>
+      </div>
+      <div class="chips">
+        <span class="tag">Windows Server</span>
+        <span class="tag">BeamMP</span>
+        <span class="tag">Lua</span>
+        <span class="tag">SQLite</span>
+        <span class="tag">Python</span>
+        <span class="tag">FastAPI</span>
+        <span class="tag">nginx</span>
+      </div>
+      <div class="cta-row">
+        <a class="btn primary" href="https://its-kao.com" target="_blank" rel="noopener">Ouvrir It’sKao ↗</a>
+        <a class="btn" href="itskao-systeme-doc.html">Lire la documentation complète ↗</a>
+        <a class="btn" href="competences.html">Retour aux compétences</a>
+      </div>
+      <div class="mono-note">Chemin nominal d'exploitation : C:\SERVEUR
+Chemin legacy / accès distant : Z:\ (alias historique, non nominal)</div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Vue d'ensemble</h2>
+          <p class="lead">Le système n'est plus uniquement piloté par fichiers. L'état live des serveurs reste partagé sur disque, mais l'identité joueur, les sanctions, les reports et le temps de jeu sont maintenant centralisés.</p>
+        </div>
+        <span class="badge">Architecture</span>
+      </header>
+      <div class="infra-grid">
+        <article class="infra-card">
+          <h3>1. Instances BeamMP</h3>
+          <p>Chaque serveur conserve sa configuration locale, ses logs et son <code>player_info.json</code>, mais charge sa logique Lua depuis des wrappers pointant vers <code>SharedScripts</code>.</p>
+        </article>
+        <article class="infra-card">
+          <h3>2. Scripts mutualisés</h3>
+          <p>Les modules <code>security</code>, <code>gametime</code> et <code>report</code> sont centralisés, ce qui évite la maintenance de dizaines de copies et fiabilise les mises à jour.</p>
+        </article>
+        <article class="infra-card">
+          <h3>3. Base centrale</h3>
+          <p><code>itskao_core.db</code> est la source de vérité métier pour l'identité joueur, les sessions, les bans, les sanctions et les reports. Le pivot principal est désormais <code>player_uuid</code>.</p>
+        </article>
+        <article class="infra-card">
+          <h3>4. Services applicatifs</h3>
+          <p>Le bot Discord <code>T11.py</code>, les agrégateurs Python, le backend admin FastAPI et le site public partagent les mêmes données et la même logique de supervision.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Flux principaux</h2>
+          <p class="lead">Le fonctionnement quotidien repose sur quelques chaînes de traitement très claires, ce qui rend l'exploitation plus lisible que le document source brut.</p>
+        </div>
+        <span class="badge">Flux</span>
+      </header>
+      <div class="infra-flow">
+        <article class="infra-step">
+          <strong>Etat live des serveurs</strong>
+          Les instances BeamMP produisent <code>player_info.json</code>. L'agrégateur <code>aggregate_servers.py</code> consolide ensuite ces données dans <code>all_servers_info.json</code>, qui sert au site public, au backend admin et au bot Discord.
+        </article>
+        <article class="infra-step">
+          <strong>Identité et sécurité</strong>
+          <code>security/init.lua</code> résout l'identité des joueurs, alimente la base centrale et pilote aussi la lecture des commandes distantes via les fichiers <code>remote_commands_*.json</code>.
+        </article>
+        <article class="infra-step">
+          <strong>Temps de jeu et reports</strong>
+          <code>gametime/init.lua</code> écrit directement les sessions dans <code>itskao_core.db</code>, tandis que <code>report/init.lua</code> crée les reports et les réponses joueur dans cette même base.
+        </article>
+        <article class="infra-step">
+          <strong>Modération et administration</strong>
+          <code>T11.py</code> lit la DB centrale, crée automatiquement des threads Discord par report et s'appuie sur la même source de vérité que l'interface admin FastAPI.</article>
+      </div>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Exploitation quotidienne</h2>
+          <p class="lead">Le projet montre une vraie logique d'administration système: orchestration, supervision, scripts de maintenance et distinction claire entre nominal et legacy.</p>
+        </div>
+        <span class="badge">Ops</span>
+      </header>
+      <ul class="clean">
+        <li><strong>Démarrage/arrêt:</strong> <code>Demarrer-Tout.ps1</code> et <code>Arreter-Tout.ps1</code> orchestrent la stack complète.</li>
+        <li><strong>Writer nominal unique:</strong> <code>aggregate_servers.py</code> est le seul composant censé écrire <code>all_servers_info.json</code>.</li>
+        <li><strong>Boucles critiques:</strong> supervision des reports, collecte de métriques, suivi des serveurs, publication Discord et contrôle des commandes distantes.</li>
+        <li><strong>Compatibilité maîtrisée:</strong> les anciens fichiers comme <code>banned_players.json</code>, <code>gametime.db</code> ou <code>Report\</code> sont conservés comme artefacts legacy, plus comme source principale.</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <header class="split-header">
+        <div>
+          <h2>Ce que ce projet démontre</h2>
+          <p class="lead">Au-delà du site visible, It’sKao montre des compétences très SISR: structuration de services, fiabilité, traçabilité et compréhension des dépendances entre composants.</p>
+        </div>
+        <span class="badge">Compétences</span>
+      </header>
+      <div class="infra-grid">
+        <article class="infra-card">
+          <h3>Administration système</h3>
+          <p>Organisation d'une infrastructure Windows, gestion des scripts d'exploitation, des chemins nominaux, des services et des procédures de démarrage/arrêt.</p>
+        </article>
+        <article class="infra-card">
+          <h3>Architecture applicative</h3>
+          <p>Compréhension des rôles respectifs de BeamMP, Lua, SQLite, Python, FastAPI, nginx et Discord dans une même chaîne de service.</p>
+        </article>
+        <article class="infra-card">
+          <h3>Exploitation et supervision</h3>
+          <p>Suivi des timers, gestion des seuils de fraîcheur, contrôle des producteurs/consommateurs et diagnostic des points de panne potentiels.</p>
+        </article>
+        <article class="infra-card">
+          <h3>Documentation technique</h3>
+          <p>Capacité à transformer une documentation d'exploitation très dense en synthèse lisible, exploitable et orientée maintenance réelle.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container"><small>© <span id="year"></span> Chrys MISSON — Portfolio.</small></footer>
+  <script src="script.js"></script>
+</body>
+</html>

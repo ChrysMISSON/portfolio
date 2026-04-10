@@ -10,9 +10,9 @@
 </head>
 <body>
   <div class="page-bg"></div>
+  <a class="skip-link" href="#main-content">Aller au contenu</a>
 
-  <!-- NAV -->
-  <nav class="container nav">
+  <nav class="container nav" aria-label="Navigation principale">
     <div class="nav-tabs">
       <a href="index.html" data-page="index.html">Accueil</a>
       <a href="experiences.html" data-page="experiences.html">Expériences</a>
@@ -25,37 +25,35 @@
     <fieldset class="switcher">
       <legend class="switcher__legend">Choisir thème</legend>
       <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" />
+        <input class="switcher__input" type="radio" name="theme" value="light" c-option="1" checked />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M18 3a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V4a1 1 0 0 1 1-1Zm0 26a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM5 17a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H6a1 1 0 0 1-1-1Zm22 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM7.7 7.7a1 1 0 0 1 1.4 0L11 9.6a1 1 0 0 1-1.4 1.4L7.7 9.1a1 1 0 0 1 0-1.4Zm14.6 14.6a1 1 0 0 1 1.4 0l1.9 1.9a1 1 0 1 1-1.4 1.4l-1.9-1.9a1 1 0 0 1 0-1.4ZM24.3 7.7a1 1 0 0 1 1.4 0 1 1 0 0 1 0 1.4L23.8 11a1 1 0 1 1-1.4-1.4l1.9-1.9ZM9.6 23.8a1 1 0 0 1 0 1.4L7.7 27.1a1 1 0 0 1-1.4-1.4l1.9-1.9a1 1 0 0 1 1.4 0ZM18 11a7 7 0 1 1 0 14a7 7 0 0 1 0-14Z"/></svg>
       </label>
       <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" checked />
+        <input class="switcher__input" type="radio" name="theme" value="dark" c-option="2" />
         <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M22 4a12 12 0 1 0 8.485 20.485A10 10 0 0 1 22 4Z"/></svg>
-      </label>
-      <label class="switcher__option">
-        <input class="switcher__input" type="radio" name="theme" value="dim"  c-option="3" />
-        <svg class="switcher__icon" viewBox="0 0 36 36" aria-hidden="true"><path fill="var(--c)" d="M5 21a1 1 0 0 1 0-6l26 0a1 1 0 0 1 0 6z"/></svg>
       </label>
     </fieldset>
   </nav>
 
-  <main class="container">
-    <!-- HERO -->
+  <main class="container" id="main-content" tabindex="-1">
     <section class="card">
-      <h1>🧠 Compétences</h1>
-      <p class="lead">Administration systèmes et postes clients, sécurité, réseau. Capable d’<strong>utiliser</strong> et de <strong>mettre en place</strong> des outils (MDT, AD/GPO, DHCP/DNS, VPN &amp; certificats).</p>
+      <h1>Compétences</h1>
+      <p class="lead">Administration systèmes et postes clients, sécurité et réseau. Capacité à déployer, maintenir et documenter des environnements IT avec des outils standards du marché.</p>
       <div class="chips">
-        <span class="tag"><span class="ico">🖥️</span>Systèmes</span>
-        <span class="tag"><span class="ico">🔐</span>Sécurité</span>
-        <span class="tag"><span class="ico">🌐</span>Réseaux</span>
-        <span class="tag"><span class="ico">🧰</span>Support IT</span>
-        <span class="tag"><span class="ico">🇬🇧</span>Anglais (Section Euro)</span>
+        <span class="tag">Systèmes</span>
+        <span class="tag">Sécurité</span>
+        <span class="tag">Réseaux</span>
+        <span class="tag">Support IT</span>
+        <span class="tag">Anglais professionnel</span>
+      </div>
+      <div class="cta-row hero-actions">
+        <a class="btn primary" href="cv.html" target="_blank" rel="noopener">Voir mon CV</a>
+        <a class="btn" href="experiences.html">Voir mes expériences</a>
       </div>
     </section>
 
-    <!-- COMPÉTENCES MISES EN AVANT -->
     <section class="card">
-      <h2>🔭 Compétences mises en avant</h2>
+      <h2>Compétences mises en avant</h2>
       <ul class="clean">
         <li>Création de déploiement automatisé de postes via <strong>MDT Lite‑Touch</strong></li>
         <li>Administration <strong>Active Directory</strong> et gestion des <strong>GPO</strong></li>
@@ -68,7 +66,7 @@
     </section>
 
     <section class="card">
-      <h2>🎓 Formation &amp; diplômes</h2>
+      <h2>Formation et diplômes</h2>
       <ul class="clean">
         <li><strong>BTS SIO</strong> (Services Informatiques aux Organisations) – 2e année (en cours), Lycée Léonard de Vinci, Melun</li>
         <li><strong>Baccalauréat Professionnel Systèmes Numériques</strong> – Mention Très Bien &amp; Section Européenne Anglais, Lycée Polyvalent La Fayette, Fontaineroux – 2024</li>
@@ -76,7 +74,7 @@
     </section>
 
     <section class="card">
-      <h2>🎯 Compétences</h2>
+      <h2>Expertise technique</h2>
       <ul class="clean">
         <li><strong>Systèmes &amp; optimisation</strong> : configuration et amélioration des performances PC (OS, services, optimisation thermique).</li>
         <li><strong>Maintenance &amp; support</strong> : dépannage Windows, prévention des pannes, assistance utilisateurs.</li>
@@ -90,30 +88,76 @@
     </section>
 
 
-    <!-- CENTRES D’INTÉRÊT -->
     <section class="card">
-      <h2>🌟 Centres d’intérêt</h2>
+      <h2>Centres d'intérêt</h2>
       <ul class="clean">
         <li><strong>Sport</strong> : handball (travail d’équipe, esprit de compétition), karting (réflexes, concentration).</li>
         <li><strong>Création</strong> : montage vidéo, design d’interface, effets visuels (créativité, sens du détail).</li>
       </ul>
     </section>
 
-    <!-- PLACEHOLDERS certifications / projets -->
     <section class="card">
-      <h2>🏷️ Certifications &amp; formations (placeholders)</h2>
+      <h2>Certifications et formations</h2>
       <ul class="clean">
-        <li>[Certification (exemple : cisco) ] — [Organisme] — [Année]</li>
+        <li>Certification réseau de niveau associate : préparation en cours.</li>
+        <li>Parcours de renforcement cybersécurité (bonnes pratiques poste et gestion des accès) : en cours.</li>
       </ul>
     </section>
     
 
     <section class="card">
-      <h2>🛠️ Projets techniques (placeholders)</h2>
+      <h2>Projets techniques</h2>
       <ul class="clean">
-        <li>[Nom du projet] — [Stack / outils] — [1 à 2 bullets sur ce que ce que j'ai construit/appris]</li>
-        <li>[Nom du projet] — [Stack / outils] — [Résultat / lien]</li>
+        <li>Automatisation du déploiement de postes via MDT Lite-Touch avec procédures de contrôle post-installation.</li>
+        <li>Mise en place d'un environnement Active Directory de test pour la gestion utilisateurs, groupes et GPO.</li>
       </ul>
+    </section>
+
+    <section class="card skills-projects">
+      <header class="split-header">
+        <div>
+          <h2>Projets personnels</h2>
+          <p class="lead">Travaux menés en autonomie pour approfondir l'administration systèmes, la documentation et la standardisation des environnements SISR.</p>
+        </div>
+        <span class="badge">En cours</span>
+      </header>
+      <div class="project-grid">
+        <article class="project-card">
+          <header class="split-header">
+            <div>
+              <strong>Infrastructure It’sKao</strong><br>
+              <span>Windows Server, BeamMP, SQLite, Python, FastAPI, nginx</span>
+            </div>
+            <span class="badge">Production</span>
+          </header>
+          <ul class="clean">
+            <li>Administration d'une infrastructure centralisée autour de <strong>C:\SERVEUR</strong> avec instances BeamMP, services web et scripts mutualisés.</li>
+            <li>Centralisation des données métier dans <strong>itskao_core.db</strong> et orchestration des flux entre scripts Lua, bot Discord, backend admin et site public.</li>
+            <li>Gestion du reverse proxy nginx, des services Python, de l'exploitation quotidienne, des artefacts legacy et des procédures de démarrage/arrêt.</li>
+          </ul>
+          <div class="cta-row">
+            <a class="btn ghost" href="https://its-kao.com" target="_blank" rel="noopener">Consulter le projet It’sKao ↗</a>
+            <a class="btn ghost" href="itskao-systeme.html">Voir l'architecture ↗</a>
+            <a class="btn ghost" href="itskao-systeme-doc.html">Lire la documentation ↗</a>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <header class="split-header">
+            <div>
+              <strong>Lab Active Directory &amp; GPO</strong><br>
+              <span>Windows Server, Active Directory, GPO</span>
+            </div>
+            <span class="badge">Lab</span>
+          </header>
+          <ul class="clean">
+            <li>Construction d'un environnement de test pour reproduire des scénarios d'administration réels.</li>
+            <li>Automatisation de la création de comptes et de politiques de sécurité.</li>
+            <li>Documentation technique orientée usage équipe support.</li>
+          </ul>
+        </article>
+
+      </div>
     </section>
   </main>
 
